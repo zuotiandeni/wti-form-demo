@@ -8,8 +8,9 @@
                      {label:'典型表单'},{label:'横排表单'},
                      {label:'表单全局禁用'},{label:'纯文本模式表单'},]}]"/>
 
-        <h3>典型表单</h3>
+        <h3>典型表单和提交表单</h3>
         <p>包含各种表单项，比如文本输入框，数字输入框，单选框，多选框、子表单等</p>
+        <p>提交代码的逻辑也看这里</p>
 
         <wti-form :fields="fields1"
                   ref="form1"/>
@@ -233,6 +234,7 @@
 
                 code1: `<wti-form :fields="fields1"
               ref="form1"/>
+<el-button type="primary" @click="submit('form1')">提交按钮</el-button>
 ---
 fields1: [
     {
@@ -374,7 +376,20 @@ fields1: [
             },
         ]
     }
-]`,
+]
+---
+methods: {
+    submit (formName) {
+        this.$refs[formName].validate((isPass, data) => {
+            if (isPass) {
+                console.log('这是你刚提交的数据', data);
+            } else {
+                this.$message.error('校验失败！');
+            }
+        });
+    }
+}
+`,
 
                 fields2: [
                     {

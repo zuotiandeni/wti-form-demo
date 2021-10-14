@@ -61,19 +61,28 @@
                 <pre v-highlightjs><code class="javascript">{{ code3 }}</code></pre>
             </el-collapse-item>
         </el-collapse>
+
+        <el-divider/>
+
+        <h3>自定义请求函数</h3>
+        <p>有时候，默认请求函数不能满足需求，所以也许需要一个自定义请求函数</p>
+        <p>可以在配置项里添加 querySearchAsync 函数，入参分别是 queryString, cb, this （即请求字符串，回填回调函数，以及该要素组件的 this）</p>
+        <wti-form ref="form4"
+                  :fields="fields4"/>
+        <el-collapse class="collapse">
+            <el-collapse-item>
+                <template slot="title">
+                    <b>点击查看代码</b>
+                </template>
+                <pre v-highlightjs><code class="javascript">{{ code4 }}</code></pre>
+            </el-collapse-item>
+        </el-collapse>
     </div>
 </template>
 
 <script>
     export default {
         name: 'AutoCompleteInput',
-        mounted () {
-            // this.$ajax.autocomplete({
-            //     search: '1'
-            // }).then(res => {
-            //     console.log(res);
-            // });
-        },
         data () {
             return {
                 fields1: [
@@ -87,7 +96,7 @@
                                 key: 'key1',
                                 label: '基础用法',
                                 placeholder: '请输入',
-                                type: 'auto-complete-input',
+                                type: 'auto-complete-input'
                             }
                         ]
                     }
@@ -225,6 +234,44 @@ fields1: [
                 },
                 fetchSuggestions (data) {
                     console.log('fetchSuggestions', data);
+                }
+            }
+        ]
+    }
+]
+`,
+
+                fields4: [
+                    {
+                        children: [
+                            {
+                                key: 'key4',
+                                label: '回调函数',
+                                placeholder: '请输入',
+                                type: 'auto-complete-input',
+                                querySearchAsync (queryString, cb, formItem) {
+                                    console.log(`你的请求字符串是：${queryString}`);
+                                    console.log('该组件元素是', formItem);
+                                }
+                            }
+                        ]
+                    }
+                ],
+
+                code4: `<wti-form ref="form4"
+            :fields="fields4"/>
+---
+fields1: [
+    {
+        children: [
+            {
+                key: 'key4',
+                label: '回调函数',
+                placeholder: '请输入',
+                type: 'auto-complete-input',
+                querySearchAsync (queryString, cb, formItem) {
+                    console.log(\`你的请求字符串是 \${queryString}\`);
+                    console.log('该组件元素是', formItem);
                 }
             }
         ]

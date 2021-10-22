@@ -19,7 +19,7 @@
 
 <script>
     export default {
-        name: 'RateInput',
+        name: 'Install',
         data () {
             return {
                 demoCode: `// 引入 Vue

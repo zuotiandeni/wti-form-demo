@@ -16,6 +16,7 @@ import FastCreate from './component/demo/fast_create';
 
 import FormitemCommon from './component/common/formitem_common';
 import Layout from './component/common/layout';
+import ValueLink from './component/common/value_link';
 
 import Input from './component/input';
 import NormalSelect from './component/normal_select';
@@ -55,7 +56,8 @@ const routes = [
 
 
     {path: '/common/FormitemCommon', component: FormitemCommon,},
-    {path: '/common/layout', component: Layout,},
+    {path: '/common/Layout', component: Layout,},
+    {path: '/common/ValueLink', component: ValueLink,},
 
 
     {path: '/formItem/Input', component: Input,},

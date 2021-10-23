@@ -6,7 +6,7 @@
                  class="el-menu-vertical-demo"
                  @select="selectMenu">
             <el-menu-item-group>
-                <template slot="title">开发指南 v1.0.11.1</template>
+                <template slot="title">开发指南 v1.0.11.2</template>
                 <el-menu-item index="/Install">安装</el-menu-item>
             </el-menu-item-group>
             <el-menu-item-group>
@@ -21,6 +21,7 @@
                 <template slot="title">通用配置</template>
                 <el-menu-item index="/common/FormitemCommon">表单元素通用属性 CommonAttr</el-menu-item>
                 <el-menu-item index="/common/Layout">布局配置 Layout</el-menu-item>
+                <el-menu-item index="/common/ValueLink">数值联动 ValueLink</el-menu-item>
             </el-menu-item-group>
             <el-menu-item-group>
                 <template slot="title">各表单组件</template>

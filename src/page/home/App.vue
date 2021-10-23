@@ -16,9 +16,14 @@
                 <el-menu-item index="/demo/Often">常见配置</el-menu-item>
                 <el-menu-item index="/demo/FastCreate">快捷创建表单 FastCreate</el-menu-item>
             </el-menu-item-group>
+
+            <el-menu-item-group>
+                <template slot="title">通用配置</template>
+                <el-menu-item index="/common/FormitemCommon">表单元素通用属性 CommonAttr</el-menu-item>
+                <el-menu-item index="/common/Layout">布局配置 Layout</el-menu-item>
+            </el-menu-item-group>
             <el-menu-item-group>
                 <template slot="title">各表单组件</template>
-                <el-menu-item index="/formItem/FormitemCommon">表单元素通用属性 CommonAttr</el-menu-item>
                 <el-menu-item index="/formItem/Input">文本输入框 Input</el-menu-item>
                 <el-menu-item index="/formItem/NormalSelect">普通下拉框 NormalSelect</el-menu-item>
                 <el-menu-item index="/formItem/Radio">单选框 Radio</el-menu-item>

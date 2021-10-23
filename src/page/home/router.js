@@ -14,7 +14,9 @@ import DemoStatus from './component/demo/status';
 import DemoOften from './component/demo/often';
 import FastCreate from './component/demo/fast_create';
 
-import FormitemCommon from './component/formitem_common';
+import FormitemCommon from './component/common/formitem_common';
+import Layout from './component/common/layout';
+
 import Input from './component/input';
 import NormalSelect from './component/normal_select';
 import Radio from './component/radio';
@@ -52,7 +54,10 @@ const routes = [
     {path: '/demo/FastCreate', component: FastCreate,},
 
 
-    {path: '/formItem/FormitemCommon', component: FormitemCommon,},
+    {path: '/common/FormitemCommon', component: FormitemCommon,},
+    {path: '/common/layout', component: Layout,},
+
+
     {path: '/formItem/Input', component: Input,},
     {path: '/formItem/NormalSelect', component: NormalSelect,},
     {path: '/formItem/Radio', component: Radio,},

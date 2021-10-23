@@ -10,12 +10,9 @@
         <p>表单元素的 span 和 size，都可以设置宽度。</p>
         <p>一整行宽度为 24，同一行的元素加起来宽度如果超过 24，则最后一个元素会被自动放入下一行计算</p>
         <p>如以下示例里，第一、二个元素宽度是 6+12，第三个元素宽度为 18，总和加起来超过 24，于是第三个元素会自动放到第二行。</p>
+
         <wti-form ref="form1"
                   :fields="fields1"/>
-        <div class="submit-line">
-            <el-button type="primary" @click="submit('form1')">提交按钮</el-button>
-            <span class="tips">请查看控制台看提交结果</span>
-        </div>
         <el-collapse class="collapse">
             <el-collapse-item>
                 <template slot="title">
@@ -30,7 +27,53 @@
 
         <h3>布局优先级</h3>
         <p>采用：组件 span > 表单全局宽度设置 > 组件 size > 默认 12 的设置</p>
-        <p>方便复用，也方便特殊化设置</p>
+        <p>方便复用，也方便特殊化设置。（注意：子表单的宽度必然是 24）</p>
+        <p>
+            以下面为例，会发现，未设置全局宽度时，各个组件按自己的宽度来。而设置了全局宽度时，全局宽度只会影响设置 size 属性的元素，
+            而不会影响设置 span 属性的元素
+        </p>
+        <p>
+            选择全局宽度：
+            <el-select v-model="form2Width">
+                <el-option label="未设置全局宽度" value=""/>
+                <el-option label="6" value="6"/>
+                <el-option label="12" value="12"/>
+                <el-option label="18" value="18"/>
+                <el-option label="24" value="24"/>
+            </el-select>
+        </p>
+        <wti-form ref="form2"
+                  :fields="fields2"
+                  :form-item-col="form2Width"/>
+        <el-collapse class="collapse">
+            <el-collapse-item>
+                <template slot="title">
+                    <b>点击查看代码</b>
+                </template>
+                <pre v-highlightjs><code class="javascript">{{ code2 }}</code></pre>
+            </el-collapse-item>
+        </el-collapse>
+
+        <el-divider/>
+
+
+        <h3>换行</h3>
+        <p>在某些情况下，我们有特殊的需求：</p>
+        <p>1、要求每个元素必须位于某一行行首第一个元素（行首元素设置 nextRowFirst 为 true ）；</p>
+        <p>2、要求下个元素必须位于某一行第一个元素（行末元素设置 currentRowLast 为 true ）；</p>
+
+        <wti-form ref="form3"
+                  :fields="fields3"/>
+        <el-collapse class="collapse">
+            <el-collapse-item>
+                <template slot="title">
+                    <b>点击查看代码</b>
+                </template>
+                <pre v-highlightjs><code class="javascript">{{ code3 }}</code></pre>
+            </el-collapse-item>
+        </el-collapse>
+
+        <el-divider/>
     </div>
 </template>
 
@@ -45,35 +88,33 @@
                             {
                                 key: 'key1',
                                 type: 'input',
-                                label: '我的宽度 6',
+                                label: '我的宽度span 6',
                                 span: 6
                             },
                             {
                                 key: 'key2',
                                 type: 'input',
-                                label: '我的宽度 12',
+                                label: '我的宽度span 12',
                                 span: 12
                             },
                             {
                                 key: 'key3',
                                 type: 'input',
-                                label: '我的宽度 18',
-                                span: 18
+                                label: '我的宽度size 18',
+                                size: 18
                             },
                             {
                                 key: 'key4',
                                 type: 'input',
-                                label: '我的宽度 24',
-                                span: 24
+                                label: '我的宽度size 24',
+                                size: 24
                             },
                         ]
                     }
                 ],
 
-                code1: `<wti-form
-            ref="form1"
-            :fields="fields1"
-            :border-form="false"/>
+                code1: `<wti-form  ref="form1"
+                :fields="fields1"/>
 ---
 fields1: [
     {
@@ -81,57 +122,94 @@ fields1: [
             {
                 key: 'key1',
                 type: 'input',
-                label: '我是输入框的 label'
-            }
+                label: '我的宽度 6',
+                span: 6
+            },
+            {
+                key: 'key2',
+                type: 'input',
+                label: '我的宽度 12',
+                span: 12
+            },
+            {
+                key: 'key3',
+                type: 'input',
+                label: '我的宽度 18',
+                size: 18
+            },
+            {
+                key: 'key4',
+                type: 'input',
+                label: '我的宽度 24',
+                size: 24
+            },
         ]
     }
 ]`,
 
+                form2Width: 12,
                 fields2: [
                     {
                         children: [
                             {
+                                key: 'key1',
+                                type: 'input',
+                                label: 'span: 6',
+                                span: 6
+                            },
+                            {
                                 key: 'key2',
                                 type: 'input',
-                                label: '必填输入框的label',
-                                rules: [
-                                    {
-                                        required: true,
-                                        message: '请输入',
-                                        trigger: [
-                                            'blur',
-                                            'change'
-                                        ]
-                                    }
-                                ],
-                            }
+                                label: 'span: 12',
+                                span: 12
+                            },
+                            {
+                                key: 'key3',
+                                type: 'input',
+                                label: 'size: 18',
+                                size: 18
+                            },
+                            {
+                                key: 'key4',
+                                type: 'input',
+                                label: 'size: 24',
+                                size: 24
+                            },
                         ]
                     }
                 ],
 
-                code2: `<wti-form
-            ref="form2"
-            :fields="fields2"
-            :border-form="false"/>
+                code2: `<wti-form  ref="form2"
+                :fields="fields2"
+                :form-item-col="form2Width"/>
 ---
 fields2: [
     {
         children: [
             {
+                key: 'key1',
+                type: 'input',
+                label: 'span: 6',
+                span: 6
+            },
+            {
                 key: 'key2',
                 type: 'input',
-                label: '必填输入框的label',
-                rules: [
-                    {
-                        required: true,
-                        message: '请输入',
-                        trigger: [
-                            'blur',
-                            'change'
-                        ]
-                    }
-                ],
-            }
+                label: 'span: 12',
+                span: 12
+            },
+            {
+                key: 'key3',
+                type: 'input',
+                label: 'size: 18',
+                size: 18
+            },
+            {
+                key: 'key4',
+                type: 'input',
+                label: 'size: 24',
+                size: 24
+            },
         ]
     }
 ]`,
@@ -141,21 +219,31 @@ fields2: [
                     {
                         children: [
                             {
+                                key: 'key1',
+                                type: 'input',
+                                label: 'span: 6',
+                                span: 6
+                            },
+                            {
+                                key: 'key2',
+                                type: 'input',
+                                label: '强制当前元素行首',
+                                span: 6,
+                                nextRowFirst: true
+                            },
+                            {
                                 key: 'key3',
                                 type: 'input',
-                                label: '最少3个字，最多6个字',
-                                rules: [
-                                    {
-                                        trigger: [
-                                            'blur',
-                                            'change'
-                                        ],
-                                        max: 6,
-                                        message: '长度应当处于3到6之间',
-                                        min: 3
-                                    }
-                                ],
-                            }
+                                label: '强制下个元素换行',
+                                span: 6,
+                                currentRowLast: true
+                            },
+                            {
+                                key: 'key4',
+                                type: 'input',
+                                label: 'span: 6',
+                                span: 6
+                            },
                         ]
                     }
                 ],
@@ -169,21 +257,31 @@ fields3: [
     {
         children: [
             {
+                key: 'key1',
+                type: 'input',
+                label: 'span: 6',
+                span: 6
+            },
+            {
+                key: 'key2',
+                type: 'input',
+                label: '强制当前元素行首',
+                span: 6,
+                nextRowFirst: true
+            },
+            {
                 key: 'key3',
                 type: 'input',
-                label: '最少3个字，最多6个字',
-                rules: [
-                    {
-                        trigger: [
-                            'blur',
-                            'change'
-                        ],
-                        max: 6,
-                        message: '长度应当处于3到6之间',
-                        min: 3
-                    }
-                ],
-            }
+                label: '强制下个元素换行',
+                span: 6,
+                currentRowLast: true
+            },
+            {
+                key: 'key4',
+                type: 'input',
+                label: 'span: 6',
+                span: 6
+            },
         ]
     }
 ]`,

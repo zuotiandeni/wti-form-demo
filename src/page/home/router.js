@@ -39,6 +39,7 @@ import Connection from './component/others/connection';
 import AutoTest from './component/others/auto_test';
 import CodeMaker from './component/others/code_maker';
 import ElementStart from './component/others/element_start';
+import ChangeLog from './component/others/changelog';
 
 import Empty from './component/empty';
 
@@ -81,6 +82,9 @@ const routes = [
     {path: '/others/CodeMaker', component: CodeMaker,},
     {path: '/others/ElementStart', component: ElementStart,},
     {path: '/others/connection', component: Connection,},
+    {path: '/others/changelog', component: ChangeLog,},
+
+
     {
         path: '/',
         redirect: '/demo/base'

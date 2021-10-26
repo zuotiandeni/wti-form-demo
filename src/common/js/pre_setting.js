@@ -17,6 +17,10 @@ import 'highlight.js/styles/atom-one-dark.css';
 import WtiForm from '@/components/wti-form';
 // import WtiForm from 'wti-form';
 import {baseURL} from '@/config/env.js';
+import VueMarkdownEditor from '@kangc/v-md-editor';
+import '@kangc/v-md-editor/lib/style/base-editor.css';
+import vuepressTheme from '@kangc/v-md-editor/lib/theme/vuepress.js';
+import '@kangc/v-md-editor/lib/theme/style/vuepress.css';
 
 const isProd = process.env.NODE_ENV !== 'development';
 
@@ -27,6 +31,8 @@ const CommonUtils = {
         Vue.use(http);
         // 按需加载
         Vue.use(Element);
+        VueMarkdownEditor.use(vuepressTheme);
+        Vue.use(VueMarkdownEditor);
         const props = {
             dynamicSelectOption: {
                 type: Object,

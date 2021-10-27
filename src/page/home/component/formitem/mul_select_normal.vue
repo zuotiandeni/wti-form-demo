@@ -4,21 +4,21 @@
         <p>一个普通的多选下拉框，下拉框选项来源于 options</p>
 
         <h3>基本用法</h3>
-        <!--        <p>这是最基本的用法，一个输入框 + 一个 label + 一个提交按钮。提交结果请查看控制台。为了区分代码，加了 border</p>-->
-        <!--        <wti-form ref="form1"-->
-        <!--                  :fields="fields1"/>-->
-        <!--        <div class="submit-line">-->
-        <!--            <el-button type="primary" @click="submit('form1')">提交按钮</el-button>-->
-        <!--            <span class="tips">请查看控制台看提交结果</span>-->
-        <!--        </div>-->
-        <!--        <el-collapse class="collapse">-->
-        <!--            <el-collapse-item>-->
-        <!--                <template slot="title">-->
-        <!--                    <b>点击查看代码</b>-->
-        <!--                </template>-->
-        <!--                <pre v-highlightjs><code class="javascript">{{ code1 }}</code></pre>-->
-        <!--            </el-collapse-item>-->
-        <!--        </el-collapse>-->
+        <p>候选项会被收起来</p>
+        <wti-form ref="form1"
+                  :fields="fields1"/>
+        <div class="submit-line">
+            <el-button type="primary" @click="submit('form1')">提交按钮</el-button>
+            <span class="tips">请查看控制台看提交结果</span>
+        </div>
+        <el-collapse class="collapse">
+            <el-collapse-item>
+                <template slot="title">
+                    <b>点击查看代码</b>
+                </template>
+                <pre v-highlightjs><code class="javascript">{{ code1 }}</code></pre>
+            </el-collapse-item>
+        </el-collapse>
 
         <el-divider/>
     </div>
@@ -34,8 +34,26 @@
                         children: [
                             {
                                 key: 'key1',
-                                type: 'input',
-                                label: '我是输入框的 label'
+                                type: 'mul-select-normal',
+                                label: '我是输入框的 label',
+                                options: [
+                                    {
+                                        value: 'value_a',
+                                        label: 'label A'
+                                    },
+                                    {
+                                        value: 'value_b',
+                                        label: 'label B'
+                                    },
+                                    {
+                                        value: 'value_c',
+                                        label: 'label C'
+                                    },
+                                    {
+                                        value: 'value_d',
+                                        label: 'label D'
+                                    }
+                                ],
                             }
                         ]
                     }

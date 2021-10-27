@@ -135,6 +135,9 @@
                                             <FormNormalNumberInput v-if="rowItem.type==='normal-number'"
                                                                    v-bind="getProps(rowItem)"
                                                                    v-model.trim="formData[rowItem.key]"/>
+                                            <FormMulSelectNormal v-if="rowItem.type==='mul-select-normal'"
+                                                                 v-bind="getProps(rowItem)"
+                                                                 v-model.trim="formData[rowItem.key]"/>
                                         </el-form-item>
 
                                         <ChildForm v-if="rowItem.type === 'child-form'"
@@ -178,6 +181,9 @@
     import FormAreaSelect from './form_item/form_area_select';
     import FormMulLinkage from './form_item/form_mul_linkage';
     import FormNormalNumberInput from './form_item/form_normal_number_input';
+    import FormMulSelectNormal from './form_item/form_mul_select_normal';
+
+
     import TableReadonly from './form_item/table_readonly';
 
     import ChildForm from './child_form';
@@ -989,6 +995,7 @@
             FormAreaSelect,
             FormMulLinkage,
             FormNormalNumberInput,
+            FormMulSelectNormal,
 
             TableReadonly,
             ChildForm,

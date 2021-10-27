@@ -36,6 +36,10 @@
 ![Github stars](https://img.shields.io/github/stars/qq20004604/wti-form.svg?label=Stars&color=success)
 
 
+> 1.0.14
+
+1. 添加新的表单元素：普通多选下拉框，使用 options 获取下拉选项（未来将添加数据字典版本）
+
 > 1.0.13
 
 1. 输入框、下拉框、文本输入框等，在焦点情况下不再是默认的蓝色，而是更好看的灰黑色；

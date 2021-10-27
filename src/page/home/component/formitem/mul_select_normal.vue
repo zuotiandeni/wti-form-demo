@@ -59,18 +59,34 @@
                     }
                 ],
 
-                code1: `<wti-form
-            ref="form1"
-            :fields="fields1"
-            :border-form="false"/>
+                code1: `<wti-form ref="form1"
+                :fields="fields1"/>
 ---
 fields1: [
     {
         children: [
             {
                 key: 'key1',
-                type: 'input',
-                label: '我是输入框的 label'
+                type: 'mul-select-normal',
+                label: '我是输入框的 label',
+                options: [
+                    {
+                        value: 'value_a',
+                        label: 'label A'
+                    },
+                    {
+                        value: 'value_b',
+                        label: 'label B'
+                    },
+                    {
+                        value: 'value_c',
+                        label: 'label C'
+                    },
+                    {
+                        value: 'value_d',
+                        label: 'label D'
+                    }
+                ],
             }
         ]
     }

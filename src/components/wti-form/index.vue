@@ -357,7 +357,9 @@
                                     });
                                 } else {
                                     // 2.2 该要素没有默认值，使用通用默认值
-                                    if (field.type === 'child-form' || field.type === 'table-readonly') {
+                                    if (field.type === 'child-form' ||
+                                        field.type === 'table-readonly' ||
+                                        field.type === 'mul-select-normal') {
                                         this.$set(this.formData, field.key, []);
                                     } else if (field.type === 'area-select') {
                                         this.$set(this.formData, field.key, [ '', '', '' ]);

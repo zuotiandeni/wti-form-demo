@@ -18,20 +18,21 @@ import FormitemCommon from './component/common/formitem_common';
 import Layout from './component/common/layout';
 import ValueLink from './component/common/value_link';
 
-import Input from './component/input';
-import NormalSelect from './component/normal_select';
-import Radio from './component/radio';
-import MoneyInput from './component/money_input';
-import AutoCompleteInput from './component/auto_complete_input';
-import DateInput from './component/date_input';
-import DateRangeInput from './component/date_range_input';
-import DynamicSelect from './component/dynamic_select';
-import HourMinuteInput from './component/hour_minute_input';
-import NumberInput from './component/number_input';
-import RateInput from './component/rate_input';
-import MulLinkage from './component/mul_linkage';
-import Textarea from './component/text_area';
-import NormalNumber from './component/normal_number';
+import Input from './component/formitem/input';
+import NormalSelect from './component/formitem/normal_select';
+import Radio from './component/formitem/radio';
+import MoneyInput from './component/formitem/money_input';
+import AutoCompleteInput from './component/formitem/auto_complete_input';
+import DateInput from './component/formitem/date_input';
+import DateRangeInput from './component/formitem/date_range_input';
+import DynamicSelect from './component/formitem/dynamic_select';
+import HourMinuteInput from './component/formitem/hour_minute_input';
+import NumberInput from './component/formitem/number_input';
+import RateInput from './component/formitem/rate_input';
+import MulLinkage from './component/formitem/mul_linkage';
+import Textarea from './component/formitem/text_area';
+import NormalNumber from './component/formitem/normal_number';
+import MulSelectNormal from './component/formitem/mul_select_normal';
 
 
 import Github from './component/others/github';
@@ -41,7 +42,7 @@ import CodeMaker from './component/others/code_maker';
 import ElementStart from './component/others/element_start';
 import ChangeLog from './component/others/changelog';
 
-import Empty from './component/empty';
+import Empty from './component/others/empty';
 
 Vue.use(Router);
 
@@ -75,8 +76,9 @@ const routes = [
     {path: '/formItem/MulLinkage', component: MulLinkage,},
     {path: '/formItem/Textarea', component: Textarea,},
     {path: '/formItem/NormalNumber', component: NormalNumber,},
+    {path: '/formItem/MulSelectNormal', component: MulSelectNormal,},
 
-
+    
     {path: '/others/Github', component: Github,},
     {path: '/others/AutoTest', component: AutoTest,},
     {path: '/others/CodeMaker', component: CodeMaker,},

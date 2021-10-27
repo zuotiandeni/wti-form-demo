@@ -39,6 +39,9 @@
                 <el-menu-item index="/formItem/RateInput">利率输入框 RateInput</el-menu-item>
                 <el-menu-item index="/formItem/MulLinkage">多级联动输入框 MulLinkage</el-menu-item>
                 <el-menu-item index="/formItem/TextArea">文本域输入框 TextArea</el-menu-item>
+                <el-menu-item index="/formItem/MulSelectNormal">普通多选下拉框 MulSelectNormal</el-menu-item>
+
+
                 <!--<el-menu-item disabled>-&#45;&#45;↓↓文档不全↓↓-&#45;&#45;</el-menu-item>-->
             </el-menu-item-group>
             <el-menu-item-group>

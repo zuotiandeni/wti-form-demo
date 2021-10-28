@@ -105,4 +105,19 @@
     .auto-complte-input {
         width: 100%;
     }
+
+    .form-item-box {
+
+        /deep/ .el-input {
+            position: relative;
+            width: 100%;
+            height: 36px;
+
+            .el-input__inner {
+                vertical-align: top;
+                height: 36px;
+                line-height: 36px;
+            }
+        }
+    }
 </style>

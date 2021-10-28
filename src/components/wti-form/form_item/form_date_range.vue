@@ -62,8 +62,29 @@
 
 
     .form-item-box /deep/ .el-date-editor--daterange {
-    position: relative;
-    width: 100%;
-    height: 36px;
-}
+        position: relative;
+        width: 100%;
+        height: 36px;
+
+        .el-input__inner {
+            position: absolute;
+            width: 100%;
+            height: 36px;
+            line-height: 36px;
+            padding-right: 10px;
+            padding-left: 32px;
+        }
+
+        .el-range__icon {
+            position: relative;
+            left: 7px;
+            width: 16px;
+
+            &:before {
+                font-size: 16px;
+                line-height: 36px;
+            }
+        }
+
+    }
 </style>

@@ -66,27 +66,27 @@
 
 
     .form-item-box /deep/ .el-input {
-    position: relative;
-    width: 100%;
-    height: 36px;
-
-    .el-input__inner {
-        position: absolute;
+        position: relative;
         width: 100%;
         height: 36px;
-        line-height: 36px;
-        padding-right: 10px;
-        padding-left: 12px;
+
+        .el-input__inner {
+            position: absolute;
+            width: 100%;
+            height: 36px;
+            line-height: 36px;
+            padding-right: 10px;
+            padding-left: 12px;
+        }
+
+        .el-input__inner:focus {
+            border-color: #8D94A5;
+        }
     }
 
-    .el-input__inner:focus {
-        border-color: #8D94A5;
+    .el-select-dropdown__item.selected {
+        color: #606266;
+        font-weight: normal;
     }
-}
-
-.el-select-dropdown__item.selected {
-    color: #606266;
-    font-weight: normal;
-}
 
 </style>

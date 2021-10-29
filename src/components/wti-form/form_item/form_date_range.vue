@@ -86,5 +86,13 @@
             }
         }
 
+        .el-range-separator {
+            line-height: 26px;
+        }
+
+        .el-input__icon.el-range__close-icon {
+            position: absolute;
+            right: 3px;
+        }
     }
 </style>

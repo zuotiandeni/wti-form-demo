@@ -90,16 +90,16 @@
                                 key: 'name',
                                 type: 'input',
                                 label: '用户名称',
-                                rules: [
-                                    {
-                                        required: true,
-                                        message: '请输入',
-                                        trigger: [
-                                            'blur',
-                                            'change'
-                                        ]
-                                    }
-                                ],
+                                // rules: [
+                                //     {
+                                //         required: true,
+                                //         message: '请输入',
+                                //         trigger: [
+                                //             'blur',
+                                //             'change'
+                                //         ]
+                                //     }
+                                // ],
                             },
                             {
                                 options: [
@@ -305,7 +305,7 @@
                                     {
                                         key: 'dict_code1',
                                         type: 'input',
-                                        label: '这是一个字典下拉框（想不出来用处了）',
+                                        label: '工具人输入框',
                                         disableDefault: true,
                                         hiddenDefault: true
                                     },

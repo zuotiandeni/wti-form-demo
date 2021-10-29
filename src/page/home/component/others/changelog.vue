@@ -35,6 +35,11 @@
 
 ![Github stars](https://img.shields.io/github/stars/qq20004604/wti-form.svg?label=Stars&color=success)
 
+> 1.0.16
+
+1. 根据反馈再次调整了一下样式问题。如无意外，本版本应该是 1.0 系列的最终版本了；
+2. 1.1.0 版本预计添加更多的表单元素组件。有需求，欢迎添加作者微信或者 QQ 提出来；
+
 > 1.0.15
 
 1. 修复了样式 bug，将所有 ui 组件规范化；

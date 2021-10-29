@@ -79,6 +79,7 @@
             position: relative;
             left: 7px;
             width: 16px;
+            height: 36px;
 
             &:before {
                 font-size: 16px;

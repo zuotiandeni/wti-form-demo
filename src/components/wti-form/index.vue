@@ -1051,6 +1051,11 @@
                 vertical-align: top;
                 margin-top: 10px;
             }
+
+            .el-input__icon {
+                height: 36px;
+                line-height: 36px;
+            }
         }
 
         /deep/ .el-input__inner {

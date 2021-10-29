@@ -16,7 +16,7 @@
                         :clearable="true"
                         v-bind="bindOptions"
                         v-if="!getTextModel"/>
-        <div v-else :style="item.textStyle||{}">{{ val || '-' }}</div>
+        <div v-else :style="item.textStyle||{}" class="form-input-text">{{ val || '-' }}</div>
     </div>
 </template>
 

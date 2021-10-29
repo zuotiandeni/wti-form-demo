@@ -15,7 +15,7 @@
                        :label="option.label"
                        :value="option.value"/>
         </el-select>
-        <div v-else :style="item.textStyle||{}">{{ textModelValue || '-' }}</div>
+        <div v-else :style="item.textStyle||{}" class="form-input-text">{{ textModelValue || '-' }}</div>
     </div>
 </template>
 

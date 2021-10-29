@@ -13,7 +13,7 @@
                        :label="option[dynamicSelectOption.label]"
                        :value="option[dynamicSelectOption.value]"/>
         </el-select>
-        <div v-else :style="item.textStyle || {}">{{ textModelValue || '-' }}</div>
+        <div v-else :style="item.textStyle || {}" class="form-input-text">{{ textModelValue || '-' }}</div>
     </div>
 </template>
 

@@ -1009,37 +1009,39 @@
     .wti-form {
         width: 100%;
 
-        // 左右模式
-        .el-form--label-right, .el-form--label-left {
-            // 1、标题文字
-            /deep/ .el-form-item__label {
-                min-height: 22px;
-                line-height: 22px;
+        // 1、标题文字
+        /deep/ .el-form-item__label {
+            min-height: 36px;
+            line-height: 36px;
+            height: auto;
+            padding-bottom: 0;
+        }
+
+        /deep/ .el-form-item__content {
+            line-height: 36px;
+
+            .form-input-text {
+                line-height: 36px;
+                //white-space: pre-wrap;
+                word-break: break-word;
+            }
+        }
+
+        /deep/ .el-form-item {
+            margin-bottom: 32px;
+
+            .el-form-item__label {
                 height: auto;
-                padding-bottom: 0;
             }
 
-            /deep/ .el-form-item__content {
-                line-height: 22px;
-
+            .form-item-box {
+                height: auto;
             }
 
-            /deep/ .el-form-item {
-                margin-bottom: 32px;
-
-                .el-form-item__label {
-                    height: auto;
-                }
-
-                .form-item-box {
-                    height: auto;
-                }
-
-                .form-input-text {
-                    min-height: 22px;
-                    height: auto;
-                    line-height: 22px;
-                }
+            .form-input-text {
+                min-height: 36px;
+                height: auto;
+                line-height: 36px;
             }
         }
 

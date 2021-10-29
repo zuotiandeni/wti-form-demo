@@ -7,7 +7,7 @@
   // 通用
   // 1、标题文字
   .el-form-item__label {
-    height: 28px;
+    height: 22px;
     line-height: 20px;
     padding-bottom: 8px;
     color: @titleColor;
@@ -180,3 +180,55 @@
   }
 }
 
+
+// 左右模式
+.wti-form-v2.wti-form {
+  .el-form-item__label {
+    min-height: 22px;
+  }
+
+  .el-form-item__content {
+    .form-input-text {
+      line-height: 36px;
+    }
+  }
+
+  .el-form--label-right, .el-form--label-left {
+
+    // 1、标题文字
+    .el-form-item__label {
+      line-height: 36px;
+      height: auto;
+      padding-bottom: 0;
+    }
+
+    .el-form-item__content {
+      line-height: 36px;
+
+      .form-input-text {
+        line-height: 36px;
+        //white-space: pre-wrap;
+        word-break: break-word;
+      }
+    }
+
+    .el-form-item {
+      margin-bottom: 32px;
+
+      .el-form-item__label {
+        height: auto;
+      }
+
+      .form-item-box {
+        height: auto;
+      }
+
+      .form-input-text {
+        min-height: 36px;
+        height: auto;
+        line-height: 36px;
+      }
+    }
+  }
+
+}

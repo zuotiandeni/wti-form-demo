@@ -30,6 +30,7 @@
         <wti-form :fields="fields"
                   ref="form2"
                   :data="originData1"
+                  label-position="right"
                   :dynamic-select-option="dynamicSelectOption"/>
 
         <div class="submit-line">
@@ -46,6 +47,7 @@
                   ref="form3"
                   :data="originData2"
                   :text-model="true"
+                  label-position="right"
                   :dynamic-select-option="dynamicSelectOption"/>
         <el-divider/>
 

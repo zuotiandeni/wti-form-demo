@@ -14,7 +14,7 @@
                   :resize="item.resize || 'none'"
                   v-bind="item"
                   v-if="!getTextModel"/>
-        <div v-else :style="item.textStyle || {}">
+        <div v-else :style="item.textStyle || {}" class="form-input-text">
             {{ val || '-' }}
         </div>
     </div>

@@ -35,6 +35,10 @@
 
 ![Github stars](https://img.shields.io/github/stars/qq20004604/wti-form.svg?label=Stars&color=success)
 
+> 1.0.15
+
+1. 修复了样式 bug，将所有 ui 组件规范化；
+2. 让表单在各种元素的情况下，更加整齐，间距保持一致；
 
 > 1.0.14
 

@@ -34,12 +34,19 @@ const CommonUtils = {
         Vue.use(Element);
         VueMarkdownEditor.use(vuepressTheme);
         Vue.use(VueMarkdownEditor);
+        console.log('baseURL', baseURL);
         const props = {
+            // 基础 url，一般是指 axios 用的 baseURL
+            // 由于组件并不能默认使用 axios 的 baseURL，所以如果有需要，这里要特殊设置
+            baseURL: {
+                type: String,
+                default: '/api',
+            },
             dynamicSelectOption: {
                 type: Object,
                 default: () => ({
                     // 这是字典接口的 url
-                    dictUrl: `${baseURL}/dict`,
+                    dictUrl: '/dict',
                     // 异步请求时，请求内容是一个对象或一个数组。
                     // 如果是对象，那么包含一个 key 和一个数组。
                     // 如果是数组，那么只有这个数组。

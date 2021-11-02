@@ -14,8 +14,8 @@ import 'common/less/config.less';
 import 'element-ui/lib/theme-chalk/index.css';
 import VueHighlightJS from 'vue-highlightjs';
 import 'highlight.js/styles/atom-one-dark.css';
-// import WtiForm from '@/components/wti-form';
-import WtiForm from 'wti-form';
+import WtiForm from '@/components/wti-form';
+// import WtiForm from 'wti-form';
 // import 'wti-form-themes-red';
 import {baseURL} from '@/config/env.js';
 import VueMarkdownEditor from '@kangc/v-md-editor';
@@ -40,7 +40,7 @@ const CommonUtils = {
             // 由于组件并不能默认使用 axios 的 baseURL，所以如果有需要，这里要特殊设置
             baseURL: {
                 type: String,
-                default: '/api',
+                default: baseURL,
             },
             dynamicSelectOption: {
                 type: Object,

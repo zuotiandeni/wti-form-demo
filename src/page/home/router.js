@@ -17,6 +17,7 @@ import FastCreate from './component/demo/fast_create';
 import FormitemCommon from './component/common/formitem_common';
 import Layout from './component/common/layout';
 import ValueLink from './component/common/value_link';
+import AxiosPage from './component/common/axios_page';
 
 import Input from './component/formitem/input';
 import NormalSelect from './component/formitem/normal_select';
@@ -33,6 +34,7 @@ import MulLinkage from './component/formitem/mul_linkage';
 import Textarea from './component/formitem/text_area';
 import NormalNumber from './component/formitem/normal_number';
 import MulSelectNormal from './component/formitem/mul_select_normal';
+import ChildForm from './component/formitem/child_form';
 
 
 import Github from './component/others/github';
@@ -60,6 +62,7 @@ const routes = [
     {path: '/common/FormitemCommon', component: FormitemCommon,},
     {path: '/common/Layout', component: Layout,},
     {path: '/common/ValueLink', component: ValueLink,},
+    {path: '/common/Axios', component: AxiosPage,},
 
 
     {path: '/formItem/Input', component: Input,},
@@ -77,8 +80,9 @@ const routes = [
     {path: '/formItem/Textarea', component: Textarea,},
     {path: '/formItem/NormalNumber', component: NormalNumber,},
     {path: '/formItem/MulSelectNormal', component: MulSelectNormal,},
+    {path: '/formItem/ChildForm', component: ChildForm,},
 
-    
+
     {path: '/others/Github', component: Github,},
     {path: '/others/AutoTest', component: AutoTest,},
     {path: '/others/CodeMaker', component: CodeMaker,},

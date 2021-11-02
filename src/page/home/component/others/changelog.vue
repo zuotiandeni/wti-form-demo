@@ -35,6 +35,23 @@
 
 ![Github stars](https://img.shields.io/github/stars/qq20004604/wti-form.svg?label=Stars&color=success)
 
+> 1.1.2
+
+1. 新版 axios 策略下，修复【输入搜索下拉框】获取返回结果错误的问题；
+2. 优化了各组件显示判断顺序；
+
+> 1.1.1
+
+1. wti-form，不管是直接 copy 代码下来，还是通过 npm 引入，可以使用同一套配置啦；
+2. 支持添加 baseURL（默认为空），方便需要 axios 的 baseURL ，需要实现本地转发或者线上转发的人；
+3. 支持自定义 axios 配置（通过 props 的 axiosOptions 传入）；
+4. 特别声明：组件内的 axios，和工程的 axios，默认情况下并不会使用同一套配置。如果需要使用同样的配置，请手动设置；
+5. 允许自定义子表单新增按钮的文字内容了（使用 addBtnLabel 属性）；
+
+> 1.0.17
+
+1. 我没想到，在无 border 模式下，出现了 title 的下划线 -_-|| 已修复；
+
 > 1.0.16
 
 1. 根据反馈再次调整了一下样式问题。如无意外，本版本应该是 1.0 系列的最终版本了；

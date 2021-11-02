@@ -793,7 +793,7 @@
                     payload = parentCodeList;
                 }
                 // console.log('WtiForm 拉取动态字典');
-                this.axios.post(`${this.dynamicSelectOption.dictUrl}`, payload).then(res => {
+                this.getCommonAxios().post(`${this.dynamicSelectOption.dictUrl}`, payload).then(res => {
                     // 兼容性处理
                     let data;
                     if (res.request && res.headers) {
@@ -1090,7 +1090,7 @@
         }
 
         /deep/ .form-item-box {
-            height: 36px;
+            min-height: 36px;
             line-height: 36px;
 
             .el-radio-group {

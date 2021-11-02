@@ -9,6 +9,7 @@
                 <template slot="title">开发指南 v1.1.1</template>
                 <el-menu-item index="/Install">安装</el-menu-item>
             </el-menu-item-group>
+
             <el-menu-item-group>
                 <template slot="title">常见用法</template>
                 <el-menu-item index="/demo/Base">基本用法</el-menu-item>
@@ -24,6 +25,7 @@
                 <el-menu-item index="/common/ValueLink">数值联动 ValueLink</el-menu-item>
                 <el-menu-item index="/common/Axios">Axios 配置</el-menu-item>
             </el-menu-item-group>
+
             <el-menu-item-group>
                 <template slot="title">各表单组件</template>
                 <el-menu-item index="/formItem/Input">文本输入框 Input</el-menu-item>
@@ -42,10 +44,8 @@
                 <el-menu-item index="/formItem/TextArea">文本域输入框 TextArea</el-menu-item>
                 <el-menu-item index="/formItem/MulSelectNormal">普通多选下拉框 MulSelectNormal</el-menu-item>
                 <el-menu-item index="/formItem/ChildForm">子表单 ChildForm</el-menu-item>
-
-
-                <!--<el-menu-item disabled>-&#45;&#45;↓↓文档不全↓↓-&#45;&#45;</el-menu-item>-->
             </el-menu-item-group>
+
             <el-menu-item-group>
                 <template slot="title">其他</template>
                 <el-menu-item index="/others/Github">Github</el-menu-item>

@@ -6,12 +6,10 @@
 
         <h3>一个标准的子表单组件</h3>
         <wti-form :fields="fields"
-                  ref="form1"
-                  :all-disabled="loading1"
-                  :dynamic-select-option="dynamicSelectOption"/>
+                  ref="form1"/>
 
         <div class="submit-line">
-            <el-button type="primary" @click="submitForm1">提交</el-button>
+            <el-button type="primary" @click="submit('form1')">提交</el-button>
             <span class="tips">（下个表单将反显本表单的数据）</span>
         </div>
         <el-divider/>
@@ -154,6 +152,18 @@
                     }
                 ],
             };
+        },
+
+        methods: {
+            submit (formName) {
+                this.$refs[formName].validate((isPass, data) => {
+                    if (isPass) {
+                        console.log('这是你刚提交的数据', data);
+                    } else {
+                        this.$message.error('校验失败！');
+                    }
+                });
+            }
         }
     };
 </script>

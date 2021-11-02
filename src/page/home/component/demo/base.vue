@@ -217,7 +217,7 @@
                                 // 是否允许新增单个子表单，默认 true（允许）（未完成）
                                 addEnable: true,
                                 // 每个小表单头的文字部分，以及新增按钮的部分
-                                headerLabel: '面签人员信息',
+                                headerLabel: '人员信息',
                                 // 里面是表单的每一项，写法和外面的没区别
                                 childrenForm: [
                                     {
@@ -363,7 +363,7 @@ fields1: [
                 // 是否允许新增单个子表单，默认 true（允许）（未完成）
                 addEnable: true,
                 // 每个小表单头的文字部分，以及新增按钮的部分
-                headerLabel: '面签人员信息',
+                headerLabel: '人员信息',
                 // 里面是表单的每一项，写法和外面的没区别
                 childrenForm: [
                     {

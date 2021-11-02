@@ -57,7 +57,7 @@
     "vue-highlightjs": "^1.3.3",
     "vue-router": "^3.4.9",
     "vuex": "^3.6.2",
-    "wti-form": "^1.1.2",
+    "wti-form": "^1.1.3",
     "wti-form-themes-red": "^1.0.1"
   }
 }

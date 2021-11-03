@@ -23,6 +23,8 @@
             return {
                 text: `<a href="https://github.com/qq20004604/wti-form">源码地址</a>
 
+<a href="https://github.com/qq20004604/wti-form-demo">文档源码地址</a>
+
 <p>
   <a href="https://www.npmjs.org/package/wti-form">
     <img src="https://img.shields.io/npm/v/wti-form.svg">
@@ -34,6 +36,15 @@
 
 
 ![Github stars](https://img.shields.io/github/stars/qq20004604/wti-form.svg?label=Stars&color=success)
+
+> 1.1.4
+
+1. 考虑到总有一些小可爱，他们的产品经理给他们提的奇奇怪怪需求，导致现有组件无法满足，因此推出插槽功能，撒花~
+2. 插槽文档地址：http://lovelovewall.com/wti_form_demo/home.html#/advance/Slot
+
+> 1.1.3
+
+1. 修复了 子表单 里，【多级联动下拉框】无法更新数据的问题；
 
 > 1.1.2
 

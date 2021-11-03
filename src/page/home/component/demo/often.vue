@@ -463,6 +463,7 @@ fields3: [
 
                 code4: `<wti-form :fields="fields4"
                   :show-fold-btn="true"
+                  :show-all-fold-btn="true"
                   ref="form4"/>
 ---
 fields4: [

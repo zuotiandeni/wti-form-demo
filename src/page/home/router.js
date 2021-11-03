@@ -37,6 +37,8 @@ import MulSelectNormal from './component/formitem/mul_select_normal';
 import ChildForm from './component/formitem/child_form';
 
 
+import Slot from './component/advance/slot';
+
 import Github from './component/others/github';
 import Connection from './component/others/connection';
 import AutoTest from './component/others/auto_test';
@@ -81,6 +83,9 @@ const routes = [
     {path: '/formItem/NormalNumber', component: NormalNumber,},
     {path: '/formItem/MulSelectNormal', component: MulSelectNormal,},
     {path: '/formItem/ChildForm', component: ChildForm,},
+
+
+    {path: '/advance/Slot', component: Slot,},
 
 
     {path: '/others/Github', component: Github,},

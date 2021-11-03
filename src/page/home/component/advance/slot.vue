@@ -8,6 +8,10 @@
         <p>1、栅格插槽：跟栅格布局同步的组件，他使用正常的 label、span 等属性，只是原本是表单组件的地方，使用了自定义的内容；</p>
         <p>2、独立插槽：假如需要使用表格，那么就是独立插槽立功的时间了。他独立占一整行，高度自适应插槽内容本身高度，不使用 label 等东西，内容和值也由你自己管理。</p>
         <p>3、子组件插槽：即前两种在子组件里的版本。但目前尚不支持，如果有需要支持的人，请联系开发者提出需求。</p>
+        <p>
+            本页源码地址：<a
+            href="https://github.com/qq20004604/wti-form-demo/blob/main/src/page/home/component/advance/slot.vue">https://github.com/qq20004604/wti-form-demo/blob/main/src/page/home/component/advance/slot.vue</a>
+        </p>
 
         <h3>栅格插槽</h3>
         <p>栅格插槽是最普通的插槽，主要是实现一些不支持的表单组件样式。例如，你想使用滑块组件。</p>

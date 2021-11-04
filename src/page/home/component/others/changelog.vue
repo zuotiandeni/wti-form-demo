@@ -37,6 +37,11 @@
 
 ![Github stars](https://img.shields.io/github/stars/qq20004604/wti-form.svg?label=Stars&color=success)
 
+> 1.1.5
+
+1. 修复了一个收起状态下，显示不正常的 bug；
+2. 修复了子表单数据字典多了一个 baseURL 的问题；
+
 > 1.1.4
 
 1. 考虑到总有一些小可爱，他们的产品经理给他们提的奇奇怪怪需求，导致现有组件无法满足，因此推出插槽功能，撒花~

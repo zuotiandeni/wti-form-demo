@@ -1,6 +1,6 @@
 <template>
     <div class="formitem-box">
-        <h2>多级联动选择框 MulLinkage</h2>
+        <h2>多级联动下拉框 MulLinkage</h2>
         <p>支持 2~4 级联动，需要跟字典接口数据格式保持一致。与多级下拉框区分，这个的关键是会前后联动</p>
 
         <h3>基本用法</h3>

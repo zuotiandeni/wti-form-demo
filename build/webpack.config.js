@@ -7,7 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const gitManager = require('./git_manage.js').gitManager;
-const fs = require('fs');
+// const fs = require('fs');
 const isProd = process.env.npm_lifecycle_event.indexOf('build') > -1;
 const Tag = isProd ? gitManager.getCurrentCommitTagSync() : '';
 
@@ -15,65 +15,6 @@ function resolve (dir) {
     return path.join(__dirname, '..', dir);
 }
 
-//
-const getEntries = function () {
-    // 获取page目录
-    const root = resolve('src/page');
-    const list = [];
-    // 读取该目录下所有文件和目录
-    const allfiles = fs.readdirSync(root);
-    // 遍历
-    allfiles.forEach(filename => {
-        const pname = path.join(`${root}/${filename}`);
-        const info = fs.statSync(pname);
-        // 查看该文件是不是目录
-        if (info.isDirectory()) {
-            const appFileIsExist = fs.existsSync(`${pname}/app.js`); // app.js
-            // 是否存在
-            const isDev = process.env.npm_lifecycle_event !== 'build'; // 是否是开发模式
-            // 打包时，判定目录下是否存在 app.js，若不存在则不打包
-            if (isDev || appFileIsExist) {
-                // 将该文件目录加入到dirs里
-                const appjsPath = appFileIsExist
-                    ? `${pname}/app.js`
-                    : `${pname}/test.js`;
-                list.push({
-                    filename,
-                    path: path.join(appjsPath),
-                });
-            }
-        }
-    });
-    const entry = {};
-    // 配置入口
-    list.forEach(item => {
-        entry[item.filename] = item.path;
-    });
-    // 配置 HtmlWebpackPlugin
-    const plugins = list.map(item => {
-        return new HtmlWebpackPlugin({
-            filename: resolve(`dist/${item.filename}.html`),
-            template: resolve(
-                `index_${process.env.npm_lifecycle_event === 'build'
-                    ? 'prd'
-                    : 'dev'}.html`),
-            title: 'Wti-form 文档',
-            minify: { // 对index.html压缩
-                collapseWhitespace: isProd, // 去掉index.html的空格
-                removeAttributeQuotes: isProd, // 去掉引号
-            },
-            hash: true, // 去掉上次浏览器的缓存（使浏览器每次获取到的是最新的html）
-            chunks: [ item.filename /*'vendor'*/ ], // 实现多入口的核心，决定自己加载哪个js文件，
-            xhtml: true, // 自闭标签
-        });
-    });
-    const result = {
-        entry,
-        plugins,
-    };
-    return result;
-};
-const entries = getEntries();
 
 const cssLoaderConfig = {
     loader: 'css-loader',
@@ -107,12 +48,14 @@ const cssConfig = isProd ? [
 ];
 
 const config = {
-    entry: entries.entry,
+    // entry: entries.entry,
+    entry: resolve('src/page/index/app.js'),
     // 出口文件
     output: {
         path: resolve(`dist${Tag ? `/${Tag}` : ''}`),
         // 文件名，将打包好的导出为bundle.js
         filename: isProd ? 'js/[name].js' : '[name].js',
+        publicPath: isProd ? `/${Tag}/` : '/',
     },
     // 开发模式
     mode: 'development',
@@ -125,20 +68,20 @@ const config = {
         contentBase: resolve('public'), // 将 public 目录下的文件，作为可访问文件。
         hot: true,
         port: '8080',
-        publicPath: '',
         open: true, // 自动打开浏览器
         // overlay: { // 当出现编译器错误或警告时，就在网页上显示一层黑色的背景层和错误信息
         //     errors: true
         // },
+        historyApiFallback: true,
         progress: false,
         proxy: {
             '/api': {
-                // target: 'http://127.0.0.1:7001',
-                target: 'http://lovelovewall.com/wtiformdemo',
+                target: 'http://cf-pc-dev.wti-xa.com:7777',
+                // target: 'https://project-bff-dev.wti-xa.com',
+                // target: 'http://172.16.7.115:8080',
                 changeOrigin: true,
                 pathRewrite: {
-                    '^/api/api': '',
-                    '^/api': '',
+                    // '^/api': '',
                 },
             },
         },
@@ -193,16 +136,15 @@ const config = {
                             esModule: false,
                             // 这个是对publicPath使用的
                             name (resourcePath, resourceQuery) {
-                                if (!isProd) {
-                                    return '[name].[hash:10].[ext]';
-                                }
-
-                                return '[contenthash].[ext]';
+                                // if (!isProd) {
+                                //     return '[name].[ext]';
+                                // }
+                                return '[name].[ext]';
                             },
                             // name: '[name].[contenthash:10].[ext]',   // 文件名
                             publicPath: Tag
-                                ? `../../${Tag}/static/`
-                                : 'static/',
+                                ? `/${Tag}/static/`
+                                : '/static/',
                             // publicPath: `../static/`,
 
                             // 输出目录，表现效果相当于 outputPath + name 这样，可以直接写在name里如
@@ -225,14 +167,13 @@ const config = {
                             esModule: false,
                             // 这个是对publicPath使用的
                             name (resourcePath, resourceQuery) {
-                                if (!isProd) {
-                                    return '[name].[hash:10].[ext]';
-                                }
-
-                                return '[contenthash].[ext]';
+                                // if (!isProd) {
+                                //     return '[name].[ext]';
+                                // }
+                                return '[name].[ext]';
                             },
                             // name: '[name].[contenthash:10].[ext]',   // 文件名
-                            publicPath: Tag ? `${Tag}/static/` : 'static/',
+                            publicPath: Tag ? `/${Tag}/static/` : '/static/',
                             // publicPath: `../static/`,
 
                             // 输出目录，表现效果相当于 outputPath + name 这样，可以直接写在name里如
@@ -275,7 +216,19 @@ const config = {
             extensions: [ 'js', 'vue' ],
         }),
         new VueLoaderPlugin(), // vue加载器
-        ...entries.plugins,
+        new HtmlWebpackPlugin({
+            filename: resolve('dist/index.html'),
+            template: resolve(
+                `index_${isProd ? 'prd' : 'dev'}.html`),
+            title: '西部信托',
+            minify: { // 对index.html压缩
+                collapseWhitespace: isProd, // 去掉index.html的空格
+                removeAttributeQuotes: isProd, // 去掉引号
+            },
+            hash: true, // 去掉上次浏览器的缓存（使浏览器每次获取到的是最新的html）
+            // chunks: [ 'index' /*'vendor'*/ ], // 实现多入口的核心，决定自己加载哪个js文件，
+            xhtml: true, // 自闭标签
+        })
     ],
 };
 

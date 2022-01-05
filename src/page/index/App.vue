@@ -7,7 +7,7 @@
                  @select="selectMenu">
             <el-menu-item-group>
                 <template slot="title">开发指南 v1.1.6</template>
-                <el-menu-item index="/Install">安装</el-menu-item>
+<!--                <el-menu-item index="/Install">安装</el-menu-item>-->
             </el-menu-item-group>
 
             <el-menu-item-group>
@@ -52,12 +52,12 @@
             </el-menu-item-group>
             <el-menu-item-group>
                 <template slot="title">其他</template>
-                <el-menu-item index="/others/Github">Github</el-menu-item>
-                <el-menu-item index="/others/AutoTest">自动化测试</el-menu-item>
-                <el-menu-item index="/others/CodeMaker">代码自动生成</el-menu-item>
-                <el-menu-item index="/others/ElementStart">从“要素表”开始</el-menu-item>
-                <el-menu-item index="/others/connection">联系方式</el-menu-item>
-                <el-menu-item index="/others/changelog">更新历史 CHANGELOG</el-menu-item>
+<!--                <el-menu-item index="/others/Github">Github</el-menu-item>-->
+<!--                <el-menu-item index="/others/AutoTest">自动化测试</el-menu-item>-->
+<!--                <el-menu-item index="/others/CodeMaker">代码自动生成</el-menu-item>-->
+<!--                <el-menu-item index="/others/ElementStart">从“要素表”开始</el-menu-item>-->
+<!--                <el-menu-item index="/others/connection">联系方式</el-menu-item>-->
+<!--                <el-menu-item index="/others/changelog">更新历史 CHANGELOG</el-menu-item>-->
             </el-menu-item-group>
         </el-menu>
         <div id="main">

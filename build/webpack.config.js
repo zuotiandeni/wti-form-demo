@@ -55,7 +55,7 @@ const config = {
         path: resolve(`dist${Tag ? `/${Tag}` : ''}`),
         // 文件名，将打包好的导出为bundle.js
         filename: isProd ? 'js/[name].js' : '[name].js',
-        publicPath: isProd ? `${Tag}/` : '/',
+        publicPath: isProd ? `${Tag}/` : '',
     },
     // 开发模式
     mode: 'development',

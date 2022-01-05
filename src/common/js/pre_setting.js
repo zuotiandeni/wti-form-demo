@@ -17,6 +17,7 @@ import 'highlight.js/styles/atom-one-dark.css';
 import WtiForm from '@/components/wti-form';
 // import WtiForm from 'wti-form';
 // import 'wti-form-themes-red';
+// import './theme_wti.less';
 import {baseURL} from '@/config/env.js';
 import VueMarkdownEditor from '@kangc/v-md-editor';
 import '@kangc/v-md-editor/lib/style/base-editor.css';

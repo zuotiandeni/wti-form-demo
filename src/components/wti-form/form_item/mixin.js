@@ -48,7 +48,7 @@ export default {
             delete obj.prepend;
             delete obj.append;
             delete obj.defaultValue;
-
+            console.log(obj)
             return obj;
         },
         // 获取禁用状态

@@ -117,6 +117,10 @@
                                                                  v-bind="getProps(rowItem)"
                                                                  :random-id="childField.randomId"
                                                                  v-model.trim="val[index][rowItem.key]"/>
+                                            <FormCheckbox v-if="rowItem.type==='checkbox'"
+                                                        v-bind="getProps(rowItem)"
+                                                        :random-id="childField.randomId"
+                                                        v-model.trim="val[index][rowItem.key]"/>
                                         </el-form-item>
                                     </el-col>
                                 </div>
@@ -152,6 +156,7 @@
     import FormMulLinkage from './form_item/form_mul_linkage';
     import FormNormalNumberInput from './form_item/form_normal_number_input';
     import FormMulSelectNormal from './form_item/form_mul_select_normal';
+    import FormCheckbox from './form_item/form_checkbox';
 
     export default {
         name: 'ChildForm',
@@ -368,6 +373,7 @@
 
             // 添加一个子表单到 childFormFileds 最后
             addChildForm (childFormData, notAddValue) {
+              console.log('~~~~~~~~~~~~~~~~~~~~~~')
                 // 禁用时禁止操作
                 const {childrenForm} = this.item;
                 // 插入 childFormFileds
@@ -388,7 +394,7 @@
                         obj[child.key] = childFormData[child.key];
                     } else {
                         // 2.2 该要素没有默认值，使用通用默认值
-                        if (child.type === 'mul-linkage' || child.type === 'mul-select-normal') {
+                        if (child.type === 'mul-linkage' || child.type === 'mul-select-normal' || child.type === 'checkbox') {
                             obj[child.key] = child.defaultValue || [];
                         } else {
                             obj[child.key] = child.defaultValue || '';
@@ -763,6 +769,7 @@
             FormMulLinkage,
             FormNormalNumberInput,
             FormMulSelectNormal,
+            FormCheckbox,
         }
     };
 </script>

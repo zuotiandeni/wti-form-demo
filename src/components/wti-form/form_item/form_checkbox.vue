@@ -5,12 +5,11 @@
        class="form-input-box form-item-box">
     <el-checkbox v-if="item.isIndeterminate" :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选</el-checkbox>
     <el-checkbox-group @change="handleCheckedCitiesChange" v-model="val" :disabled="getDisabled" v-bind="bindOptions" v-if="!getTextModel">
-      <el-checkbox v-for="opt in item.options" :key="opt.value" :disabled="opt.disabled"
+      <el-checkbox :border="item.checkboxBorder || opt.checkboxBorder" v-if="!item.isCheckboxButton" v-for="opt in item.options" :key="opt.value" :disabled="opt.disabled"
                    :label="opt.value">{{ opt.label }}</el-checkbox>
-<!--      <el-checkbox label="复选框 B"></el-checkbox>-->
-<!--      <el-checkbox label="复选框 C"></el-checkbox>-->
-<!--      <el-checkbox label="禁用" disabled></el-checkbox>-->
-<!--      <el-checkbox label="选中且禁用" disabled></el-checkbox>-->
+
+      <el-checkbox-button v-if="item.isCheckboxButton" v-for="opt in item.options" :key="opt.value" :disabled="opt.disabled"
+                   :label="opt.value">{{ opt.label }}</el-checkbox-button>
     </el-checkbox-group>
     <div v-else :style="item.textStyle||{}" class="form-input-text">{{ textModelValue || '-' }}</div>
   </div>
@@ -43,7 +42,6 @@ export default {
         return this.value
       },
       set (v) {
-        console.log(v)
         this.$emit('input', v)
         this._valueLink(v)
         // 只有非子表单的情况下，才会冒泡上去数据变更
@@ -58,11 +56,16 @@ export default {
       }
     }
   },
+  mounted () {
+    // 用于勾选全选按钮
+    // 只有在 val 和 options 长度相同时才去执行对应的勾选逻辑
+    if (this.val.length === this.item.options.length){
+      this.handleCheckedCitiesChange(this.val);
+    }
+  },
   methods:{
     handleCheckAllChange(val) {
       // this.checkedCities = val ? this.item.options : [];
-      console.log(val)
-      console.log(this.val)
       // this.val = val ? this.item.options : [];
       if (val){
         const selectVals = this.item.options.map(item=>{
@@ -75,12 +78,9 @@ export default {
       this.isIndeterminate = false;
     },
     handleCheckedCitiesChange(value) {
-      console.log(value)
       let checkedCount = value.length;
       this.checkAll = checkedCount === this.item.options.length;
       this.isIndeterminate = checkedCount > 0 && checkedCount < this.item.options.length;
-      console.log(this.checkAll)
-      console.log(this.isIndeterminate)
     }
   }
 }

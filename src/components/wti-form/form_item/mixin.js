@@ -48,7 +48,6 @@ export default {
             delete obj.prepend;
             delete obj.append;
             delete obj.defaultValue;
-            console.log(obj)
             return obj;
         },
         // 获取禁用状态
@@ -166,8 +165,17 @@ export default {
                 this.item.valueLink.length > 0) {
                 // 遍历
                 this.item.valueLink.forEach(linkItem => {
+                    // 防止多选下拉框或其他多选的联动出现问题
+                    // 在这里还要判断它是不是checkbox类型
+                    // 为了扩展性，在配置项添加 multiSelectGanged 确保联动值和选中值为数组的情况下
+                    let status = false;
+                    if (Object.prototype.toString.call(v) === '[object Array]' && this.item.multiSelectGanged) {
+                        status = linkItem.value.every(item => {
+                            return v.indexOf(item) >= 0;
+                        })
+                    }
                     // 如果联动项的触发值不匹配，则跳过这一条
-                    if (v !== linkItem.value) {
+                    if (v !== linkItem.value && !status) {
                         return;
                     }
                     // 此时匹配，判断 linkList 有没有

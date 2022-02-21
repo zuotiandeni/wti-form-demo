@@ -161,6 +161,9 @@
                                             <FormMulSelectNormal v-if="rowItem.type==='mul-select-normal'"
                                                                  v-bind="getProps(rowItem)"
                                                                  v-model.trim="formData[rowItem.key]"/>
+                                            <FormCheckbox v-if="rowItem.type==='checkbox'"
+                                                      v-bind="getProps(rowItem)"
+                                                      v-model.trim="formData[rowItem.key]"/>
                                         </el-form-item>
                                     </el-col>
                                 </div>
@@ -193,6 +196,7 @@
     import FormMulLinkage from './form_item/form_mul_linkage';
     import FormNormalNumberInput from './form_item/form_normal_number_input';
     import FormMulSelectNormal from './form_item/form_mul_select_normal';
+    import FormCheckbox from './form_item/form_checkbox';
 
 
     import TableReadonly from './form_item/table_readonly';
@@ -424,6 +428,8 @@
                                     if (field.type === 'child-form' ||
                                         field.type === 'table-readonly' ||
                                         field.type === 'mul-linkage' ||
+                                        // 添加CheckBox的默认值及数据类型
+                                        field.type === 'checkbox' ||
                                         field.type === 'mul-select-normal') {
                                         this.$set(this.formData, field.key, []);
                                     } else if (field.type === 'area-select') {
@@ -1063,6 +1069,7 @@
             FormMulLinkage,
             FormNormalNumberInput,
             FormMulSelectNormal,
+            FormCheckbox,
 
             TableReadonly,
             ChildForm,

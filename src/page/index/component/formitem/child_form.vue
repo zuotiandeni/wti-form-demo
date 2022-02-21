@@ -90,6 +90,21 @@
                                         type: 'radio'
                                     },
                                     {
+                                      options: [
+                                        {
+                                          value: 'value_a',
+                                          label: 'label A'
+                                        },
+                                        {
+                                          value: 'value_b',
+                                          label: 'label B',
+                                        },
+                                      ],
+                                      key: 'checkbox',
+                                      label: '一个多选框',
+                                      type: 'checkbox'
+                                    },
+                                    {
                                         options: [
                                             {
                                                 value: '自由职业者',

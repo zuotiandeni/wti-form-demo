@@ -8,15 +8,9 @@
 		</el-checkbox>
 		<el-checkbox-group @change="handleCheckedCitiesChange" v-model="val" :disabled="getDisabled"
 						   v-bind="bindOptions" v-if="!getTextModel">
-			<el-checkbox :border="item.checkboxBorder || opt.checkboxBorder" v-if="!item.isCheckboxButton"
-						 v-for="opt in item.options" :key="opt.value" :disabled="opt.disabled"
+			<el-checkbox v-for="opt in item.options" :key="opt.value" :disabled="opt.disabled"
 						 :label="opt.value">{{ opt.label }}
 			</el-checkbox>
-
-			<el-checkbox-button v-if="item.isCheckboxButton" v-for="opt in item.options" :key="opt.value"
-								:disabled="opt.disabled"
-								:label="opt.value">{{ opt.label }}
-			</el-checkbox-button>
 		</el-checkbox-group>
 		<div v-else :style="item.textStyle||{}" class="form-input-text">{{ textModelValue || '-' }}</div>
 	</div>

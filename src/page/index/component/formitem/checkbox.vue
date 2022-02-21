@@ -37,21 +37,21 @@
 			</el-collapse-item>
 		</el-collapse>
 
-		<h3>自定义校验规则</h3>
-		<wti-form ref="form1"
-				  :fields="fields1"/>
-		<div class="submit-line">
-			<el-button type="primary" @click="submit('form1')">提交按钮</el-button>
-			<span class="tips">请查看控制台看提交结果</span>
-		</div>
-		<el-collapse class="collapse">
-			<el-collapse-item>
-				<template slot="title">
-					<b>点击查看代码</b>
-				</template>
-				<pre v-highlightjs><code class="javascript">{{ checkoutRule }}</code></pre>
-			</el-collapse-item>
-		</el-collapse>
+<!--		<h3>自定义校验规则</h3>-->
+<!--		<wti-form ref="form1"-->
+<!--				  :fields="fields1"/>-->
+<!--		<div class="submit-line">-->
+<!--			<el-button type="primary" @click="submit('form1')">提交按钮</el-button>-->
+<!--			<span class="tips">请查看控制台看提交结果</span>-->
+<!--		</div>-->
+<!--		<el-collapse class="collapse">-->
+<!--			<el-collapse-item>-->
+<!--				<template slot="title">-->
+<!--					<b>点击查看代码</b>-->
+<!--				</template>-->
+<!--				<pre v-highlightjs><code class="javascript">{{ checkoutRule }}</code></pre>-->
+<!--			</el-collapse-item>-->
+<!--		</el-collapse>-->
 
 		<h3>禁用全部/禁用某个选项</h3>
 		<p>单个选项禁用时，需要在对应的option配置default:true</p>
@@ -99,17 +99,6 @@
 				<pre v-highlightjs><code class="javascript">{{ astrictNumConfig }}</code></pre>
 			</el-collapse-item>
 		</el-collapse>
-
-		<h3>按钮样式的多选框</h3>
-		<p>在key的同级设置属性 isCheckboxButton 为true</p>
-		<wti-form ref="form6"
-				  :fields="fields6"/>
-
-		<h3>带边框的多选框</h3>
-		<p>如果你需要所有的选项都带边框，则需要将 checkboxBorder: true 设置在key的同级</p>
-		<p>如果你只需要某一个选项带有边框，则需要将 checkboxBorder: true 设置在对应的option选项上</p>
-		<wti-form ref="form7"
-				  :fields="fields7"/>
 	</div>
 </template>
 
@@ -199,26 +188,9 @@ fields: [
 									]
 								}
 							],
-							// 值为数组类型
-							multiSelectGanged: true,
 							valueLink: [
 								{
-									value: [],
-									linkList: [
-										{
-											linkKey: 'key2',
-											enableLinkValue: true,
-											linkValue: ''
-										},
-										{
-											linkKey: 'key3',
-											enableLinkValue: true,
-											linkValue: []
-										}
-									]
-								},
-								{
-									value: ['value_a'],
+									value: 'value_a',
 									linkList: [
 										{
 											linkKey: 'key2',
@@ -232,36 +204,6 @@ fields: [
 										}
 									]
 								},
-								{
-									value: ['value_b'],
-									linkList: [
-										{
-											linkKey: 'key2',
-											enableLinkValue: true,
-											linkValue: '678910'
-										},
-										{
-											linkKey: 'key3',
-											enableLinkValue: true,
-											linkValue: ['B']
-										}
-									]
-								},
-								{
-									value: ['value_b', 'value_a'],
-									linkList: [
-										{
-											linkKey: 'key2',
-											enableLinkValue: true,
-											linkValue: '11121314'
-										},
-										{
-											linkKey: 'key3',
-											enableLinkValue: true,
-											linkValue: ['A', 'B']
-										}
-									]
-								}
 							],
 							key: 'key1',
 							label: '一个多选框',
@@ -320,11 +262,9 @@ fields0: [
                   ]
                 }
               ],
-              // 标志联动的值为数组类型，且v-model的值也为数组类型
-              multiSelectGanged: true,
               valueLink: [
                 {
-                  value: ['value_a'],
+                  value: 'value_a',
                   linkList: [
                     {
                       linkKey: 'key2',
@@ -335,36 +275,6 @@ fields0: [
                       linkKey: 'key3',
                       enableLinkValue: true,
                       linkValue: ['A'],
-                    }
-                  ]
-                },
-                {
-                  value: ['value_b'],
-                  linkList: [
-                    {
-                      linkKey: 'key2',
-                      enableLinkValue: true,
-                      linkValue: '678910',
-                    },
-                    {
-                      linkKey: 'key3',
-                      enableLinkValue: true,
-                      linkValue: ['B'],
-                    }
-                  ]
-                },
-                {
-                  value: ['value_b','value_a'],
-                  linkList: [
-                    {
-                      linkKey: 'key2',
-                      enableLinkValue: true,
-                      linkValue: '11121314',
-                    },
-                    {
-                      linkKey: 'key3',
-                      enableLinkValue: true,
-                      linkValue: ['A','B'],
                     }
                   ]
                 },
@@ -396,97 +306,6 @@ fields0: [
                 },
               ]
             }
-          ]
-        }
-      ]`,
-			fields1: [
-				{
-					children: [
-						{
-							options: [
-								{
-									value: 'value_a',
-									label: 'label A'
-								},
-								{
-									value: 'value_b',
-									label: 'label B'
-								},
-								{
-									value: 'value_c',
-									label: 'label C'
-								},
-								{
-									value: 'value_d',
-									label: 'label D'
-								}
-							],
-							rules: [
-								{
-									required: true,
-									validator: checkCheckBox,
-									trigger: [
-										'blur',
-										'change'
-									]
-								}
-							],
-							key: 'key1',
-							label: '多选框自定义校验规则',
-							type: 'checkbox'
-						}
-					]
-				}
-			],
-			checkoutRule: `<wti-form ref="form1"
-              :fields="fields1"/>
----
-const checkCheckBox = (rule, value, callback) => {
-  if (value.length === 0) {
-    return callback(new Error('请选择'));
-  }
-  if (value.length < 3) {
-    return callback(new Error('请至少选择3项'));
-  }
-  callback();
-};
----
-fields1: [
-        {
-          children: [
-            {
-              options: [
-                {
-                  value: 'value_a',
-                  label: 'label A'
-                },
-                {
-                  value: 'value_b',
-                  label: 'label B',
-                },
-                {
-                  value: 'value_c',
-                  label: 'label C',
-                },
-                {
-                  value: 'value_d',
-                  label: 'label D',
-                },
-              ],
-              rules: [
-                {
-                  required: true,
-                  validator: checkCheckBox,
-                  trigger: [
-                    'blur',
-                    'change'
-                  ]
-                }
-              ],
-              key: 'key1',
-              label: '多选框自定义校验规则',
-              type: 'checkbox'
-            },
           ]
         }
       ]`,
@@ -711,50 +530,6 @@ fields5:[
           ]
         }
       ]`,
-			fields6: [
-				{
-					children: [
-						{
-							options: [
-								{
-									value: 'value_a',
-									label: 'label A'
-								},
-								{
-									value: 'value_b',
-									label: 'label B'
-								}
-							],
-							key: 'key1',
-							label: '一个多选框',
-							type: 'checkbox',
-							isCheckboxButton: true
-						}
-					]
-				}
-			],
-			fields7: [
-				{
-					children: [
-						{
-							options: [
-								{
-									value: 'value_a',
-									label: 'label A',
-									checkboxBorder: true
-								},
-								{
-									value: 'value_b',
-									label: 'label B'
-								}
-							],
-							key: 'key1',
-							label: '一个多选框',
-							type: 'checkbox'
-						}
-					]
-				}
-			]
 		};
 	},
 	methods: {

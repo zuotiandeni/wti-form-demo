@@ -76,6 +76,10 @@
                                                             v-bind="getProps(rowItem)"
                                                             :random-id="childField.randomId"
                                                             v-model.trim="val[index][rowItem.key]"/>
+											<FormDictCheckbox  v-if="rowItem.type === 'dynamic-checkbox'"
+															   v-bind="getProps(rowItem)"
+															   :random-id="childField.randomId"
+															   v-model.trim="val[index][rowItem.key]"/>
                                             <FormNormalSelect v-if="rowItem.type === 'normal-select'"
                                                               v-bind="getProps(rowItem)"
                                                               :random-id="childField.randomId"
@@ -157,6 +161,7 @@
     import FormNormalNumberInput from './form_item/form_normal_number_input';
     import FormMulSelectNormal from './form_item/form_mul_select_normal';
     import FormCheckbox from './form_item/form_checkbox';
+	import FormDictCheckbox from './form_item/form_dict_checkbox';
 
     export default {
         name: 'ChildForm',
@@ -283,7 +288,7 @@
                 this.childFormFileds.forEach(fields => {
                     if (fields && fields instanceof Array) {
                         fields.forEach(field => {
-                            if (field.type === 'dynamic-select' && field.parentKey) {
+                            if ((field.type === 'dynamic-select' || field.type === 'dynamic-checkbox') && field.parentKey) {
                                 // 再做一次去重判断。如果该字典已经在里面了，再跳过这一个
                                 if (parentCodeList.indexOf(field.parentKey) === -1) {
                                     if (!this.dynamicDict[field.parentKey]) {
@@ -373,7 +378,6 @@
 
             // 添加一个子表单到 childFormFileds 最后
             addChildForm (childFormData, notAddValue) {
-              console.log('~~~~~~~~~~~~~~~~~~~~~~')
                 // 禁用时禁止操作
                 const {childrenForm} = this.item;
                 // 插入 childFormFileds
@@ -394,7 +398,7 @@
                         obj[child.key] = childFormData[child.key];
                     } else {
                         // 2.2 该要素没有默认值，使用通用默认值
-                        if (child.type === 'mul-linkage' || child.type === 'mul-select-normal' || child.type === 'checkbox') {
+                        if (child.type === 'mul-linkage' || child.type === 'mul-select-normal' || child.type === 'checkbox' || child.type === 'dynamic-checkbox') {
                             obj[child.key] = child.defaultValue || [];
                         } else {
                             obj[child.key] = child.defaultValue || '';
@@ -770,6 +774,7 @@
             FormNormalNumberInput,
             FormMulSelectNormal,
             FormCheckbox,
+			FormDictCheckbox,
         }
     };
 </script>

@@ -33,6 +33,7 @@ import RateInput from './component/formitem/rate_input';
 import MulLinkage from './component/formitem/mul_linkage';
 import Textarea from './component/formitem/text_area';
 import Checkbox from './component/formitem/checkbox';
+import DynamicCheckbox from './component/formitem/dynamic_checkbox';
 import NormalNumber from './component/formitem/normal_number';
 import MulSelectNormal from './component/formitem/mul_select_normal';
 import ChildForm from './component/formitem/child_form';
@@ -82,6 +83,7 @@ const routes = [
     {path: '/formItem/MulLinkage', component: MulLinkage,},
     {path: '/formItem/Textarea', component: Textarea,},
     {path: '/formItem/Checkbox', component: Checkbox,},
+    {path: '/formItem/DynamicCheckbox', component: DynamicCheckbox,},
     {path: '/formItem/NormalNumber', component: NormalNumber,},
     {path: '/formItem/MulSelectNormal', component: MulSelectNormal,},
     {path: '/formItem/ChildForm', component: ChildForm,},

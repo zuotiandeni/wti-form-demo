@@ -9,17 +9,17 @@ export default {
     props: {
         item: {
             type: Object,
-            default: () => ({}),
+            default: () => ({})
         },
-        value: [ String, Number, Array ],
+        value: [String, Number, Array],
         allDisabled: {
             type: Boolean,
-            default: false,
+            default: false
         },
         randomId: {
             type: String,
-            default: '',
-        },
+            default: ''
+        }
     },
     inject: [
         'dynamicDict',
@@ -31,7 +31,7 @@ export default {
         'baseURL',
         'enableBaseURLForOthers',
         'getCommonAxios',
-        'getSpecialAxios',
+        'getSpecialAxios'
     ],
     computed: {
         // 扩展属性，直接将属性配置，传到表单组件内部（即 Element UI 上）
@@ -84,13 +84,13 @@ export default {
                 // 只有非子表单的情况下，才会冒泡上去数据变更
                 if (this.formItemType !== 'childForm') {
                     this.statusChangeFn.valueUpdateEvent({
-                        [this.item.key]: v,
+                        [this.item.key]: v
                     });
                 } else {
                     // 如果是子表单的话，执行内置的变更
                     this.childChangeData.valueUpdateEvent();
                 }
-            },
+            }
         },
         // 是否采用文字模式
         getTextModel () {
@@ -101,7 +101,7 @@ export default {
                 return true;
             }
             return false;
-        },
+        }
     },
     methods: {
         // 获取输入框的 placeholder
@@ -118,7 +118,7 @@ export default {
             // 否则返回默认的
             return `请输入${formItem.label}`;
         },
-
+        
         // 获取下拉框 placeholder
         getSelectPlaceholder (formItem) {
             // 如果已禁用，那么不显示 placeholder
@@ -132,7 +132,7 @@ export default {
             // 否则返回默认的
             return `请选择${formItem.label}`;
         },
-
+        
         // 当取消焦点
         onFocus (item, e) {
             // 表单要素有 onFocus 事件，那么则触发
@@ -140,7 +140,7 @@ export default {
                 item.onFocus(e, this.formData);
             }
         },
-
+        
         // 当取消焦点
         onBlur (item, e) {
             // 表单要素有 onBlur 事件，那么则触发
@@ -148,7 +148,7 @@ export default {
                 item.onBlur(e, this.formData);
             }
         },
-
+        
         // 数值联动，部分自定义 setter 触发。
         _valueLink (v) {
             // 根据当前是普通表单还是子表单，走不同的联动逻辑
@@ -194,7 +194,7 @@ export default {
                             // 如果联动值，则更新值
                             if (triggerItem.enableLinkValue) {
                                 this.statusChangeFn.updateFormData(
-                                    {[linkKey]: triggerItem.linkValue});
+                                    { [linkKey]: triggerItem.linkValue });
                             }
                             // 如果联动禁用/取消禁用，则更新禁用
                             if (triggerItem.enableLinkDisable) {
@@ -224,7 +224,7 @@ export default {
                 // 遍历
                 this.item.valueLink.forEach(linkItem => {
                     // 如果联动项的触发值不匹配，则跳过这一条
-                    if (v !== linkItem.value) {
+                    if ((Object.prototype.toString.call(v) !== '[object Array]' && v !== linkItem.value) || (Object.prototype.toString.call(v) === '[object Array]' && v.indexOf(linkItem.value) === -1)) {
                         return;
                     }
                     // 此时匹配，判断 linkList 有没有
@@ -241,9 +241,9 @@ export default {
                             if (triggerItem.enableLinkValue) {
                                 this.childChangeData.updateFormData(
                                     {
-                                        [linkKey]: triggerItem.linkValue,
+                                        [linkKey]: triggerItem.linkValue
                                     },
-                                    this.randomId,
+                                    this.randomId
                                 );
                             }
                             // 如果是子表单里的元素的话，采用三段匹配
@@ -255,7 +255,7 @@ export default {
                             if (triggerItem.enableLinkDisable) {
                                 this.statusChangeFn.setElementDisable(
                                     keyText,
-                                    triggerItem.linkDisable,
+                                    triggerItem.linkDisable
                                 );
                             }
                             // 如果联动隐藏/显示，则更新
@@ -269,7 +269,7 @@ export default {
                                 this.childChangeData.setElementRequired(
                                     linkKey,
                                     randomId,
-                                    triggerItem.linkRequired,
+                                    triggerItem.linkRequired
                                 );
                             }
                         });
@@ -277,8 +277,7 @@ export default {
                 });
             }
         },
-
-
+        
         // 丢掉数字的小数点右边末尾的 0
         // 例如入参是 1.2000，出参是 1.2
         // 入参是 12.0000 ，出参是 12
@@ -299,7 +298,7 @@ export default {
                 return n;
             }
         },
-
+        
         // 丢掉数字的小数点左边开头的 0
         // 例如入参是 0123.45，出参是 123.45
         // 入参是 00.12 ，出参是 0.12
@@ -326,6 +325,6 @@ export default {
                 // 无小数点
                 return n;
             }
-        },
-    },
+        }
+    }
 };

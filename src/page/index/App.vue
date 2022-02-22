@@ -44,6 +44,7 @@
                 <el-menu-item index="/formItem/TextArea">文本域输入框 TextArea</el-menu-item>
                 <el-menu-item index="/formItem/MulSelectNormal">普通多选下拉框 MulSelectNormal</el-menu-item>
                 <el-menu-item index="/formItem/ChildForm">子表单 ChildForm</el-menu-item>
+                <el-menu-item index="/formItem/DynamicCheckbox">字典多选框 DynamicCheckbox</el-menu-item>
                 <el-menu-item index="/formItem/Checkbox">多选框 CheckBox</el-menu-item>
             </el-menu-item-group>
 

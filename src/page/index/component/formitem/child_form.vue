@@ -124,16 +124,6 @@ export default {
                                     label: '这是一个字典多选框',
                                     parentKey: '10341',
                                     checkAll: true,
-                                    rules: [
-                                        {
-                                            required: true,
-                                            message: '请选择',
-                                            trigger: [
-                                                'blur',
-                                                'change'
-                                            ]
-                                        }
-                                    ],
                                     valueLink: [
                                         {
                                             value: '10341001',
@@ -324,16 +314,6 @@ export default {
                                     label: '这是一个字典多选框',
                                     parentKey: '10341',
                                     checkAll: true,
-                                    rules: [
-                                        {
-                                            required: true,
-                                            message: '请选择',
-                                            trigger: [
-                                                'blur',
-                                                'change'
-                                            ]
-                                        }
-                                    ],
                                     valueLink: [
                                         {
                                             value: '10341001',

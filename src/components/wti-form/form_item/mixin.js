@@ -11,7 +11,7 @@ export default {
             type: Object,
             default: () => ({})
         },
-        value: [String, Number, Array],
+        value: [ String, Number, Array ],
         allDisabled: {
             type: Boolean,
             default: false
@@ -118,7 +118,7 @@ export default {
             // 否则返回默认的
             return `请输入${formItem.label}`;
         },
-        
+
         // 获取下拉框 placeholder
         getSelectPlaceholder (formItem) {
             // 如果已禁用，那么不显示 placeholder
@@ -132,7 +132,7 @@ export default {
             // 否则返回默认的
             return `请选择${formItem.label}`;
         },
-        
+
         // 当取消焦点
         onFocus (item, e) {
             // 表单要素有 onFocus 事件，那么则触发
@@ -140,7 +140,7 @@ export default {
                 item.onFocus(e, this.formData);
             }
         },
-        
+
         // 当取消焦点
         onBlur (item, e) {
             // 表单要素有 onBlur 事件，那么则触发
@@ -148,7 +148,7 @@ export default {
                 item.onBlur(e, this.formData);
             }
         },
-        
+
         // 数值联动，部分自定义 setter 触发。
         _valueLink (v) {
             // 根据当前是普通表单还是子表单，走不同的联动逻辑
@@ -194,7 +194,7 @@ export default {
                             // 如果联动值，则更新值
                             if (triggerItem.enableLinkValue) {
                                 this.statusChangeFn.updateFormData(
-                                    { [linkKey]: triggerItem.linkValue });
+                                    {[linkKey]: triggerItem.linkValue});
                             }
                             // 如果联动禁用/取消禁用，则更新禁用
                             if (triggerItem.enableLinkDisable) {
@@ -277,7 +277,7 @@ export default {
                 });
             }
         },
-        
+
         // 丢掉数字的小数点右边末尾的 0
         // 例如入参是 1.2000，出参是 1.2
         // 入参是 12.0000 ，出参是 12
@@ -298,7 +298,7 @@ export default {
                 return n;
             }
         },
-        
+
         // 丢掉数字的小数点左边开头的 0
         // 例如入参是 0123.45，出参是 123.45
         // 入参是 00.12 ，出参是 0.12

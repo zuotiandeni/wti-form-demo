@@ -127,9 +127,9 @@
                                             <FormDictSelect v-if="rowItem.type === 'dynamic-select'"
                                                             v-bind="getProps(rowItem)"
                                                             v-model.trim="formData[rowItem.key]"/>
-											<FormDictCheckbox  v-if="rowItem.type === 'dynamic-checkbox'"
-															   v-bind="getProps(rowItem)"
-															   v-model.trim="formData[rowItem.key]"/>
+                                            <FormDictCheckbox v-if="rowItem.type === 'dynamic-checkbox'"
+                                                              v-bind="getProps(rowItem)"
+                                                              v-model.trim="formData[rowItem.key]"/>
                                             <FormNormalSelect v-if="rowItem.type === 'normal-select'"
                                                               v-bind="getProps(rowItem)"
                                                               v-model.trim="formData[rowItem.key]"/>
@@ -165,8 +165,8 @@
                                                                  v-bind="getProps(rowItem)"
                                                                  v-model.trim="formData[rowItem.key]"/>
                                             <FormCheckbox v-if="rowItem.type==='checkbox'"
-                                                      v-bind="getProps(rowItem)"
-                                                      v-model.trim="formData[rowItem.key]"/>
+                                                          v-bind="getProps(rowItem)"
+                                                          v-model.trim="formData[rowItem.key]"/>
                                         </el-form-item>
                                     </el-col>
                                 </div>
@@ -186,7 +186,7 @@
     import FormInput from './form_item/form_input';
     import FormTextarea from './form_item/form_textarea';
     import FormDictSelect from './form_item/form_dict_select';
-	import FormDictCheckbox from './form_item/form_dict_checkbox';
+    import FormDictCheckbox from './form_item/form_dict_checkbox';
     import FormNormalSelect from './form_item/form_normal_select';
     import FormDate from './form_item/form_date';
     import FormHourMinute from './form_item/form_hour_minute';
@@ -201,7 +201,6 @@
     import FormNormalNumberInput from './form_item/form_normal_number_input';
     import FormMulSelectNormal from './form_item/form_mul_select_normal';
     import FormCheckbox from './form_item/form_checkbox';
-
 
     import TableReadonly from './form_item/table_readonly';
 
@@ -273,7 +272,6 @@
 
                 // 动态下拉列表里，所有选项。本对象的属性 key 是字典的父 key，值是数组，数组元素是对应的父 key 下所有字典
                 dynamicDict: {},
-
 
                 changeData: { // 所有动态数据，更准确的说，是会重新赋值的，需要放到 data 里，才能实现响应式。这是因为 provide 本身的特性导致的
                     // 被禁用的所有元素列表。这里的数组元素是该要素的 key。
@@ -434,7 +432,7 @@
                                         field.type === 'mul-linkage' ||
                                         // 添加CheckBox的默认值及数据类型
                                         field.type === 'checkbox' ||
-										field.type === 'dynamic-checkbox' ||
+                                        field.type === 'dynamic-checkbox' ||
                                         field.type === 'mul-select-normal') {
                                         this.$set(this.formData, field.key, []);
                                     } else if (field.type === 'area-select') {
@@ -484,7 +482,6 @@
 
                 this.changeData.hiddenKeyList = hiddenList;
             },
-
 
             // 对一个 block 下的要素，进行 el-row 的分行
             getFieldRow (children) {
@@ -644,7 +641,7 @@
                                 }
 
                                 // 遍历 其 rules，
-                                const {rules} = field;
+                                const { rules } = field;
                                 // 是否有 required 这条规则
                                 let haveRequired = false;
                                 // 是否已修改
@@ -723,7 +720,7 @@
                         fields.children.forEach(field => {
                             // 如果有联动项，那么则遍历每个联动项
                             if (field.valueLink && field.valueLink.length && field.valueLink.length > 0) {
-                                const {key} = field;
+                                const { key } = field;
                                 const v = this.data[key];
                                 // 遍历
                                 field.valueLink.forEach(linkItem => {
@@ -742,7 +739,7 @@
                                             }
                                             // 如果联动值，则更新值
                                             if (triggerItem.enableLinkValue) {
-                                                this.updateFormData({[linkKey]: triggerItem.linkValue});
+                                                this.updateFormData({ [linkKey]: triggerItem.linkValue });
                                             }
                                             // 如果联动禁用/取消禁用，则更新禁用
                                             if (triggerItem.enableLinkDisable) {
@@ -903,7 +900,7 @@
                         // 说明是在子表单
                         d[key] = this.$refs[key][0].childFormFileds.map((childField, index) => {
                             const childD = {};
-                            const {randomId} = childField;
+                            const { randomId } = childField;
                             childField.forEach(childItem => {
                                 const childKey = childItem.key;
                                 const keyText = `${key}_${randomId}_${childKey}`;
@@ -1075,7 +1072,7 @@
             FormNormalNumberInput,
             FormMulSelectNormal,
             FormCheckbox,
-			FormDictCheckbox,
+            FormDictCheckbox,
 
             TableReadonly,
             ChildForm,
@@ -1084,273 +1081,274 @@
 </script>
 
 <style scoped lang="less">
-    .wti-form {
-        width: 100%;
+.wti-form {
+    width: 100%;
 
-        // 1、标题文字
-        /deep/ .el-form-item__label {
-            min-height: 36px;
+    // 1、标题文字
+    /deep/ .el-form-item__label {
+        min-height: 36px;
+        line-height: 36px;
+        height: auto;
+        padding-bottom: 0;
+    }
+
+    /deep/ .el-form-item__content {
+        line-height: 36px;
+
+        .form-input-text {
             line-height: 36px;
+            //white-space: pre-wrap;
+            word-break: break-word;
+        }
+    }
+
+    /deep/ .el-form-item {
+        margin-bottom: 32px;
+
+        .el-form-item__label {
             height: auto;
-            padding-bottom: 0;
         }
 
-        /deep/ .el-form-item__content {
-            line-height: 36px;
-
-            .form-input-text {
-                line-height: 36px;
-                //white-space: pre-wrap;
-                word-break: break-word;
-            }
+        .form-item-box {
+            height: auto;
         }
 
-        /deep/ .el-form-item {
-            margin-bottom: 32px;
-
-            .el-form-item__label {
-                height: auto;
-            }
-
-            .form-item-box {
-                height: auto;
-            }
-
-            .form-input-text {
-                min-height: 36px;
-                height: auto;
-                line-height: 36px;
-            }
-        }
-
-        /deep/ .form-item-box {
+        .form-input-text {
             min-height: 36px;
+            height: auto;
             line-height: 36px;
-
-            .el-radio-group {
-                vertical-align: top;
-                margin-top: 10px;
-            }
-
-            .el-input__icon {
-                height: 36px;
-                line-height: 36px;
-            }
         }
+    }
 
-        /deep/ .el-input__inner {
+    /deep/ .form-item-box {
+        min-height: 36px;
+        line-height: 36px;
+
+        .el-radio-group {
             vertical-align: top;
-            height: 36px !important;
-            line-height: 36px !important;
-            border: 1px solid #E2E3E6 !important;
-            padding-left: 12px;
+            margin-top: 10px;
         }
 
-        /deep/ .el-textarea__inner {
-            padding-left: 12px;
-            padding-right: 12px;
+        .el-input__icon {
+            height: 36px;
+            line-height: 36px;
+        }
+    }
+
+    /deep/ .el-input__inner {
+        vertical-align: top;
+        height: 36px !important;
+        line-height: 36px !important;
+        border: 1px solid #E2E3E6 !important;
+        padding-left: 12px;
+    }
+
+    /deep/ .el-textarea__inner {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    /deep/ .el-form-item {
+        margin-bottom: 32px;
+    }
+
+    /deep/ .el-input.is-active .el-input__inner, /deep/ .el-input__inner:focus,
+    /deep/ .el-select .el-input.is-focus .el-input__inner, /deep/ .el-textarea__inner:focus {
+        border-color: #ABB3CC !important;
+    }
+
+    /deep/ .wti-untext-box {
+        height: 36px !important;
+    }
+
+    /deep/ .checkbox-height {
+        height: 72px !important;
+    }
+
+    .block-title {
+        position: relative;
+        height: 50px;
+        padding-top: 10px;
+        padding-bottom: 24px;
+        font-size: 16px;
+
+        // label 左边的红色竖线
+        .block-line {
+            float: left;
+            width: 4px;
+            height: 16px;
+            background: #EE473A;
+            border-radius: 2px;
+            display: inline-block;
         }
 
-        /deep/ .el-form-item {
-            margin-bottom: 32px;
+        .block-text {
+            margin-left: 10px;
+            float: left;
+            height: 16px;
+            font-size: 16px;
+            color: #21273A;
+            font-weight: 600 !important;
+            vertical-align: top;
+            line-height: 16px;
         }
 
-        /deep/ .el-input.is-active .el-input__inner, /deep/ .el-input__inner:focus,
-        /deep/ .el-select .el-input.is-focus .el-input__inner, /deep/ .el-textarea__inner:focus {
-            border-color: #ABB3CC !important;
+        .block-fold-btn {
+            float: right;
+            margin-right: 30px;
+            height: 16px;
+            line-height: 16px;
+            font-size: 14px;
+            cursor: pointer;
+            user-select: none;
         }
+    }
 
-        /deep/ .wti-untext-box {
-            height: 36px !important;
-        }
-		/deep/ .checkbox-height{
-			height: 72px !important;
-		}
+}
+
+// 带边框的表单组件
+.border-form {
+    .block-item {
+        border: 1px solid #DDE0EA;
+        border-radius: 8px;
+        margin-bottom: 40px;
+        background: #fff;
+        padding-bottom: 15px;
 
         .block-title {
-            position: relative;
-            height: 50px;
-            padding-top: 10px;
-            padding-bottom: 24px;
-            font-size: 16px;
-
-            // label 左边的红色竖线
-            .block-line {
-                float: left;
-                width: 4px;
-                height: 16px;
-                background: #EE473A;
-                border-radius: 2px;
-                display: inline-block;
-            }
-
-            .block-text {
-                margin-left: 10px;
-                float: left;
-                height: 16px;
-                font-size: 16px;
-                color: #21273A;
-                font-weight: 600 !important;
-                vertical-align: top;
-                line-height: 16px;
-            }
-
-            .block-fold-btn {
-                float: right;
-                margin-right: 30px;
-                height: 16px;
-                line-height: 16px;
-                font-size: 14px;
-                cursor: pointer;
-                user-select: none;
-            }
+            height: 60px;
+            line-height: 60px;
+            background: #f8f9fb;
+            padding: 20px 0 18px 24px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            margin-bottom: 18px;
+            border-bottom: 1px solid #DDE0EA;
         }
 
+        .block-title + .block-content {
+            //padding-top: 14px;
+        }
+
+        .block-content {
+            padding: 0 24px;
+        }
+
+        .block-hidden {
+            display: none;
+        }
     }
 
-    // 带边框的表单组件
-    .border-form {
-        .block-item {
-            border: 1px solid #DDE0EA;
+    .block-hide {
+        padding-bottom: 0;
+
+        .block-title {
+            border-bottom: 0;
+            overflow: hidden;
             border-radius: 8px;
-            margin-bottom: 40px;
-            background: #fff;
-            padding-bottom: 15px;
-
-            .block-title {
-                height: 60px;
-                line-height: 60px;
-                background: #f8f9fb;
-                padding: 20px 0 18px 24px;
-                border-top-left-radius: 8px;
-                border-top-right-radius: 8px;
-                margin-bottom: 18px;
-                border-bottom: 1px solid #DDE0EA;
-            }
-
-            .block-title + .block-content {
-                //padding-top: 14px;
-            }
-
-            .block-content {
-                padding: 0 24px;
-            }
-
-            .block-hidden {
-                display: none;
-            }
-        }
-
-        .block-hide {
-            padding-bottom: 0;
-
-            .block-title {
-                border-bottom: 0;
-                overflow: hidden;
-                border-radius: 8px;
-                margin-bottom: 0;
-            }
+            margin-bottom: 0;
         }
     }
+}
 
 
-    .el-divider {
-        background-color: #F4F5F8;
-    }
+.el-divider {
+    background-color: #F4F5F8;
+}
 
-    .scan-type {
-        position: relative;
+.scan-type {
+    position: relative;
+    height: 36px;
+    line-height: 36px;
+    margin-bottom: 16px;
+
+    .all-fold-btn {
+        display: inline-block;
+        padding: 0 20px;
         height: 36px;
-        line-height: 36px;
-        margin-bottom: 16px;
+        background: #EE473A;
+        border: 1px solid #EE473A;
+        border-radius: 4px;
+        color: #fff;
+        cursor: pointer;
+        text-align: center;
+        font-size: 14px;
+        vertical-align: top;
 
-        .all-fold-btn {
-            display: inline-block;
-            padding: 0 20px;
-            height: 36px;
-            background: #EE473A;
-            border: 1px solid #EE473A;
-            border-radius: 4px;
-            color: #fff;
-            cursor: pointer;
-            text-align: center;
-            font-size: 14px;
+        .all-fold-icon {
+            width: 14px;
+            height: 14px;
             vertical-align: top;
-
-            .all-fold-icon {
-                width: 14px;
-                height: 14px;
-                vertical-align: top;
-                margin-top: 11px;
-            }
+            margin-top: 11px;
         }
+    }
 
-        .block-btn-list {
-            float: left;
+    .block-btn-list {
+        float: left;
+        height: 36px;
+
+        .block-btn {
+            border: 1px solid #DDE0EA;
             height: 36px;
-
-            .block-btn {
-                border: 1px solid #DDE0EA;
-                height: 36px;
-                line-height: 34px;
-                padding: 0 18px;
-                color: #3A4566;
-                display: inline-block;
-                cursor: pointer;
-                user-select: none;
-            }
-
-            .block-btn.focus {
-                background: #EE473A;
-                color: #fff;
-            }
-
-            .block-btn:first-child {
-                border-radius: 4px 0 0 4px;
-
-            }
-
-            .block-btn:last-child {
-                border-radius: 0 4px 4px 0;
-
-            }
-        }
-
-        .scan-type-btn {
+            line-height: 34px;
+            padding: 0 18px;
+            color: #3A4566;
             display: inline-block;
-            float: right;
-            padding: 0 20px;
-            height: 36px;
-            border: 1px solid #AEB3BF;
-            border-radius: 4px;
-            color: #12182A;
             cursor: pointer;
-            text-align: center;
-            font-size: 14px;
-            vertical-align: top;
             user-select: none;
+        }
 
-            .scan-type-icon {
-                width: 14px;
-                height: 14px;
-                vertical-align: top;
-                margin-top: 11px;
-            }
+        .block-btn.focus {
+            background: #EE473A;
+            color: #fff;
+        }
+
+        .block-btn:first-child {
+            border-radius: 4px 0 0 4px;
+
+        }
+
+        .block-btn:last-child {
+            border-radius: 0 4px 4px 0;
+
         }
     }
 
-    .wti-form-v2 /deep/ input::-webkit-outer-spin-button,
-    .wti-form-v2 /deep/ input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-    }
+    .scan-type-btn {
+        display: inline-block;
+        float: right;
+        padding: 0 20px;
+        height: 36px;
+        border: 1px solid #AEB3BF;
+        border-radius: 4px;
+        color: #12182A;
+        cursor: pointer;
+        text-align: center;
+        font-size: 14px;
+        vertical-align: top;
+        user-select: none;
 
-    .wti-form-v2 /deep/ input[type="number"] {
-        -webkit-appearance: none;
-        appearance: none;
+        .scan-type-icon {
+            width: 14px;
+            height: 14px;
+            vertical-align: top;
+            margin-top: 11px;
+        }
     }
+}
 
-    .wti-form-v2 /deep/ input[type="number"] {
-        -moz-appearance: textfield;
-    }
+.wti-form-v2 /deep/ input::-webkit-outer-spin-button,
+.wti-form-v2 /deep/ input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.wti-form-v2 /deep/ input[type="number"] {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.wti-form-v2 /deep/ input[type="number"] {
+    -moz-appearance: textfield;
+}
 
 </style>

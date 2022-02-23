@@ -76,10 +76,10 @@
                                                             v-bind="getProps(rowItem)"
                                                             :random-id="childField.randomId"
                                                             v-model.trim="val[index][rowItem.key]"/>
-											<FormDictCheckbox  v-if="rowItem.type === 'dynamic-checkbox'"
-															   v-bind="getProps(rowItem)"
-															   :random-id="childField.randomId"
-															   v-model.trim="val[index][rowItem.key]"/>
+                                            <FormDictCheckbox v-if="rowItem.type === 'dynamic-checkbox'"
+                                                              v-bind="getProps(rowItem)"
+                                                              :random-id="childField.randomId"
+                                                              v-model.trim="val[index][rowItem.key]"/>
                                             <FormNormalSelect v-if="rowItem.type === 'normal-select'"
                                                               v-bind="getProps(rowItem)"
                                                               :random-id="childField.randomId"
@@ -122,9 +122,9 @@
                                                                  :random-id="childField.randomId"
                                                                  v-model.trim="val[index][rowItem.key]"/>
                                             <FormCheckbox v-if="rowItem.type==='checkbox'"
-                                                        v-bind="getProps(rowItem)"
-                                                        :random-id="childField.randomId"
-                                                        v-model.trim="val[index][rowItem.key]"/>
+                                                          v-bind="getProps(rowItem)"
+                                                          :random-id="childField.randomId"
+                                                          v-model.trim="val[index][rowItem.key]"/>
                                         </el-form-item>
                                     </el-col>
                                 </div>
@@ -161,7 +161,7 @@
     import FormNormalNumberInput from './form_item/form_normal_number_input';
     import FormMulSelectNormal from './form_item/form_mul_select_normal';
     import FormCheckbox from './form_item/form_checkbox';
-	import FormDictCheckbox from './form_item/form_dict_checkbox';
+    import FormDictCheckbox from './form_item/form_dict_checkbox';
 
     export default {
         name: 'ChildForm',
@@ -379,7 +379,7 @@
             // 添加一个子表单到 childFormFileds 最后
             addChildForm (childFormData, notAddValue) {
                 // 禁用时禁止操作
-                const {childrenForm} = this.item;
+                const { childrenForm } = this.item;
                 // 插入 childFormFileds
                 const filed = this.deepCopy(childrenForm);
                 // 给每个 field 添加一个随机 id
@@ -416,7 +416,6 @@
                 }
 
                 const formKey = this.item.key;
-
 
                 defaultDisableList.forEach(disableKey => {
                     const keyText = `${formKey}_${randomId}_${disableKey}`;
@@ -587,7 +586,7 @@
                             }
 
                             // 遍历 其 rules，
-                            const {rules} = field;
+                            const { rules } = field;
                             // 是否有 required 这条规则
                             let haveRequired = false;
                             // 是否已修改
@@ -721,7 +720,7 @@
             // 重置子表单结构
             // 注意：这会导致 禁用、隐藏的 元素消失
             resetChildFormFileds () {
-                const {childrenForm} = this.item;
+                const { childrenForm } = this.item;
 
                 this.childFormFileds = [];
                 // 这里的目的是为了生成 fields
@@ -736,7 +735,7 @@
 
             // 重置内容（子表单数量不变）
             resetFields () {
-                const {childrenForm} = this.item;
+                const { childrenForm } = this.item;
                 const obj = {};
 
                 childrenForm.forEach(child => {
@@ -774,7 +773,7 @@
             FormNormalNumberInput,
             FormMulSelectNormal,
             FormCheckbox,
-			FormDictCheckbox,
+            FormDictCheckbox,
         }
     };
 </script>
@@ -782,82 +781,82 @@
 <style scoped lang="less">
 
 
-    .child-form-container {
-        width: 100%;
+.child-form-container {
+    width: 100%;
 
-        .child-form {
-            background: #F8F9FB;
-            border-radius: 4px;
-            margin-bottom: 24px;
+    .child-form {
+        background: #F8F9FB;
+        border-radius: 4px;
+        margin-bottom: 24px;
 
-            .child-form-head {
-                position: relative;
+        .child-form-head {
+            position: relative;
+            height: 44px;
+            line-height: 44px;
+            text-align: left;
+            padding: 0 20px;
+            font-size: 14px;
+            color: #3A4566;
+            border-bottom: 1px solid #E7E8EB;
+            font-weight: 500;
+
+            .cfh-flod, .cfh-unflod {
+                position: absolute;
+                top: 19px;
+                right: 24px;
+                width: 12px;
+                height: 6px;
+                cursor: pointer;
+                user-select: none;
+            }
+
+            .cfh-del {
+                position: absolute;
+                top: 0;
+                right: 55px;
                 height: 44px;
                 line-height: 44px;
-                text-align: left;
-                padding: 0 20px;
-                font-size: 14px;
-                color: #3A4566;
-                border-bottom: 1px solid #E7E8EB;
-                font-weight: 500;
+                cursor: pointer;
+                user-select: none;
 
-                .cfh-flod, .cfh-unflod {
-                    position: absolute;
-                    top: 19px;
-                    right: 24px;
-                    width: 12px;
-                    height: 6px;
-                    cursor: pointer;
-                    user-select: none;
+                .cfh-del-btn {
+                    position: relative;
+                    height: 16px;
+                    width: 16px;
+                    margin-top: 14px;
+                    vertical-align: top;
                 }
 
-                .cfh-del {
-                    position: absolute;
-                    top: 0;
-                    right: 55px;
+                .cfh-del-text {
+                    display: inline-block;
+                    position: relative;
                     height: 44px;
                     line-height: 44px;
-                    cursor: pointer;
-                    user-select: none;
-
-                    .cfh-del-btn {
-                        position: relative;
-                        height: 16px;
-                        width: 16px;
-                        margin-top: 14px;
-                        vertical-align: top;
-                    }
-
-                    .cfh-del-text {
-                        display: inline-block;
-                        position: relative;
-                        height: 44px;
-                        line-height: 44px;
-                        vertical-align: top;
-                        font-size: 14px;
-                        color: #949AAE;
-                        font-weight: 400;
-                    }
+                    vertical-align: top;
+                    font-size: 14px;
+                    color: #949AAE;
+                    font-weight: 400;
                 }
             }
-
-            .child-form-body {
-                padding: 0 20px;
-            }
         }
 
-        .child-form-add-btn {
-            position: relative;
-            width: 100%;
-            height: 40px;
-            line-height: 40px;
-            background: #FBFCFD;
-            border: 1px dashed #ABB3CC;
-            border-radius: 4px;
-            text-align: center;
-            font-size: 14px;
-            color: #12182A;
-            cursor: pointer;
+        .child-form-body {
+            padding: 0 20px;
         }
     }
+
+    .child-form-add-btn {
+        position: relative;
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+        background: #FBFCFD;
+        border: 1px dashed #ABB3CC;
+        border-radius: 4px;
+        text-align: center;
+        font-size: 14px;
+        color: #12182A;
+        cursor: pointer;
+    }
+}
 </style>

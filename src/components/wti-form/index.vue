@@ -102,8 +102,9 @@
 													  :style="rowItem.style"
 													  :class="rowItem.class">
 											<template slot="label">
-												<div class="wti-form-label">{{ getFormItemLabel(rowItem) }}
-													<span v-if="getFormItemLabelColon(rowItem)">：</span>
+												<div class="wti-form-label">
+													<div>{{ getFormItemLabel(rowItem) }}</div>
+													<span class="wti-form-label-Colon" v-if="getFormItemLabelColon(rowItem)">：</span>
 												</div>
 											</template>
 											<div v-if="rowItem.htmlLabel" slot="label" v-html="rowItem.htmlLabel"></div>
@@ -115,8 +116,9 @@
 													  :rules="rowItem.rules"
 													  :prop="rowItem.key">
 											<template slot="label">
-												<div class="wti-form-label">{{ getFormItemLabel(rowItem) }}
-													<span v-if="getFormItemLabelColon(rowItem)">：</span>
+												<div class="wti-form-label">
+													<div>{{ getFormItemLabel(rowItem) }}</div>
+													<span class="wti-form-label-Colon" v-if="getFormItemLabelColon(rowItem)">：</span>
 												</div>
 										  	</template>
 											<FormInput v-if="rowItem.type==='input'"
@@ -1356,6 +1358,28 @@ export default {
 
 .wti-form-v2 /deep/ input[type="number"] {
 	-moz-appearance: textfield;
+}
+
+// 左侧
+.wti-form-v2 /deep/ .el-form--label-left{
+	.wti-form-label{
+		display: flex;
+		justify-content: flex-start;
+		div{
+			text-align: left;
+		}
+	}
+}
+
+// 右侧
+.wti-form-v2 /deep/ .el-form--label-right{
+	.wti-form-label{
+		display: flex;
+		justify-content: flex-end;
+		div{
+			text-align: right;
+		}
+	}
 }
 
 </style>

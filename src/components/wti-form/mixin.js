@@ -67,9 +67,8 @@ export default {
         getFormItemLabel (formItem) {
             return formItem.label;
         },
-    
+
         getFormItemLabelColon (formItem) {
-            console.log(this.addColon);
             // 如果这一项设置了 addColon 为 true
             if (formItem.addColon) {
                 return true;

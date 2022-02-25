@@ -80,6 +80,10 @@
                                                               v-bind="getProps(rowItem)"
                                                               :random-id="childField.randomId"
                                                               v-model.trim="val[index][rowItem.key]"/>
+                                            <FormDynamicSelectNormal v-if="rowItem.type === 'dynamic-select-normal'"
+                                                                     v-bind="getProps(rowItem)"
+                                                                     :random-id="childField.randomId"
+                                                                     v-model.trim="val[index][rowItem.key]"/>
                                             <FormNormalSelect v-if="rowItem.type === 'normal-select'"
                                                               v-bind="getProps(rowItem)"
                                                               :random-id="childField.randomId"
@@ -162,10 +166,11 @@
     import FormMulSelectNormal from './form_item/form_mul_select_normal';
     import FormCheckbox from './form_item/form_checkbox';
     import FormDictCheckbox from './form_item/form_dict_checkbox';
+    import FormDynamicSelectNormal from './form_item/form_dict_select_normal';
 
     export default {
         name: 'ChildForm',
-        mixins: [ FormMixin ],
+        mixins: [FormMixin],
         props: {
             item: {
                 type: Object,
@@ -202,7 +207,7 @@
             'baseURL',
             'enableBaseURLForOthers',
             'getCommonAxios',
-            'getSpecialAxios',
+            'getSpecialAxios'
         ],
         watch: {
             // 这个是只有当 子表单 的值变化时才会触发的
@@ -259,7 +264,7 @@
                     updateFormData: this.updateFormData,
                     valueUpdateEvent: this.valueUpdateEvent,
                     // 设置为必填
-                    setElementRequired: this.setElementRequired,
+                    setElementRequired: this.setElementRequired
                 }
             };
         },
@@ -288,7 +293,7 @@
                 this.childFormFileds.forEach(fields => {
                     if (fields && fields instanceof Array) {
                         fields.forEach(field => {
-                            if ((field.type === 'dynamic-select' || field.type === 'dynamic-checkbox') && field.parentKey) {
+                            if ((field.type === 'dynamic-select' || field.type === 'dynamic-checkbox' || field.type === 'dynamic-select-normal') && field.parentKey) {
                                 // 再做一次去重判断。如果该字典已经在里面了，再跳过这一个
                                 if (parentCodeList.indexOf(field.parentKey) === -1) {
                                     if (!this.dynamicDict[field.parentKey]) {
@@ -379,7 +384,7 @@
             // 添加一个子表单到 childFormFileds 最后
             addChildForm (childFormData, notAddValue) {
                 // 禁用时禁止操作
-                const { childrenForm } = this.item;
+                const {childrenForm} = this.item;
                 // 插入 childFormFileds
                 const filed = this.deepCopy(childrenForm);
                 // 给每个 field 添加一个随机 id
@@ -398,7 +403,7 @@
                         obj[child.key] = childFormData[child.key];
                     } else {
                         // 2.2 该要素没有默认值，使用通用默认值
-                        if (child.type === 'mul-linkage' || child.type === 'mul-select-normal' || child.type === 'checkbox' || child.type === 'dynamic-checkbox') {
+                        if (child.type === 'mul-linkage' || child.type === 'mul-select-normal' || child.type === 'checkbox' || child.type === 'dynamic-checkbox' || filed.type === 'dynamic-select-normal') {
                             obj[child.key] = child.defaultValue || [];
                         } else {
                             obj[child.key] = child.defaultValue || '';
@@ -463,9 +468,9 @@
                             span: currentSpan,
                             rowItem: Object.assign({}, item, {
                                 randomId
-                            }),
+                            })
                         };
-                        list.push([ obj ]);
+                        list.push([obj]);
                         return;
                     }
                     // 如果初始不为空，
@@ -478,9 +483,9 @@
                             span: currentSpan,
                             rowItem: Object.assign({}, item, {
                                 randomId
-                            }),
+                            })
                         };
-                        list.push([ obj ]);
+                        list.push([obj]);
                         return;
                     }
                     // 2、判断（上一个）【默认是本行最后一列】开关是否打开
@@ -494,9 +499,9 @@
                             span: currentSpan,
                             rowItem: Object.assign({}, item, {
                                 randomId
-                            }),
+                            })
                         };
-                        list.push([ obj ]);
+                        list.push([obj]);
                         return;
                     }
 
@@ -515,9 +520,9 @@
                             span: currentSpan,
                             rowItem: Object.assign({}, item, {
                                 randomId
-                            }),
+                            })
                         };
-                        list.push([ obj ]);
+                        list.push([obj]);
                         return;
                     } else {
                         // 此时说明当前这个可以放到之前哪一行
@@ -526,7 +531,7 @@
                             span: currentSpan,
                             rowItem: Object.assign({}, item, {
                                 randomId
-                            }),
+                            })
                         };
                         list[list.length - 1].push(obj);
                     }
@@ -586,7 +591,7 @@
                             }
 
                             // 遍历 其 rules，
-                            const { rules } = field;
+                            const {rules} = field;
                             // 是否有 required 这条规则
                             let haveRequired = false;
                             // 是否已修改
@@ -720,7 +725,7 @@
             // 重置子表单结构
             // 注意：这会导致 禁用、隐藏的 元素消失
             resetChildFormFileds () {
-                const { childrenForm } = this.item;
+                const {childrenForm} = this.item;
 
                 this.childFormFileds = [];
                 // 这里的目的是为了生成 fields
@@ -735,7 +740,7 @@
 
             // 重置内容（子表单数量不变）
             resetFields () {
-                const { childrenForm } = this.item;
+                const {childrenForm} = this.item;
                 const obj = {};
 
                 childrenForm.forEach(child => {
@@ -752,7 +757,7 @@
             getProps (rowItem) {
                 return {
                     item: rowItem,
-                    allDisabled: this.allDisabled,
+                    allDisabled: this.allDisabled
                 };
             }
         },
@@ -774,6 +779,7 @@
             FormMulSelectNormal,
             FormCheckbox,
             FormDictCheckbox,
+            FormDynamicSelectNormal
         }
     };
 </script>
@@ -781,82 +787,82 @@
 <style scoped lang="less">
 
 
-.child-form-container {
-    width: 100%;
+    .child-form-container {
+        width: 100%;
 
-    .child-form {
-        background: #F8F9FB;
-        border-radius: 4px;
-        margin-bottom: 24px;
+        .child-form {
+            background: #F8F9FB;
+            border-radius: 4px;
+            margin-bottom: 24px;
 
-        .child-form-head {
-            position: relative;
-            height: 44px;
-            line-height: 44px;
-            text-align: left;
-            padding: 0 20px;
-            font-size: 14px;
-            color: #3A4566;
-            border-bottom: 1px solid #E7E8EB;
-            font-weight: 500;
-
-            .cfh-flod, .cfh-unflod {
-                position: absolute;
-                top: 19px;
-                right: 24px;
-                width: 12px;
-                height: 6px;
-                cursor: pointer;
-                user-select: none;
-            }
-
-            .cfh-del {
-                position: absolute;
-                top: 0;
-                right: 55px;
+            .child-form-head {
+                position: relative;
                 height: 44px;
                 line-height: 44px;
-                cursor: pointer;
-                user-select: none;
+                text-align: left;
+                padding: 0 20px;
+                font-size: 14px;
+                color: #3A4566;
+                border-bottom: 1px solid #E7E8EB;
+                font-weight: 500;
 
-                .cfh-del-btn {
-                    position: relative;
-                    height: 16px;
-                    width: 16px;
-                    margin-top: 14px;
-                    vertical-align: top;
+                .cfh-flod, .cfh-unflod {
+                    position: absolute;
+                    top: 19px;
+                    right: 24px;
+                    width: 12px;
+                    height: 6px;
+                    cursor: pointer;
+                    user-select: none;
                 }
 
-                .cfh-del-text {
-                    display: inline-block;
-                    position: relative;
+                .cfh-del {
+                    position: absolute;
+                    top: 0;
+                    right: 55px;
                     height: 44px;
                     line-height: 44px;
-                    vertical-align: top;
-                    font-size: 14px;
-                    color: #949AAE;
-                    font-weight: 400;
+                    cursor: pointer;
+                    user-select: none;
+
+                    .cfh-del-btn {
+                        position: relative;
+                        height: 16px;
+                        width: 16px;
+                        margin-top: 14px;
+                        vertical-align: top;
+                    }
+
+                    .cfh-del-text {
+                        display: inline-block;
+                        position: relative;
+                        height: 44px;
+                        line-height: 44px;
+                        vertical-align: top;
+                        font-size: 14px;
+                        color: #949AAE;
+                        font-weight: 400;
+                    }
                 }
+            }
+
+            .child-form-body {
+                padding: 0 20px;
             }
         }
 
-        .child-form-body {
-            padding: 0 20px;
+        .child-form-add-btn {
+            position: relative;
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            background: #FBFCFD;
+            border: 1px dashed #ABB3CC;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 14px;
+            color: #12182A;
+            cursor: pointer;
         }
     }
-
-    .child-form-add-btn {
-        position: relative;
-        width: 100%;
-        height: 40px;
-        line-height: 40px;
-        background: #FBFCFD;
-        border: 1px dashed #ABB3CC;
-        border-radius: 4px;
-        text-align: center;
-        font-size: 14px;
-        color: #12182A;
-        cursor: pointer;
-    }
-}
 </style>

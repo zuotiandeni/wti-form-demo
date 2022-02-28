@@ -25,36 +25,33 @@
 
     export default {
         name: 'FormDynamicSelect',
-        mixins: [ FormMixin ],
+        mixins: [FormMixin],
         data () {
             return {
                 prependMsg: '',
-                appendMsg: '',
+                appendMsg: ''
             };
         },
         computed: {
-            checkAllData: {
-                get () {
-                    if (this.dynamicDict[this.item.parentKey].length > 0) {
-                        const valueList = this.dynamicDict[this.item.parentKey].map(item => {
-                            return item[this.dynamicSelectOption.value];
-                        });
-                        const arr = this.val.filter(item => {
-                            return valueList.indexOf(item) !== -1;
-                        });
-                        const checkedCount = arr.length;
-                        return {
-                            checkAll: checkedCount === this.dynamicDict[this.item.parentKey].length,
-                            indeterminate: checkedCount > 0 && checkedCount < this.dynamicDict[this.item.parentKey].length
-                        };
-                    } else {
-                        return {
-                            checkAll: false,
-                            indeterminate: false
-                        };
-                    }
-                },
-                set () {}
+            checkAllData () {
+                if (this.dynamicDict[this.item.parentKey].length > 0) {
+                    const valueList = this.dynamicDict[this.item.parentKey].map(item => {
+                        return item[this.dynamicSelectOption.value];
+                    });
+                    const arr = this.val.filter(item => {
+                        return valueList.indexOf(item) !== -1;
+                    });
+                    const checkedCount = arr.length;
+                    return {
+                        checkAll: checkedCount === this.dynamicDict[this.item.parentKey].length,
+                        indeterminate: checkedCount > 0 && checkedCount < this.dynamicDict[this.item.parentKey].length
+                    };
+                } else {
+                    return {
+                        checkAll: false,
+                        indeterminate: false
+                    };
+                }
             },
             textModelValue () {
                 const content = [];
@@ -87,7 +84,8 @@
                 }
             }
         },
-        mounted () {},
+        mounted () {
+        },
         methods: {
             handleCheckAllChange (val) {
                 if (val) {
@@ -98,27 +96,26 @@
                 } else {
                     this.val = [];
                 }
-                this.checkAllData.indeterminate = false;
             }
         }
     };
 </script>
 
 <style scoped lang="less">
-.form-item-box {
-    /deep/ .el-input {
-        position: relative;
-        width: 100%;
-        height: 36px;
-
-        .el-input__inner {
-            position: absolute;
+    .form-item-box {
+        /deep/ .el-input {
+            position: relative;
             width: 100%;
             height: 36px;
-            line-height: 36px;
-            padding-right: 10px;
-            padding-left: 12px;
+
+            .el-input__inner {
+                position: absolute;
+                width: 100%;
+                height: 36px;
+                line-height: 36px;
+                padding-right: 10px;
+                padding-left: 12px;
+            }
         }
     }
-}
 </style>

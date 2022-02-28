@@ -787,7 +787,9 @@
                 this.fields.forEach(fields => {
                     if (fields.children && fields.children instanceof Array) {
                         fields.children.forEach(field => {
-                            if ((field.type === 'dynamic-select' || field.type === 'dynamic-checkbox' || field.type === 'dynamic-select-normal') && field.parentKey) {
+                            if ((field.type === 'dynamic-select' ||
+                                field.type === 'dynamic-checkbox' ||
+                                field.type === 'dynamic-select-normal') && field.parentKey) {
                                 // 再做一次去重判断。如果该字典已经在里面了，再跳过这一个
                                 if (parentCodeList.indexOf(field.parentKey) === -1) {
                                     if (!(this.dynamicDict[field.parentKey] && this.dynamicDict[field.parentKey].length !== 0)) {

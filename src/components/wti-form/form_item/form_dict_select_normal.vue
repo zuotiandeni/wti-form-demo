@@ -24,7 +24,7 @@
 
     export default {
         name: 'FormDynamicSelectNormal',
-        mixins: [ FormMixin ],
+        mixins: [FormMixin],
         computed: {
             textModelValue () {
                 const content = [];
@@ -48,34 +48,34 @@
                     // 只有非子表单的情况下，才会冒泡上去数据变更
                     if (this.formItemType !== 'childForm') {
                         this.statusChangeFn.valueUpdateEvent({
-                            [this.item.key]: v,
+                            [this.item.key]: v
                         });
                     } else {
                         // 如果是子表单的话，执行内置的变更
                         this.childChangeData.valueUpdateEvent();
                     }
-                },
-            },
-        },
+                }
+            }
+        }
     };
 </script>
 
 <style scoped lang="less">
 
-.form-item-box {
-    /deep/ .el-input {
-        position: relative;
-        width: 100%;
-        height: 36px;
-
-        .el-input__inner {
-            position: absolute;
+    .form-item-box {
+        /deep/ .el-input {
+            position: relative;
             width: 100%;
             height: 36px;
-            line-height: 36px;
-            padding-right: 10px;
-            padding-left: 12px;
+
+            .el-input__inner {
+                position: absolute;
+                width: 100%;
+                height: 36px;
+                line-height: 36px;
+                padding-right: 10px;
+                padding-left: 12px;
+            }
         }
     }
-}
 </style>

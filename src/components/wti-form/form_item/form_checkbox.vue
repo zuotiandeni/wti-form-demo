@@ -6,7 +6,6 @@
         <el-checkbox v-if="item.checkAll && !getTextModel" :indeterminate="checkAllData.indeterminate"
                      v-model="checkAllData.checkAll"
                      @change="handleCheckAllChange">
-            全选
         </el-checkbox>
         <el-checkbox-group v-model="val" :disabled="getDisabled"
                            v-bind="bindOptions" v-if="!getTextModel">
@@ -32,28 +31,25 @@
             };
         },
         computed: {
-            checkAllData: {
-                get () {
-                    if (this.item.options.length > 0) {
-                        const valueList = this.item.options.map(item => {
-                            return item.value;
-                        });
-                        const arr = this.val.filter(item => {
-                            return valueList.indexOf(item) !== -1;
-                        });
-                        const checkedCount = arr.length;
-                        return {
-                            checkAll: checkedCount === this.item.options.length,
-                            indeterminate: checkedCount > 0 && checkedCount < this.item.options.length
-                        };
-                    } else {
-                        return {
-                            checkAll: false,
-                            indeterminate: false
-                        };
-                    }
-                },
-                set () {}
+            checkAllData () {
+                if (this.item.options.length > 0) {
+                    const valueList = this.item.options.map(item => {
+                        return item.value;
+                    });
+                    const arr = this.val.filter(item => {
+                        return valueList.indexOf(item) !== -1;
+                    });
+                    const checkedCount = arr.length;
+                    return {
+                        checkAll: checkedCount === this.item.options.length,
+                        indeterminate: checkedCount > 0 && checkedCount < this.item.options.length
+                    };
+                } else {
+                    return {
+                        checkAll: false,
+                        indeterminate: false
+                    };
+                }
             },
             textModelValue () {
                 // const content = this.item.options &&
@@ -90,8 +86,6 @@
         },
         methods: {
             handleCheckAllChange (val) {
-                // this.checkedCities = val ? this.item.options : [];
-                // this.val = val ? this.item.options : [];
                 if (val) {
                     const selectVals = this.item.options.map(item => {
                         return item.value;
@@ -100,7 +94,6 @@
                 } else {
                     this.val = [];
                 }
-                this.checkAllData.indeterminate = false;
             }
         }
     };

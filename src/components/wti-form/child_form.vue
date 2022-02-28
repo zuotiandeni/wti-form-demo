@@ -170,16 +170,16 @@
 
     export default {
         name: 'ChildForm',
-        mixins: [FormMixin],
+        mixins: [ FormMixin ],
         props: {
             item: {
                 type: Object,
-                default: () => ({})
+                default: () => ({}),
             },
             value: {
                 type: Array,
-                default: () => ([])
-            }
+                default: () => ([]),
+            },
         },
         computed: {
             val: {
@@ -188,7 +188,7 @@
                 },
                 set (v) {
                     this.$emit('input', v);
-                }
+                },
             },
 
             addBtnLabel () {
@@ -197,7 +197,7 @@
                 } else {
                     return `＋ ${this.item.headerLabel}`;
                 }
-            }
+            },
         },
         inject: [
             'changeData',
@@ -207,7 +207,7 @@
             'baseURL',
             'enableBaseURLForOthers',
             'getCommonAxios',
-            'getSpecialAxios'
+            'getSpecialAxios',
         ],
         watch: {
             // 这个是只有当 子表单 的值变化时才会触发的
@@ -232,7 +232,7 @@
                     // 不变化的情况下，不应该进行处理（push 和 splice 会是这种情况）
                     // 该种情况下，childFormFileds 由各自的行为进行处理
                 }
-            }
+            },
         },
         mounted () {
             if (this.value && this.value instanceof Array && this.value.length > 0) {
@@ -264,8 +264,8 @@
                     updateFormData: this.updateFormData,
                     valueUpdateEvent: this.valueUpdateEvent,
                     // 设置为必填
-                    setElementRequired: this.setElementRequired
-                }
+                    setElementRequired: this.setElementRequired,
+                },
             };
         },
         provide () {
@@ -273,7 +273,7 @@
                 // 子组件收到这个变量后，将知道这个元素是子表单，
                 // 因此在部分逻辑上执行时，和默认表单逻辑不通
                 formItemType: 'childForm',
-                childChangeData: this.childChangeData
+                childChangeData: this.childChangeData,
             };
         },
         methods: {
@@ -338,7 +338,7 @@
                 let payload = null;
                 if (this.dynamicSelectOption.queryKey) {
                     payload = {
-                        [this.dynamicSelectOption.queryKey]: parentCodeList
+                        [this.dynamicSelectOption.queryKey]: parentCodeList,
                     };
                 } else {
                     payload = parentCodeList;
@@ -369,7 +369,7 @@
                                 // 注：之所以是数组，是因为之前已经初始化过了（parentKey 为 Code）
                                 const pCode = item[this.dynamicSelectOption.parentKey];
                                 this.dynamicDict[pCode].push(
-                                    item
+                                    item,
                                 );
                             });
                         }
@@ -467,10 +467,10 @@
                             // 获取到他有多少 span，满 24 为一行
                             span: currentSpan,
                             rowItem: Object.assign({}, item, {
-                                randomId
-                            })
+                                randomId,
+                            }),
                         };
-                        list.push([obj]);
+                        list.push([ obj ]);
                         return;
                     }
                     // 如果初始不为空，
@@ -482,10 +482,10 @@
                             // 获取到他有多少 span，满 24 为一行
                             span: currentSpan,
                             rowItem: Object.assign({}, item, {
-                                randomId
-                            })
+                                randomId,
+                            }),
                         };
-                        list.push([obj]);
+                        list.push([ obj ]);
                         return;
                     }
                     // 2、判断（上一个）【默认是本行最后一列】开关是否打开
@@ -498,10 +498,10 @@
                             // 获取到他有多少 span，满 24 为一行
                             span: currentSpan,
                             rowItem: Object.assign({}, item, {
-                                randomId
-                            })
+                                randomId,
+                            }),
                         };
-                        list.push([obj]);
+                        list.push([ obj ]);
                         return;
                     }
 
@@ -519,10 +519,10 @@
                             // 获取到他有多少 span，满 24 为一行
                             span: currentSpan,
                             rowItem: Object.assign({}, item, {
-                                randomId
-                            })
+                                randomId,
+                            }),
                         };
-                        list.push([obj]);
+                        list.push([ obj ]);
                         return;
                     } else {
                         // 此时说明当前这个可以放到之前哪一行
@@ -530,8 +530,8 @@
                             // 获取到他有多少 span，满 24 为一行
                             span: currentSpan,
                             rowItem: Object.assign({}, item, {
-                                randomId
-                            })
+                                randomId,
+                            }),
                         };
                         list[list.length - 1].push(obj);
                     }
@@ -583,9 +583,9 @@
                                         'message': '请输入',
                                         'trigger': [
                                             'blur',
-                                            'change'
-                                        ]
-                                    }
+                                            'change',
+                                        ],
+                                    },
                                 ]);
                                 return;
                             }
@@ -623,8 +623,8 @@
                                     'message': '请输入',
                                     'trigger': [
                                         'blur',
-                                        'change'
-                                    ]
+                                        'change',
+                                    ],
                                 });
                             }
                         });
@@ -662,10 +662,8 @@
             validateForm () {
                 return new Promise((resolve, reject) => {
                     Promise.all(
-                        this.$refs.form.map(form => this.validateItem(form))
-                    )
-                        .then(resolve)
-                        .catch(reject);
+                        this.$refs.form.map(form => this.validateItem(form)),
+                    ).then(resolve).catch(reject);
                 });
             },
 
@@ -757,9 +755,9 @@
             getProps (rowItem) {
                 return {
                     item: rowItem,
-                    allDisabled: this.allDisabled
+                    allDisabled: this.allDisabled,
                 };
-            }
+            },
         },
         components: {
             FormInput,
@@ -779,90 +777,90 @@
             FormMulSelectNormal,
             FormCheckbox,
             FormDictCheckbox,
-            FormDynamicSelectNormal
-        }
+            FormDynamicSelectNormal,
+        },
     };
 </script>
 
 <style scoped lang="less">
 
 
-    .child-form-container {
-        width: 100%;
+.child-form-container {
+    width: 100%;
 
-        .child-form {
-            background: #F8F9FB;
-            border-radius: 4px;
-            margin-bottom: 24px;
+    .child-form {
+        background: #F8F9FB;
+        border-radius: 4px;
+        margin-bottom: 24px;
 
-            .child-form-head {
-                position: relative;
+        .child-form-head {
+            position: relative;
+            height: 44px;
+            line-height: 44px;
+            text-align: left;
+            padding: 0 20px;
+            font-size: 14px;
+            color: #3A4566;
+            border-bottom: 1px solid #E7E8EB;
+            font-weight: 500;
+
+            .cfh-flod, .cfh-unflod {
+                position: absolute;
+                top: 19px;
+                right: 24px;
+                width: 12px;
+                height: 6px;
+                cursor: pointer;
+                user-select: none;
+            }
+
+            .cfh-del {
+                position: absolute;
+                top: 0;
+                right: 55px;
                 height: 44px;
                 line-height: 44px;
-                text-align: left;
-                padding: 0 20px;
-                font-size: 14px;
-                color: #3A4566;
-                border-bottom: 1px solid #E7E8EB;
-                font-weight: 500;
+                cursor: pointer;
+                user-select: none;
 
-                .cfh-flod, .cfh-unflod {
-                    position: absolute;
-                    top: 19px;
-                    right: 24px;
-                    width: 12px;
-                    height: 6px;
-                    cursor: pointer;
-                    user-select: none;
+                .cfh-del-btn {
+                    position: relative;
+                    height: 16px;
+                    width: 16px;
+                    margin-top: 14px;
+                    vertical-align: top;
                 }
 
-                .cfh-del {
-                    position: absolute;
-                    top: 0;
-                    right: 55px;
+                .cfh-del-text {
+                    display: inline-block;
+                    position: relative;
                     height: 44px;
                     line-height: 44px;
-                    cursor: pointer;
-                    user-select: none;
-
-                    .cfh-del-btn {
-                        position: relative;
-                        height: 16px;
-                        width: 16px;
-                        margin-top: 14px;
-                        vertical-align: top;
-                    }
-
-                    .cfh-del-text {
-                        display: inline-block;
-                        position: relative;
-                        height: 44px;
-                        line-height: 44px;
-                        vertical-align: top;
-                        font-size: 14px;
-                        color: #949AAE;
-                        font-weight: 400;
-                    }
+                    vertical-align: top;
+                    font-size: 14px;
+                    color: #949AAE;
+                    font-weight: 400;
                 }
             }
-
-            .child-form-body {
-                padding: 0 20px;
-            }
         }
 
-        .child-form-add-btn {
-            position: relative;
-            width: 100%;
-            height: 40px;
-            line-height: 40px;
-            background: #FBFCFD;
-            border: 1px dashed #ABB3CC;
-            border-radius: 4px;
-            text-align: center;
-            font-size: 14px;
-            color: #12182A;
-            cursor: pointer;
+        .child-form-body {
+            padding: 0 20px;
         }
     }
+
+    .child-form-add-btn {
+        position: relative;
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+        background: #FBFCFD;
+        border: 1px dashed #ABB3CC;
+        border-radius: 4px;
+        text-align: center;
+        font-size: 14px;
+        color: #12182A;
+        cursor: pointer;
+    }
+}
 </style>

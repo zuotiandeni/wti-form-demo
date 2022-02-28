@@ -83,7 +83,7 @@ export default {
                 }
             // 否则代表 addColon 设置为 false
             }else{
-                return false
+                return false;
             }
         },
 

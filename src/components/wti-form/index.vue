@@ -226,58 +226,58 @@
 
     export default {
         name: 'WtiForm',
-        mixins: [FormMixin],
+        mixins: [ FormMixin ],
         props: {
             fields: {
                 type: Array,
                 default: () => {
                     return [];
-                }
+                },
             },
             data: {
                 type: Object,
                 default: () => {
                     return {};
-                }
+                },
             },
             // 是否显示收起、展开按钮
             showFoldBtn: {
                 type: Boolean,
-                default: false
+                default: false,
             },
             // 是否显示 全部收起、展开按钮
             showAllFoldBtn: {
                 type: Boolean,
-                default: false
+                default: false,
             },
             // 是否显示浏览模式切换按钮
             showScanTypeBtn: {
                 type: Boolean,
-                default: false
+                default: false,
             },
             // 基础 url，一般是指 axios 用的 baseURL
             // 由于组件并不能默认使用 axios 的 baseURL，所以如果有需要，这里要特殊设置
             // 这个默认会默认应用到 字典接口 ，并且 props 属性的 enableOthers 默认为 true，所以也会应用到自动搜索下拉框 接口等
             baseURL: {
                 type: String,
-                default: ''
+                default: '',
             },
             // 是否启用将 baseURL 应用到 其他接口里（默认为 true，表示应用）
             enableBaseURLForOthers: {
                 type: Boolean,
-                default: true
+                default: true,
             },
             // 特殊 axios 配置。比如要配置 axios 配置的话，在这里使用即可
             axiosOptions: {
                 type: Object,
-                default: () => ({})
+                default: () => ({}),
             },
             // axios 实例在创建后，将其作为参数传给本函数，用于二次处理
             axiosCallback: {
                 type: Function,
                 default: () => {
-                }
-            }
+                },
+            },
         },
         data () {
             return {
@@ -296,7 +296,7 @@
                     // 隐藏的要素列表。这里的数组元素是该要素的 key。
                     // 隐藏的要素，不进行校验。提交的时候，也要过滤掉
                     hiddenKeyList: [],
-                    textModel: this.textModel
+                    textModel: this.textModel,
                 },
 
                 foldBlockList: [], // 收起的区块（放在这个里面，该区块就只显示区块标题，不显示内容）
@@ -305,12 +305,12 @@
                 singleScanBlock: '', // 单个模式时，显示哪个表单
 
                 axios: null,
-                axiosSpecial: null
+                axiosSpecial: null,
             };
         },
         created () {
             this.axios = createAxios(Object.assign({
-                baseURL: this.baseURL
+                baseURL: this.baseURL,
             }, this.axiosOptions));
             // 如果允许复用，那么这 2 个使用同一个 axios 实例
             if (this.enableBaseURLForOthers) {
@@ -363,7 +363,7 @@
                     setElementRequired: this.setElementRequired,
                     // 更新其他数据
                     updateFormData: this.updateFormData,
-                    valueUpdateEvent: this.valueUpdateEvent
+                    valueUpdateEvent: this.valueUpdateEvent,
                 },
                 // 会动态变化的数据（注意，来自 props【更上级组件】的数据，不能放这个里面，只能显式的通过 props 往下面传）
                 changeData: this.changeData,
@@ -373,13 +373,13 @@
                 baseURL: this.baseURL,
                 enableBaseURLForOthers: this.enableBaseURLForOthers,
                 getCommonAxios: this.getCommonAxios,
-                getSpecialAxios: this.getSpecialAxios
+                getSpecialAxios: this.getSpecialAxios,
             };
         },
         watch: {
             textModel (n) {
                 this.$set(this.changeData, 'textModel', n);
-            }
+            },
         },
         computed: {
             allFlod () {
@@ -395,7 +395,7 @@
                 } else {
                     return true;
                 }
-            }
+            },
         },
         methods: {
             getCommonAxios () {
@@ -429,7 +429,7 @@
                                 this.$set(this.formData, field.key, this.data[field.key]);
                                 // 赋值默认值的时候，触发事件通知上级
                                 this.valueUpdateEvent({
-                                    [field.key]: this.data[field.key]
+                                    [field.key]: this.data[field.key],
                                 });
                             } else {
                                 // 3. 不需要回显的场景下
@@ -438,7 +438,7 @@
                                     this.$set(this.formData, field.key, field.defaultValue);
                                     // 赋值默认值的时候，触发事件通知上级
                                     this.valueUpdateEvent({
-                                        [field.key]: field.defaultValue
+                                        [field.key]: field.defaultValue,
                                     });
                                 } else {
                                     // 3.2 该要素没有默认值，使用通用默认值
@@ -452,7 +452,7 @@
                                         field.type === 'mul-select-normal') {
                                         this.$set(this.formData, field.key, []);
                                     } else if (field.type === 'area-select') {
-                                        this.$set(this.formData, field.key, ['', '', '']);
+                                        this.$set(this.formData, field.key, [ '', '', '' ]);
                                     } else {
                                         this.$set(this.formData, field.key, '');
                                     }
@@ -517,9 +517,9 @@
                         const obj = {
                             // 获取到他有多少 span，满 24 为一行
                             span: currentSpan,
-                            rowItem: item
+                            rowItem: item,
                         };
-                        list.push([obj]);
+                        list.push([ obj ]);
                         return;
                     }
                     // 如果初始不为空，
@@ -530,9 +530,9 @@
                         const obj = {
                             // 获取到他有多少 span，满 24 为一行
                             span: currentSpan,
-                            rowItem: item
+                            rowItem: item,
                         };
-                        list.push([obj]);
+                        list.push([ obj ]);
                         return;
                     }
                     // 2、判断（上一个）【默认是本行最后一列】开关是否打开
@@ -544,9 +544,9 @@
                         const obj = {
                             // 获取到他有多少 span，满 24 为一行
                             span: currentSpan,
-                            rowItem: item
+                            rowItem: item,
                         };
-                        list.push([obj]);
+                        list.push([ obj ]);
                         return;
                     }
 
@@ -563,16 +563,16 @@
                         const obj = {
                             // 获取到他有多少 span，满 24 为一行
                             span: currentSpan,
-                            rowItem: item
+                            rowItem: item,
                         };
-                        list.push([obj]);
+                        list.push([ obj ]);
                         return;
                     } else {
                         // 此时说明当前这个可以放到之前哪一行
                         const obj = {
                             // 获取到他有多少 span，满 24 为一行
                             span: currentSpan,
-                            rowItem: item
+                            rowItem: item,
                         };
                         list[list.length - 1].push(obj);
                     }
@@ -597,7 +597,7 @@
                     if (index > -1) {
                         this.changeData.disableList = [
                             ...this.changeData.disableList.slice(0, index),
-                            ...this.changeData.disableList.slice(index + 1)
+                            ...this.changeData.disableList.slice(index + 1),
                         ];
                     }
                 }
@@ -620,7 +620,7 @@
                     if (index > -1) {
                         this.changeData.hiddenKeyList = [
                             ...this.changeData.hiddenKeyList.slice(0, index),
-                            ...this.changeData.hiddenKeyList.slice(index + 1)
+                            ...this.changeData.hiddenKeyList.slice(index + 1),
                         ];
                     }
                 }
@@ -649,9 +649,9 @@
                                             'message': '请输入',
                                             'trigger': [
                                                 'blur',
-                                                'change'
-                                            ]
-                                        }
+                                                'change',
+                                            ],
+                                        },
                                     ]);
                                     return;
                                 }
@@ -689,8 +689,8 @@
                                         'message': '请输入',
                                         'trigger': [
                                             'blur',
-                                            'change'
-                                        ]
+                                            'change',
+                                        ],
                                     });
                                 }
                             });
@@ -832,7 +832,7 @@
                 // 这里判断是不是 axios 的默认返回数据（未经过请求拦截器处理的）
                 if (this.dynamicSelectOption.queryKey) {
                     payload = {
-                        [this.dynamicSelectOption.queryKey]: parentCodeList
+                        [this.dynamicSelectOption.queryKey]: parentCodeList,
                     };
                 } else {
                     payload = parentCodeList;
@@ -863,7 +863,7 @@
                                 // 注：之所以是数组，是因为之前已经初始化过了（parentKey 为 Code）
                                 const pCode = item[this.dynamicSelectOption.parentKey];
                                 this.dynamicDict[pCode].push(
-                                    item
+                                    item,
                                 );
                             });
                         }
@@ -909,7 +909,7 @@
                     }).forEach(list => {
                         childFormKeysList = [
                             ...childFormKeysList,
-                            ...list
+                            ...list,
                         ];
                     });
                     if (childFormKeysList.indexOf(key) > -1) {
@@ -1066,9 +1066,9 @@
                 return {
                     ref: rowItem.key,
                     item: rowItem,
-                    allDisabled: this.allDisabled
+                    allDisabled: this.allDisabled,
                 };
-            }
+            },
         },
         components: {
             FormInput,
@@ -1092,310 +1092,313 @@
             FormDynamicSelectNormal,
 
             TableReadonly,
-            ChildForm
-        }
+            ChildForm,
+        },
     };
 </script>
 
 <style scoped lang="less">
-    .wti-form {
-        width: 100%;
+.wti-form {
+    width: 100%;
 
-        // 1、标题文字
-        /deep/ .el-form-item__label {
-            display: flex;
-            min-height: 36px;
+    // 1、标题文字
+    /deep/ .el-form-item__label {
+        display: flex;
+        min-height: 36px;
+        line-height: 36px;
+        height: auto;
+        padding-bottom: 0;
+    }
+
+    /deep/ .el-form-item__content {
+        line-height: 36px;
+
+        .form-input-text {
             line-height: 36px;
+            //white-space: pre-wrap;
+            word-break: break-word;
+        }
+    }
+
+    /deep/ .el-form-item {
+        margin-bottom: 32px;
+
+        .el-form-item__label {
             height: auto;
-            padding-bottom: 0;
         }
 
-        /deep/ .el-form-item__content {
-            line-height: 36px;
-
-            .form-input-text {
-                line-height: 36px;
-                //white-space: pre-wrap;
-                word-break: break-word;
-            }
+        .form-item-box {
+            height: auto;
         }
 
-        /deep/ .el-form-item {
-            margin-bottom: 32px;
-
-            .el-form-item__label {
-                height: auto;
-            }
-
-            .form-item-box {
-                height: auto;
-            }
-
-            .form-input-text {
-                min-height: 36px;
-                height: auto;
-                line-height: 36px;
-            }
-        }
-
-        /deep/ .form-item-box {
+        .form-input-text {
             min-height: 36px;
+            height: auto;
             line-height: 36px;
-
-            .el-radio-group {
-                vertical-align: top;
-                margin-top: 10px;
-            }
-
-            .el-input__icon {
-                height: 36px;
-                line-height: 36px;
-            }
         }
+    }
 
-        /deep/ .el-input__inner {
+    /deep/ .form-item-box {
+        min-height: 36px;
+        line-height: 36px;
+
+        .el-radio-group {
             vertical-align: top;
-            height: 36px !important;
-            line-height: 36px !important;
-            border: 1px solid #E2E3E6 !important;
-            padding-left: 12px;
+            margin-top: 10px;
         }
 
-        /deep/ .el-textarea__inner {
-            padding-left: 12px;
-            padding-right: 12px;
+        .el-input__icon {
+            height: 36px;
+            line-height: 36px;
+        }
+    }
+
+    /deep/ .el-input__inner {
+        vertical-align: top;
+        height: 36px !important;
+        line-height: 36px !important;
+        border: 1px solid #E2E3E6 !important;
+        padding-left: 12px;
+    }
+
+    /deep/ .el-textarea__inner {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    /deep/ .el-form-item {
+        margin-bottom: 32px;
+    }
+
+    /deep/ .el-input.is-active .el-input__inner, /deep/ .el-input__inner:focus,
+    /deep/ .el-select .el-input.is-focus .el-input__inner, /deep/ .el-textarea__inner:focus {
+        border-color: #ABB3CC !important;
+    }
+
+    /deep/ .wti-untext-box {
+        height: 36px !important;
+    }
+
+    /deep/ .checkbox-height {
+        height: 72px !important;
+    }
+
+    .block-title {
+        position: relative;
+        height: 50px;
+        padding-top: 10px;
+        padding-bottom: 24px;
+        font-size: 16px;
+
+        // label 左边的红色竖线
+        .block-line {
+            float: left;
+            width: 4px;
+            height: 16px;
+            background: #EE473A;
+            border-radius: 2px;
+            display: inline-block;
         }
 
-        /deep/ .el-form-item {
-            margin-bottom: 32px;
+        .block-text {
+            margin-left: 10px;
+            float: left;
+            height: 16px;
+            font-size: 16px;
+            color: #21273A;
+            font-weight: 600 !important;
+            vertical-align: top;
+            line-height: 16px;
         }
 
-        /deep/ .el-input.is-active .el-input__inner, /deep/ .el-input__inner:focus,
-        /deep/ .el-select .el-input.is-focus .el-input__inner, /deep/ .el-textarea__inner:focus {
-            border-color: #ABB3CC !important;
+        .block-fold-btn {
+            float: right;
+            margin-right: 30px;
+            height: 16px;
+            line-height: 16px;
+            font-size: 14px;
+            cursor: pointer;
+            user-select: none;
         }
+    }
 
-        /deep/ .wti-untext-box {
-            height: 36px !important;
-        }
+}
 
-        /deep/ .checkbox-height {
-            height: 72px !important;
-        }
+// 带边框的表单组件
+.border-form {
+    .block-item {
+        border: 1px solid #DDE0EA;
+        border-radius: 8px;
+        margin-bottom: 40px;
+        background: #fff;
+        padding-bottom: 15px;
 
         .block-title {
-            position: relative;
-            height: 50px;
-            padding-top: 10px;
-            padding-bottom: 24px;
-            font-size: 16px;
-
-            // label 左边的红色竖线
-            .block-line {
-                float: left;
-                width: 4px;
-                height: 16px;
-                background: #EE473A;
-                border-radius: 2px;
-                display: inline-block;
-            }
-
-            .block-text {
-                margin-left: 10px;
-                float: left;
-                height: 16px;
-                font-size: 16px;
-                color: #21273A;
-                font-weight: 600 !important;
-                vertical-align: top;
-                line-height: 16px;
-            }
-
-            .block-fold-btn {
-                float: right;
-                margin-right: 30px;
-                height: 16px;
-                line-height: 16px;
-                font-size: 14px;
-                cursor: pointer;
-                user-select: none;
-            }
+            height: 60px;
+            line-height: 60px;
+            background: #f8f9fb;
+            padding: 20px 0 18px 24px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            margin-bottom: 18px;
+            border-bottom: 1px solid #DDE0EA;
         }
 
+        .block-title + .block-content {
+            //padding-top: 14px;
+        }
+
+        .block-content {
+            padding: 0 24px;
+        }
+
+        .block-hidden {
+            display: none;
+        }
     }
 
-    // 带边框的表单组件
-    .border-form {
-        .block-item {
-            border: 1px solid #DDE0EA;
+    .block-hide {
+        padding-bottom: 0;
+
+        .block-title {
+            border-bottom: 0;
+            overflow: hidden;
             border-radius: 8px;
-            margin-bottom: 40px;
-            background: #fff;
-            padding-bottom: 15px;
-
-            .block-title {
-                height: 60px;
-                line-height: 60px;
-                background: #f8f9fb;
-                padding: 20px 0 18px 24px;
-                border-top-left-radius: 8px;
-                border-top-right-radius: 8px;
-                margin-bottom: 18px;
-                border-bottom: 1px solid #DDE0EA;
-            }
-
-            .block-title + .block-content {
-                //padding-top: 14px;
-            }
-
-            .block-content {
-                padding: 0 24px;
-            }
-
-            .block-hidden {
-                display: none;
-            }
-        }
-
-        .block-hide {
-            padding-bottom: 0;
-
-            .block-title {
-                border-bottom: 0;
-                overflow: hidden;
-                border-radius: 8px;
-                margin-bottom: 0;
-            }
+            margin-bottom: 0;
         }
     }
+}
 
 
-    .el-divider {
-        background-color: #F4F5F8;
-    }
+.el-divider {
+    background-color: #F4F5F8;
+}
 
-    .scan-type {
-        position: relative;
+.scan-type {
+    position: relative;
+    height: 36px;
+    line-height: 36px;
+    margin-bottom: 16px;
+
+    .all-fold-btn {
+        display: inline-block;
+        padding: 0 20px;
         height: 36px;
-        line-height: 36px;
-        margin-bottom: 16px;
+        background: #EE473A;
+        border: 1px solid #EE473A;
+        border-radius: 4px;
+        color: #fff;
+        cursor: pointer;
+        text-align: center;
+        font-size: 14px;
+        vertical-align: top;
 
-        .all-fold-btn {
-            display: inline-block;
-            padding: 0 20px;
-            height: 36px;
-            background: #EE473A;
-            border: 1px solid #EE473A;
-            border-radius: 4px;
-            color: #fff;
-            cursor: pointer;
-            text-align: center;
-            font-size: 14px;
+        .all-fold-icon {
+            width: 14px;
+            height: 14px;
             vertical-align: top;
-
-            .all-fold-icon {
-                width: 14px;
-                height: 14px;
-                vertical-align: top;
-                margin-top: 11px;
-            }
+            margin-top: 11px;
         }
+    }
 
-        .block-btn-list {
-            float: left;
+    .block-btn-list {
+        float: left;
+        height: 36px;
+
+        .block-btn {
+            border: 1px solid #DDE0EA;
             height: 36px;
-
-            .block-btn {
-                border: 1px solid #DDE0EA;
-                height: 36px;
-                line-height: 34px;
-                padding: 0 18px;
-                color: #3A4566;
-                display: inline-block;
-                cursor: pointer;
-                user-select: none;
-            }
-
-            .block-btn.focus {
-                background: #EE473A;
-                color: #fff;
-            }
-
-            .block-btn:first-child {
-                border-radius: 4px 0 0 4px;
-
-            }
-
-            .block-btn:last-child {
-                border-radius: 0 4px 4px 0;
-
-            }
-        }
-
-        .scan-type-btn {
+            line-height: 34px;
+            padding: 0 18px;
+            color: #3A4566;
             display: inline-block;
-            float: right;
-            padding: 0 20px;
-            height: 36px;
-            border: 1px solid #AEB3BF;
-            border-radius: 4px;
-            color: #12182A;
             cursor: pointer;
-            text-align: center;
-            font-size: 14px;
-            vertical-align: top;
             user-select: none;
+        }
 
-            .scan-type-icon {
-                width: 14px;
-                height: 14px;
-                vertical-align: top;
-                margin-top: 11px;
-            }
+        .block-btn.focus {
+            background: #EE473A;
+            color: #fff;
+        }
+
+        .block-btn:first-child {
+            border-radius: 4px 0 0 4px;
+
+        }
+
+        .block-btn:last-child {
+            border-radius: 0 4px 4px 0;
+
         }
     }
 
-    .wti-form-v2 /deep/ input::-webkit-outer-spin-button,
-    .wti-form-v2 /deep/ input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
+    .scan-type-btn {
+        display: inline-block;
+        float: right;
+        padding: 0 20px;
+        height: 36px;
+        border: 1px solid #AEB3BF;
+        border-radius: 4px;
+        color: #12182A;
+        cursor: pointer;
+        text-align: center;
+        font-size: 14px;
+        vertical-align: top;
+        user-select: none;
+
+        .scan-type-icon {
+            width: 14px;
+            height: 14px;
+            vertical-align: top;
+            margin-top: 11px;
+        }
+    }
+}
+
+.wti-form-v2 /deep/ input::-webkit-outer-spin-button,
+.wti-form-v2 /deep/ input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.wti-form-v2 /deep/ input[type="number"] {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.wti-form-v2 /deep/ input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.wti-form.wti-form-v2 {
+    /deep/ .el-form.el-form--label-top, .el-form--label-left {
+        .el-form-item__label {
+            justify-content: start;
+        }
     }
 
-    .wti-form-v2 /deep/ input[type="number"] {
-        -webkit-appearance: none;
-        appearance: none;
-    }
-
-    .wti-form-v2 /deep/ input[type="number"] {
-        -moz-appearance: textfield;
-    }
-
-    .wti-form.wti-form-v2 {
-        /deep/ .el-form.el-form--label-top,.el-form--label-left{
-            .el-form-item__label{
+    .child-form-container {
+        /deep/ .el-form.el-form--label-top, .el-form--label-left {
+            .el-form-item__label {
                 justify-content: start;
             }
         }
-        .child-form-container{
-            /deep/ .el-form.el-form--label-top,.el-form--label-left{
-                .el-form-item__label{
-                    justify-content: start;
-                }
-            }
+    }
+}
+
+.wti-form.wti-form-v2 {
+    /deep/ .el-form.el-form--label-right {
+        .el-form-item__label {
+            justify-content: end;
         }
     }
-    .wti-form.wti-form-v2 {
-        /deep/ .el-form.el-form--label-right{
-            .el-form-item__label{
+
+    .child-form-container {
+        /deep/ .el-form.el-form--label-right {
+            .el-form-item__label {
                 justify-content: end;
             }
         }
-        .child-form-container{
-            /deep/ .el-form.el-form--label-right{
-                .el-form-item__label{
-                    justify-content: end;
-                }
-            }
-        }
     }
+}
 
 </style>

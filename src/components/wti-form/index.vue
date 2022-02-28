@@ -89,6 +89,7 @@
                                                    :all-disabled="allDisabled"
                                                    :item="rowItem"
                                                    :base-u-r-l="baseURL"
+                                                   :label-position="labelPosition ? labelPosition : 'top'"
                                                    v-model.trim="formData[rowItem.key]"/>
 
                                         <TableReadonly v-else-if="rowItem.type === 'table-readonly'"
@@ -1376,10 +1377,11 @@
         }
     }
 
-    .child-form-container {
-        /deep/ .el-form.el-form--label-top, .el-form--label-left {
+    /deep/ .child-form-container {
+        .el-form.el-form--label-top, .el-form--label-left {
             .el-form-item__label {
                 justify-content: start;
+                float: left;
             }
         }
     }
@@ -1392,10 +1394,11 @@
         }
     }
 
-    .child-form-container {
-        /deep/ .el-form.el-form--label-right {
+    /deep/ .child-form-container {
+        .el-form.el-form--label-right {
             .el-form-item__label {
                 justify-content: end;
+                float: left;
             }
         }
     }

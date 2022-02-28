@@ -54,8 +54,14 @@
                                                       :style="rowItem.style"
                                                       :class="rowItem.class"
                                                       :rules="rowItem.rules"
-                                                      :label="getFormItemLabel(rowItem)"
                                                       :prop="rowItem.key">
+                                            <template slot="label">
+                                                <div class="wti-form-label">
+                                                    <span>{{ getFormItemLabel(rowItem) }}</span>
+                                                    <span class="wti-form-label-Colon"
+                                                          v-if="getFormItemLabelColon(item)">:</span>
+                                                </div>
+                                            </template>
                                             <FormInput v-if="rowItem.type==='input'"
                                                        v-bind="getProps(rowItem)"
                                                        :random-id="childField.randomId"

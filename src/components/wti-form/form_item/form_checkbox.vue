@@ -5,8 +5,7 @@
          class="form-input-box form-item-box">
         <el-checkbox v-if="item.checkAll && !getTextModel" :indeterminate="checkAllData.indeterminate"
                      v-model="checkAllData.checkAll"
-                     @change="handleCheckAllChange">
-        </el-checkbox>
+                     @change="handleCheckAllChange"/>
         <el-checkbox-group v-model="val" :disabled="getDisabled"
                            v-bind="bindOptions" v-if="!getTextModel">
             <el-checkbox v-for="opt in item.options" :key="opt.value" :disabled="opt.disabled"

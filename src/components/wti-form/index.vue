@@ -109,6 +109,7 @@
                                                           v-if="getFormItemLabelColon(rowItem)">:</span>
                                                 </div>
                                             </template>
+                                            <!-- eslint-disable-next-line -->
                                             <div v-if="rowItem.htmlLabel" slot="label" v-html="rowItem.htmlLabel"></div>
                                             <slot :name="rowItem.name"></slot>
                                         </el-form-item>
@@ -1385,6 +1386,9 @@
                 justify-content: start;
                 float: left;
             }
+            .el-form-item__content {
+                clear: both;
+            }
         }
     }
 }
@@ -1401,6 +1405,9 @@
             .el-form-item__label {
                 justify-content: end;
                 float: left;
+            }
+            .el-form-item__content {
+                clear: both;
             }
         }
     }

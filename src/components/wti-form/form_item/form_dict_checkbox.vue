@@ -25,7 +25,7 @@
 
     export default {
         name: 'FormDynamicSelect',
-        mixins: [FormMixin],
+        mixins: [ FormMixin ],
         data () {
             return {
                 prependMsg: '',

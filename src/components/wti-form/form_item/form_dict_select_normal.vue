@@ -24,7 +24,7 @@
 
     export default {
         name: 'FormDynamicSelectNormal',
-        mixins: [FormMixin],
+        mixins: [ FormMixin ],
         computed: {
             textModelValue () {
                 const content = [];

@@ -103,7 +103,7 @@
                                                       :style="rowItem.style"
                                                       :class="rowItem.class">
                                             <template slot="label">
-                                                <div class="wti-form-label">
+                                                <div class="wti-form-label" v-if="getFormItemLabel(rowItem)">
                                                     <span>{{ getFormItemLabel(rowItem) }}</span>
                                                     <span class="wti-form-label-Colon"
                                                           v-if="getFormItemLabelColon(rowItem)">:</span>
@@ -119,7 +119,7 @@
                                                       :rules="rowItem.rules"
                                                       :prop="rowItem.key">
                                             <template slot="label">
-                                                <div class="wti-form-label">
+                                                <div v-if="getFormItemLabel(rowItem)" class="wti-form-label">
                                                     <span>{{ getFormItemLabel(rowItem) }}</span>
                                                     <span class="wti-form-label-Colon"
                                                           v-if="getFormItemLabelColon(rowItem)">:</span>

@@ -119,21 +119,17 @@ export default {
                                     type: 'checkbox'
                                 },
                                 {
+                                    key: 'dict_select_normal',
+                                    type: 'dynamic-select-normal',
+                                    label: '这是一个字典多选下拉框',
+                                    parentKey: '10341',
+                                },
+                                {
                                     key: 'dict_checkbox',
                                     type: 'dynamic-checkbox',
                                     label: '这是一个字典多选框',
                                     parentKey: '10341',
                                     checkAll: true,
-                                    rules: [
-                                        {
-                                            required: true,
-                                            message: '请选择',
-                                            trigger: [
-                                                'blur',
-                                                'change'
-                                            ]
-                                        }
-                                    ],
                                     valueLink: [
                                         {
                                             value: '10341001',
@@ -324,16 +320,6 @@ export default {
                                     label: '这是一个字典多选框',
                                     parentKey: '10341',
                                     checkAll: true,
-                                    rules: [
-                                        {
-                                            required: true,
-                                            message: '请选择',
-                                            trigger: [
-                                                'blur',
-                                                'change'
-                                            ]
-                                        }
-                                    ],
                                     valueLink: [
                                         {
                                             value: '10341001',

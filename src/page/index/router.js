@@ -11,6 +11,7 @@ import Router from 'vue-router';
 import Install from './component/demo/install';
 import DemoBase from './component/demo/base';
 import DemoStatus from './component/demo/status';
+import ColonConfig from './component/demo/colon_config';
 import DemoOften from './component/demo/often';
 import FastCreate from './component/demo/fast_create';
 
@@ -34,6 +35,7 @@ import MulLinkage from './component/formitem/mul_linkage';
 import Textarea from './component/formitem/text_area';
 import Checkbox from './component/formitem/checkbox';
 import DynamicCheckbox from './component/formitem/dynamic_checkbox';
+import DynamicSelectNormal from './component/formitem/dynamic_select_normal';
 import NormalNumber from './component/formitem/normal_number';
 import MulSelectNormal from './component/formitem/mul_select_normal';
 import ChildForm from './component/formitem/child_form';
@@ -59,6 +61,7 @@ const routes = [
 
     {path: '/demo/Base', component: DemoBase,},
     {path: '/demo/Status', component: DemoStatus,},
+    {path: '/demo/ColonConfig', component: ColonConfig,},
     {path: '/demo/Often', component: DemoOften,},
     {path: '/demo/FastCreate', component: FastCreate,},
 
@@ -84,6 +87,7 @@ const routes = [
     {path: '/formItem/Textarea', component: Textarea,},
     {path: '/formItem/Checkbox', component: Checkbox,},
     {path: '/formItem/DynamicCheckbox', component: DynamicCheckbox,},
+    {path: '/formItem/DynamicSelectNormal', component: DynamicSelectNormal,},
     {path: '/formItem/NormalNumber', component: NormalNumber,},
     {path: '/formItem/MulSelectNormal', component: MulSelectNormal,},
     {path: '/formItem/ChildForm', component: ChildForm,},

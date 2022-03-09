@@ -40,7 +40,7 @@
                 <el-menu-item index="/formItem/NormalNumber">普通数字输入框 NormalNumber</el-menu-item>
                 <el-menu-item index="/formItem/NumberInput">千分位数字输入框 NumberInput</el-menu-item>
                 <el-menu-item index="/formItem/DynamicSelect">字典下拉框 DynamicSelect</el-menu-item>
-				<el-menu-item index="/formItem/DynamicSelectNormal">字典多选下拉框 DynamicSelectNormal</el-menu-item>
+                <el-menu-item index="/formItem/DynamicSelectNormal">字典多选下拉框 DynamicSelectNormal</el-menu-item>
                 <el-menu-item index="/formItem/RateInput">利率输入框 RateInput</el-menu-item>
                 <el-menu-item index="/formItem/MulLinkage">多级联动下拉框 MulLinkage</el-menu-item>
                 <el-menu-item index="/formItem/TextArea">文本域输入框 TextArea</el-menu-item>

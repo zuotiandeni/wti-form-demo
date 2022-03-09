@@ -30,7 +30,7 @@ export default {
             type: Boolean,
             default: false,
         },
-        addColon: {
+        textmodelColonShow: {
             type: Boolean,
             default: true,
         },
@@ -69,19 +69,19 @@ export default {
         },
 
         getFormItemLabelColon (formItem) {
-            // 如果这一项设置了 addColon 为 true
-            if (formItem.addColon) {
+            // 如果这一项设置了 textmodelColonShow 为 true
+            if (formItem.textModelColonVisible) {
                 return true;
-            // 如果这一项没设置 addColon 则走总的配置
-            }else if(formItem.addColon===undefined){
+            // 如果这一项没设置 textModelColonVisible 则走总的配置
+            }else if(formItem.textModelColonVisible===undefined){
                 if (this.textModel &&
                     (this.labelPosition === 'left' || this.labelPosition ===
-                        'right') && this.addColon) {
+                        'right') && this.textModelColonVisible) {
                     return true;
                 }else{
                     return false;
                 }
-            // 否则代表 addColon 设置为 false
+            // 否则代表 textModelColonVisible 设置为 false
             }else{
                 return false;
             }

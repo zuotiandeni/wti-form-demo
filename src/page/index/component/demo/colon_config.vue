@@ -9,7 +9,7 @@
                   label-position="right"
                   :dynamic-select-option="dynamicSelectOption"/>
         <el-divider/>
-        <p>通过addColon设置文本模式下是否带冒号</p>
+        <p>通过textModelColonVisible设置文本模式下是否带冒号</p>
         <wti-form :fields="fields"
                   ref="formRight"
                   :data="originData2"
@@ -26,7 +26,7 @@
             </el-collapse-item>
         </el-collapse>
 
-        <p>通过子项配置addColon设置指定子表单是否带冒号</p>
+        <p>通过子项配置textModelColonVisible设置指定子表单是否带冒号</p>
         <wti-form :fields="fieldsSingleConfig"
                   ref="formRight"
                   :data="originData2"
@@ -144,7 +144,7 @@ fields: [
                                         label: '女'
                                     }
                                 ],
-                                addColon: false,
+                                textModelColonVisible: false,
                                 key: 'gender',
                                 label: '性别',
                                 type: 'radio'
@@ -179,7 +179,7 @@ fields: [
                                         label: '女'
                                     }
                                 ],
-                                addColon: false,
+                                textModelColonVisible: false,
                                 key: 'gender',
                                 label: '性别',
                                 type: 'radio'

@@ -73,7 +73,7 @@
                                             {
                                                 linkKey: 'key3',
                                                 enableLinkValue: true,
-                                                linkValue: ['A']
+                                                linkValue: [ 'A' ]
                                             }
                                         ]
                                     }

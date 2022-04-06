@@ -76,12 +76,10 @@ const config = {
         progress: false,
         proxy: {
             '/api': {
-                target: 'http://cf-pc-dev.wti-xa.com:7777',
-                // target: 'https://project-bff-dev.wti-xa.com',
-                // target: 'http://172.16.7.115:8080',
+                target: 'http://lovelovewall.com/wtiformdemo',
                 changeOrigin: true,
                 pathRewrite: {
-                    // '^/api': '',
+                    '^/api': '',
                 },
             },
         },

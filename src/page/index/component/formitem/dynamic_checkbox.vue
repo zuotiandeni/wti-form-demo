@@ -3,8 +3,7 @@
         <h2>字典多选框 DynamicCheckbox</h2>
         <p>多选框，很常见的表单组件</p>
         <wti-form ref="formDict"
-                  :fields="dictionariesFields"
-                  :dynamic-select-option="dynamicSelectOption"/>
+                  :fields="fields"/>
         <div class="submit-line">
             <el-button type="primary" @click="submit('formDict')">提交按钮</el-button>
             <span class="tips">请查看控制台看提交结果</span>
@@ -25,27 +24,14 @@
         name: 'Checkbox',
         data () {
             return {
-                dynamicSelectOption: {
-                    // 这是字典接口的 url。baseURL 指开发和生产环境下，不同的前缀。
-                    dictUrl: '/wkbbackend/queryByCategoryCodeList',
-                    // 异步请求时，请求内容是一个对象或一个数组。
-                    // 如果是对象，那么包含一个 key 和一个数组。
-                    // 如果是数组，那么只有这个数组。
-                    // 数组是所有字典 FormItem 的 parentKey 的集合
-                    queryKey: 'categoryCodeList', // 这是请求时那个 key。如果为空，则请求时是一个数组，而不是一个对象
-                    parentKey: 'categoryCode', // 这是返回结果的 parentKey。意思是，同一个 parentKey
-                    // 归属于同一个下拉框选项
-                    value: 'bdictCode', // 这是下拉框选项的值
-                    label: 'bdictDesc' // 这是下拉框选项的 label
-                },
-                dictionariesFields: [
+                fields: [
                     {
                         children: [
                             {
                                 key: 'dict_code',
                                 type: 'dynamic-checkbox',
                                 label: '这是一个字典多选框',
-                                parentKey: '10341',
+                                parentKey: '101',
                                 rules: [
                                     {
                                         required: true,
@@ -58,7 +44,7 @@
                                 ],
                                 valueLink: [
                                     {
-                                        value: '10341001',
+                                        value: '10100',
                                         linkList: [
                                             {
                                                 linkKey: 'key2',
@@ -100,85 +86,69 @@
                     }
                 ],
                 astrictNumConfig: `<wti-form ref="formDict"
-                  :fields="dictionariesFields"
-                  :dynamic-select-option="dynamicSelectOption"/>
+                  :fields="fields"/>
 ---
-            dynamicSelectOption: {
-                // 这是字典接口的 url。baseURL 指开发和生产环境下，不同的前缀。
-                dictUrl: '/wkbbackend/queryByCategoryCodeList',
-                // 异步请求时，请求内容是一个对象或一个数组。
-                // 如果是对象，那么包含一个 key 和一个数组。
-                // 如果是数组，那么只有这个数组。
-                // 数组是所有字典 FormItem 的 parentKey 的集合
-                queryKey: 'categoryCodeList', // 这是请求时那个 key。如果为空，则请求时是一个数组，而不是一个对象
-                parentKey: 'categoryCode', // 这是返回结果的 parentKey。意思是，同一个 parentKey
-                // 归属于同一个下拉框选项
-                value: 'bdictCode', // 这是下拉框选项的值
-                label: 'bdictDesc', // 这是下拉框选项的 label
+fields: [
+    {
+        children: [
+            {
+                key: 'dict_code',
+                type: 'dynamic-checkbox',
+                label: '这是一个字典多选框',
+                parentKey: '101',
+                rules: [
+                    {
+                        required: true,
+                        message: '请选择',
+                        trigger: [
+                            'blur',
+                            'change'
+                        ]
+                    }
+                ],
+                valueLink: [
+                    {
+                        value: '10100',
+                        linkList: [
+                            {
+                                linkKey: 'key2',
+                                enableLinkValue: true,
+                                linkValue: '12345'
+                            },
+                            {
+                                linkKey: 'key3',
+                                enableLinkValue: true,
+                                linkValue: [ 'A' ]
+                            }
+                        ]
+                    }
+                ]
             },
----
-dictionariesFields: [
-                {
-                    children: [
-                        {
-                            key: 'dict_code',
-                            type: 'dynamic-checkbox',
-                            label: '这是一个字典多选框',
-                            parentKey: '10341',
-                            rules: [
-                                {
-                                    required: true,
-                                    message: '请选择',
-                                    trigger: [
-                                        'blur',
-                                        'change'
-                                    ]
-                                }
-                            ],
-                            valueLink: [
-                                {
-                                    value: '10341001',
-                                    linkList: [
-                                        {
-                                            linkKey: 'key2',
-                                            enableLinkValue: true,
-                                            linkValue: '12345'
-                                        },
-                                        {
-                                            linkKey: 'key3',
-                                            enableLinkValue: true,
-                                            linkValue: ['A']
-                                        }
-                                    ]
-                                },
-                            ],
-                        },
-                        {
-                            key: 'key2',
-                            type: 'input',
-                            label: '我是一个工具人输入框',
-                            span: 8
-                        },
-                        {
-                            key: 'key3',
-                            label: '一个多选框',
-                            type: 'checkbox',
-                            span: 8,
-                            options: [
-                                {
-                                    value: 'A',
-                                    label: 'key3 A'
-                                },
-                                {
-                                    value: 'B',
-                                    label: 'key3 B'
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ],
-`
+            {
+                key: 'key2',
+                type: 'input',
+                label: '我是一个工具人输入框',
+                span: 8
+            },
+            {
+                key: 'key3',
+                label: '一个多选框',
+                type: 'checkbox',
+                span: 8,
+                options: [
+                    {
+                        value: 'A',
+                        label: 'key3 A'
+                    },
+                    {
+                        value: 'B',
+                        label: 'key3 B'
+                    }
+                ]
+            }
+        ]
+    }
+]`
             };
         },
         methods: {

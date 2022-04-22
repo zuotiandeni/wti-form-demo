@@ -30,7 +30,7 @@ export default {
             type: Boolean,
             default: false,
         },
-        textmodelColonShow: {
+        textModelColonVisible: {
             type: Boolean,
             default: true,
         },

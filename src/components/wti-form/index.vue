@@ -1388,11 +1388,11 @@
         .el-form.el-form--label-top, .el-form--label-left {
             .el-form-item__label {
                 justify-content: start;
-                float: left;
+                //float: left;
             }
-            .el-form-item__content {
-                clear: both;
-            }
+            //.el-form-item__content {
+            //    clear: both;
+            //}
         }
     }
 }
@@ -1408,11 +1408,11 @@
         .el-form.el-form--label-right {
             .el-form-item__label {
                 justify-content: end;
-                float: left;
+                //float: left;
             }
-            .el-form-item__content {
-                clear: both;
-            }
+            //.el-form-item__content {
+            //    clear: both;
+            //}
         }
     }
 }

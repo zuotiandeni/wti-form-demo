@@ -10,6 +10,7 @@
                    v-if="!getTextModel">
             <el-option v-for="option in item.options"
                        :key="option.value"
+                       :disabled="option.disabled"
                        :label="option.label"
                        :value="option.value"/>
         </el-select>

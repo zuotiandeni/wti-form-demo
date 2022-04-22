@@ -101,6 +101,7 @@
                                         </div>
                                         <el-form-item v-else-if="rowItem.type==='slot'"
                                                       :style="rowItem.style"
+                                                      v-bind="rowItem.vBindData"
                                                       :class="rowItem.class">
                                             <template slot="label">
                                                 <div class="wti-form-label" v-if="getFormItemLabel(rowItem)">
@@ -117,6 +118,7 @@
                                                       :style="rowItem.style"
                                                       :class="rowItem.class"
                                                       :rules="rowItem.rules"
+                                                      v-bind="rowItem.vBindData"
                                                       :prop="rowItem.key">
                                             <template slot="label">
                                                 <div v-if="getFormItemLabel(rowItem)" class="wti-form-label">
@@ -1386,11 +1388,11 @@
         .el-form.el-form--label-top, .el-form--label-left {
             .el-form-item__label {
                 justify-content: start;
-                //float: left;
+                float: left;
             }
-            //.el-form-item__content {
-            //    clear: both;
-            //}
+            .el-form-item__content {
+                clear: both;
+            }
         }
     }
 }
@@ -1406,11 +1408,11 @@
         .el-form.el-form--label-right {
             .el-form-item__label {
                 justify-content: end;
-                //float: left;
+                float: left;
             }
-            //.el-form-item__content {
-            //    clear: both;
-            //}
+            .el-form-item__content {
+                clear: both;
+            }
         }
     }
 }

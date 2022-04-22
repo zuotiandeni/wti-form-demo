@@ -11,6 +11,7 @@
             <el-option v-for="option in dynamicDict[item.parentKey]"
                        :key="option[dynamicSelectOption.value]"
                        :label="option[dynamicSelectOption.label]"
+                       :disabled="option[dynamicSelectOption.disabled]"
                        :value="option[dynamicSelectOption.value]"/>
         </el-select>
         <div v-else :style="item.textStyle || {}" class="form-input-text">{{ textModelValue || '-' }}</div>

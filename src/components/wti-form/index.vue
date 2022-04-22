@@ -971,7 +971,11 @@
                             fn(false, data);
                         }
                     } else {
-                        const validateList = childFormKeyList.map(key => {
+                        // 父表单 联动 子表单的显示隐藏
+                        // 需要确保实例不为undefined
+                        const validateList = childFormKeyList.filter(key => {
+                            return this.$refs[key] && this.$refs[key].length > 0;
+                        }).map(key => {
                             return this.$refs[key][0].validateForm();
                         });
                         Promise.all(validateList).then(() => {

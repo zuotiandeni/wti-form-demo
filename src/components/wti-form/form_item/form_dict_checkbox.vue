@@ -12,6 +12,7 @@
                            v-bind="bindOptions" v-if="!getTextModel">
             <el-checkbox v-for="option in dynamicDict[item.parentKey]"
                          :key="option[dynamicSelectOption.value]"
+                         :disabled="option[dynamicSelectOption.disabled]"
                          :label="option[dynamicSelectOption.value]">
                 {{ option[dynamicSelectOption.label] }}
             </el-checkbox>

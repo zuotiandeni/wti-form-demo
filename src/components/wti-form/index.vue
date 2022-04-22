@@ -101,7 +101,6 @@
                                         </div>
                                         <el-form-item v-else-if="rowItem.type==='slot'"
                                                       :style="rowItem.style"
-                                                      v-bind="rowItem.vBindData"
                                                       :class="rowItem.class">
                                             <template slot="label">
                                                 <div class="wti-form-label" v-if="getFormItemLabel(rowItem)">
@@ -118,7 +117,6 @@
                                                       :style="rowItem.style"
                                                       :class="rowItem.class"
                                                       :rules="rowItem.rules"
-                                                      v-bind="rowItem.vBindData"
                                                       :prop="rowItem.key">
                                             <template slot="label">
                                                 <div v-if="getFormItemLabel(rowItem)" class="wti-form-label">
@@ -974,7 +972,7 @@
                         // 父表单 联动 子表单的显示隐藏
                         // 需要确保实例不为undefined
                         const validateList = childFormKeyList.filter(key => {
-                            return this.$refs[key] && this.$refs[key].length > 0;
+                            return !this.changeData.hiddenKeyList.includes(key);
                         }).map(key => {
                             return this.$refs[key][0].validateForm();
                         });

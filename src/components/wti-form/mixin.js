@@ -69,7 +69,7 @@ export default {
         },
 
         getFormItemLabelColon (formItem) {
-            // 如果这一项设置了 textmodelColonShow 为 true
+            // 如果这一项设置了 textModelColonVisible 为 true
             if (formItem.textModelColonVisible) {
                 return true;
             // 如果这一项没设置 textModelColonVisible 则走总的配置

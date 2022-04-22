@@ -10,7 +10,6 @@
                       class="input-wr"
                       type="number"
                       @keydown.native="onKeydown($event)"
-                      @input="item.maxlength && tempVal.length > item.maxlength ? tempVal=tempVal.slice(0,item.maxlength) : tempVal"
                       @blur="e => onBlur(item, e)"
                       @focus="e => onFocus(item, e)"
                       v-bind="bindOptions"

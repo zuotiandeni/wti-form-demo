@@ -299,6 +299,8 @@
                     // 隐藏的要素，不进行校验。提交的时候，也要过滤掉
                     hiddenKeyList: [],
                     textModel: this.textModel,
+                    // 要高亮的内容
+                    highLightList: this.highLightList
                 },
 
                 foldBlockList: [], // 收起的区块（放在这个里面，该区块就只显示区块标题，不显示内容）

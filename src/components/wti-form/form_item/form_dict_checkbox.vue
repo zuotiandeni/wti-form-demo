@@ -17,7 +17,7 @@
                 {{ option[dynamicSelectOption.label] }}
             </el-checkbox>
         </el-checkbox-group>
-        <div v-else :style="item.textStyle || {}" class="form-input-text">{{ textModelValue || '-' }}</div>
+        <div v-else :class="exposeSpecificClass(parentKey,childFormIndex,item.key)" :style="item.textStyle || {}" class="form-input-text">{{ textModelValue || '-' }}</div>
     </div>
 </template>
 

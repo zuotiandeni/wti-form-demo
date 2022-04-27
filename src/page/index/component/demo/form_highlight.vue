@@ -81,15 +81,15 @@
                     }
                 ],
                 formData: {
-                    name: '法外狂徒--张三儿',
+                    name: '张三',
                     gender: 'male',
                     childFormDTO: [
                         {
-                            name: '法外狂徒--李四儿',
+                            name: '李四',
                             gender: 'male'
                         },
                         {
-                            name: '法外狂徒--赵四儿',
+                            name: '王五',
                             gender: 'male'
                         }
                     ]

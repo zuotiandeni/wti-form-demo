@@ -17,6 +17,7 @@
                 <el-menu-item index="/demo/Often">常见配置</el-menu-item>
                 <el-menu-item index="/demo/FastCreate">快捷创建表单 FastCreate</el-menu-item>
                 <el-menu-item index="/demo/ColonConfig">label冒号配置</el-menu-item>
+                <el-menu-item index="/demo/FormHighlight">文本模式表单内容高亮</el-menu-item>
             </el-menu-item-group>
 
             <el-menu-item-group>

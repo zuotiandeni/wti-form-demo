@@ -21,7 +21,7 @@
         </el-collapse>
 
         <h3>checkbox联动</h3>
-        <p>设置multiSelectGanged: true</p>
+<!--        <p>设置multiSelectGanged: true</p>-->
         <wti-form ref="form0"
                   :fields="fields0"/>
         <div class="submit-line">

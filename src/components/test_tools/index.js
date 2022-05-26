@@ -61,11 +61,13 @@ const fn = () => {
         return instance;
     };
 };
+let hasMounted = false;
 export default {
     install: (Vue) => {
         Vue.mixin({
             mounted: function () {
-                if (this._uid === 1) {
+                if (!hasMounted) {
+                    hasMounted = true;
                     fn()();
                 }
             }

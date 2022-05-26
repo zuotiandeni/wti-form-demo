@@ -2,7 +2,100 @@
     <div class="test-tool-container">
         <div id="test-tools" v-if="show">
             <i class="el-icon-close" @click="show=false"></i>
-            <el-descriptions title="测试数据管理工具"
+            <div class="title">
+                <span>测试数据管理工具</span>
+                <span class="close-text" @click="removeTools">永久关闭工具</span>
+                <div class="op-btn">
+                    <el-switch
+                        v-model="shrink"
+                        active-color="#13ce66"
+                        inactive-color="#ff4949"
+                        active-text="展开"
+                        inactive-text="收起"/>
+                </div>
+            </div>
+            <table border="1" v-show="shrink">
+                <tr>
+                    <th class="label">数据类型</th>
+                    <th class="content">
+                        <el-select v-model="dataStatus"
+                                   size="mini"
+                                   placeholder="请选择"
+                                   disabled>
+                            <template v-for="item in dataStatusList">
+                                <el-option :key="item.value"
+                                           :label="item.label"
+                                           :value="item.value"/>
+                            </template>
+                        </el-select>
+
+                        <BtnCanDisable @click-event="getDataByCustomize"
+                                       ref="getDataByCustomizeBtn"
+                                       size="mini"
+                                       type="primary">
+                            生成并写入表单
+                            <span slot="disableText">写入成功</span>
+                        </BtnCanDisable>
+                    </th>
+                </tr>
+                <tr>
+                    <td class="label">数据上传</td>
+                    <td class="content">
+                        <el-radio v-model="isCreateNewData" :label="true">新增</el-radio>
+                        <el-radio v-model="isCreateNewData" :label="false">更新</el-radio>
+                    </td>
+                </tr>
+                <tr v-if="isCreateNewData">
+                    <td class="label">新增</td>
+                    <td class="content">
+                        <BtnCanDisable @click-event="saveAllFormData"
+                                       ref="createNewDataBtn">
+                            将当前数据保存到远端
+                            <span slot="disableText">保存成功</span>
+                        </BtnCanDisable>
+                        <el-link v-if="textNewCreateID"
+                                 type="success"
+                                 style="margin-left:10px;">
+                            新增数据ID为：{{ textNewCreateID }}
+                        </el-link>
+                    </td>
+                </tr>
+                <tr v-else>
+                    <td class="label">更新</td>
+                    <td class="content">
+                        <el-input v-model="remoteID"
+                                  size="small"
+                                  type="number"
+                                  style="width:120px" placeholder="远端数据ID"/>
+                        <BtnCanDisable @click-event="saveAllFormData"
+                                       ref="createNewDataBtn">
+                            更新远端数据
+                            <span slot="disableText">更新成功</span>
+                        </BtnCanDisable>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">加载远端数据</td>
+                    <td class="content">
+                        <el-autocomplete size="small"
+                                         popper-class="my-autocomplete"
+                                         v-model="remoteID"
+                                         style="width:100px;z-index: 99999"
+                                         :fetch-suggestions="getLastestRemoteIDList"
+                                         placeholder="远端数据ID">
+                            <template slot-scope="{ item }">
+                                <div class="name">{{ item.value }}</div>
+                            </template>
+                        </el-autocomplete>
+                        <BtnCanDisable @click-event="loadRemoteData"
+                                       ref="loadRemoteDataBtn">
+                            {{ `加载远端 ID:${remoteID} 的数据` }}
+                            <span slot="disableText">加载成功</span>
+                        </BtnCanDisable>
+                    </td>
+                </tr>
+            </table>
+            <!-- <el-descriptions title="测试数据管理工具"
                              border
                              :column="1">
                 <el-descriptions-item label="数据类型">
@@ -58,10 +151,6 @@
                 </el-descriptions-item>
 
                 <el-descriptions-item label="加载远端数据">
-                    <!--                    <el-input v-model="remoteID"-->
-                    <!--                              size="small"-->
-                    <!--                              type="number"-->
-                    <!--                              style="width:100px" placeholder="远端数据ID"/>-->
                     <el-autocomplete size="small"
                                      popper-class="my-autocomplete"
                                      v-model="remoteID"
@@ -78,7 +167,7 @@
                         <span slot="disableText">加载成功</span>
                     </BtnCanDisable>
                 </el-descriptions-item>
-            </el-descriptions>
+            </el-descriptions> -->
         </div>
         <!--        <el-form ref="form" label-width="80px">-->
         <!--            <el-form-item label="前后缀">-->
@@ -136,7 +225,7 @@
 
 
             this.axios = createAxios({
-                baseURL: 'https://ribao.wti-xa.com',
+                baseURL: '/bpi',
             });
             this.loadCache();
 
@@ -178,7 +267,9 @@
                 // 2、新增：将最新的添加到本数组的头部。缓存到本地
                 // 3、更新：如果已在数组则从数组中移除。然后将该更新ID添加到数组的头部。缓存到本地
                 // 4、加载：如果已在数组则从数组中移除。然后将该更新ID添加到数组的头部。缓存到本地
-                localCache: []
+                localCache: [],
+                closeUse: true, // true 彻底关闭使用测试工具
+                shrink: true, // true 展开； false 收起
             };
         },
         computed: {
@@ -195,13 +286,25 @@
             // 获取所有 WtiForm 表单组件
             loadAllWtiForm () {
                 // 如果window.App不是vue组件，那么直接返回
-                if (!window.App || !window.App.$vnode || !window.App.$el) {
+                // if (!window.App || !window.App.$vnode || !window.App.$el) {
+                //     this.show = false;
+                //     return;
+                // }
+                const wti = window.WtiForm;
+
+                if (!wti || !wti.$vnode || !wti.$el) {
+                    this.show = false;
+                    return;
+                }
+
+                const root = wti.$root;
+                if (!root) {
                     this.show = false;
                     return;
                 }
 
                 // 方法是从 window.App 开始往下递归遍历，找到 WtiForm 组件，则添加到list里
-                const list = this._getChildrenWtiForm(window.App);
+                const list = this._getChildrenWtiForm(root);
 
                 // 如果没有 WtiForm 表单组件，说明父组件获取失败，直接return
                 if (list.length === 0) {
@@ -339,35 +442,38 @@
                     Object.assign(data, form.getData());
                 });
 
+                const payload = {
+                    data
+                };
                 if (!this.isCreateNewData) {
                     // 是更新
                     if (!this.remoteID) {
                         return this.$message.error('更新模式下，必须有远端数据ID，才能更新');
                     }
 
-                } else {
-                    // 否则就是新增
-                    this.axios.post('/testdata/saveTestData', {
-                        data
-                    }).then(res => {
-                        let data;
-                        if (res.request && res.config) {
-                            data = res.data;
-                        } else {
-                            data = res;
-                        }
-                        return data;
-                    }).then(res => {
-                        if (res.code === 200) {
-                            this.textNewCreateID = res.data.id;
-                            this.remoteID = String(res.data.id);
-                            this.$refs.createNewDataBtn.setBtnDisable();
-                            this.updateCache(res.data.id);
-                        } else {
-                            this.$message.error(res.msg);
-                        }
-                    });
+                    payload.id = Number(this.remoteID);
                 }
+
+                this.axios.post('/testdata/saveTestData', payload).then(res => {
+                    let data;
+                    if (res.request && res.config) {
+                        data = res.data;
+                    } else {
+                        data = res;
+                    }
+                    return data;
+                }).then(res => {
+                    if (res.code === 200) {
+                        this.textNewCreateID = res.data.id;
+                        this.remoteID = String(res.data.id);
+                        this.$refs.createNewDataBtn.setBtnDisable();
+                        this.updateCache(res.data.id);
+
+                        this.$message.success(res.msg);
+                    } else {
+                        this.$message.error(res.msg);
+                    }
+                });
             },
 
             // 接口：加载远端指定ID数据
@@ -485,6 +591,12 @@
                     this.activeWtiFormList = this.activeWtiFormList.filter(item => item !== WtiFormComponent);
                 }
             },
+
+            // 永久关闭工具
+            removeTools () {
+                this.show = false;
+                sessionStorage.removeItem('debug');
+            }
         }
     };
 </script>
@@ -519,6 +631,52 @@
             right: 10px;
             font-size: 20px;
             cursor: pointer;
+        }
+
+        .title {
+            min-width: 450px;
+            font-size: 16px;
+            line-height: 36px;
+
+            .close-text {
+                font-size: 14px;
+                margin-left: 12px;
+                cursor: pointer;
+                display: inline-block;
+                border-radius: 16px;
+                background: #409EFF;
+                color: #fff;
+                padding: 0 12px;
+                height: 24px;
+                line-height: 24px;
+            }
+
+            .op-btn {
+                float: right;
+            }
+        }
+
+        table {
+            border-top: 1px solid #eaeaea;
+            border-left: 1px solid #eaeaea;
+
+            tr {
+                border-bottom: 1px solid #eaeaea;
+                height: 44px;
+                line-height: 44px;
+
+                th, td {
+                    border-right: 1px solid #eaeaea;
+                    padding: 0 12px;
+                }
+
+                .label {
+                    font-size: 14px;
+                    text-align: left;
+                    min-width: 120px;
+                    background: #f9f9f9;
+                }
+            }
         }
     }
 

@@ -13,7 +13,7 @@
         <wti-form :fields="fields"
                   ref="formRight"
                   :data="originData2"
-                  :add-colon="false"
+                  :text-model-colon-visible="false"
                   :text-model="true"
                   label-position="right"
                   :dynamic-select-option="dynamicSelectOption"/>
@@ -148,6 +148,38 @@ fields: [
                                 key: 'gender',
                                 label: '性别',
                                 type: 'radio'
+                            },
+                            {
+                                // key
+                                key: 'testInput',
+                                // 小型表单
+                                type: 'child-form',
+                                // 每个小表单头的文字部分，以及新增按钮的部分
+                                headerLabel: '人员信息',
+                                // 里面是表单的每一项，写法和外面的没区别
+                                textModelColonVisible: false,
+                                childrenForm:[
+                                    {
+                                        key: 'childName',
+                                        type: 'input',
+                                        label: '子表单用户名称',
+                                    },
+                                    {
+                                        options: [
+                                            {
+                                                value: 'male',
+                                                label: '男'
+                                            },
+                                            {
+                                                value: 'female',
+                                                label: '女'
+                                            }
+                                        ],
+                                        key: 'gender',
+                                        label: '子表单性别',
+                                        type: 'radio'
+                                    },
+                                ]
                             }
                         ]
                     }
@@ -183,10 +215,42 @@ fields: [
                                 key: 'gender',
                                 label: '性别',
                                 type: 'radio'
+                            },
+                            {
+                                // key
+                                key: 'testInput',
+                                // 小型表单
+                                type: 'child-form',
+                                // 每个小表单头的文字部分，以及新增按钮的部分
+                                headerLabel: '人员信息',
+                                // 里面是表单的每一项，写法和外面的没区别
+                                textModelColonVisible: false,
+                                childrenForm:[
+                                    {
+                                        key: 'childName',
+                                        type: 'input',
+                                        label: '子表单用户名称',
+                                    },
+                                    {
+                                        options: [
+                                            {
+                                                value: 'male',
+                                                label: '男'
+                                            },
+                                            {
+                                                value: 'female',
+                                                label: '女'
+                                            }
+                                        ],
+                                        key: 'gender',
+                                        label: '子表单性别',
+                                        type: 'radio'
+                                    },
+                                ]
                             }
                         ]
                     }
-                ]
+                ],
 `,
                 originData2: {}
             };

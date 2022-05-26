@@ -12,6 +12,7 @@ import Install from './component/demo/install';
 import DemoBase from './component/demo/base';
 import DemoStatus from './component/demo/status';
 import ColonConfig from './component/demo/colon_config';
+import FormHighlight from './component/demo/form_highlight';
 import DemoOften from './component/demo/often';
 import FastCreate from './component/demo/fast_create';
 
@@ -64,6 +65,7 @@ const routes = [
     {path: '/demo/ColonConfig', component: ColonConfig,},
     {path: '/demo/Often', component: DemoOften,},
     {path: '/demo/FastCreate', component: FastCreate,},
+    {path: '/demo/FormHighlight', component: FormHighlight,},
 
 
     {path: '/common/FormitemCommon', component: FormitemCommon,},

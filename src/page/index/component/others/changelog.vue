@@ -37,6 +37,24 @@
 
 ![Github stars](https://img.shields.io/github/stars/qq20004604/wti-form.svg?label=Stars&color=success)
 
+> 1.1.10
+
+1. wti-form文本模式增加高亮class类名
+2. 添加了options选项禁用
+3. 修复了父表单联动子表单校验bug
+
+> 1.1.9
+
+1. 修复了字典多选下拉框 type 命名不对的问题（但考虑到兼容性，目前依然支持之前的错误命名）
+2. 一些问题修复；
+
+> 1.1.8
+
+1. 新增checkbox多选框类型
+2. 新增字典checkbox多选框类型
+3. 提供文本模式冒号配置选项，修改文本模式下冒号的展示方式
+4. 新增字典多选下拉框类型
+
 > 1.1.7
 1. 新增checkbox多选框类型
 2. 新增字典checkbox多选框类型

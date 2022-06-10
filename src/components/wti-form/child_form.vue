@@ -222,7 +222,6 @@
             // WtiForm.$set(WtiForm.formData, 'key',[{projectName:'12'}]);
             // WtiForm.$set(WtiForm.formData.testInput, '0',{projectName:'12'});
             value (oldVal, newVal) {
-                console.log('oldVal, newVal', oldVal, newVal, oldVal === newVal);
                 // 这里的逻辑存在比较难处理的情况：
                 // 1. 预期：当初始化，value 为空数组或者不存在的时候，这里可以自动生成一个新行
                 // 2. 预期：当编辑模式下，这里的值是后续加载的，期望 fields 可以和 value 进行同步（需要重置）
@@ -741,7 +740,6 @@
             resetChildFormFileds () {
                 const {childrenForm} = this.item;
 
-                console.log('value', this.value);
                 this.childFormFileds = [];
                 // 这里的目的是为了生成 fields
                 this.value.forEach((_, index) => {

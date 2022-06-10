@@ -740,13 +740,6 @@
                 this.fields.forEach(block => {
                     if (block.children && block.children instanceof Array) {
                         block.children.forEach(field => {
-                            //  如果是该是子表单，则走特殊的逻辑
-                            if (block.type === 'child-form') {
-                                // const {key} = block;
-                                // this.$refs[key].initStatus();
-                                return;
-                            }
-
                             // 如果有联动项，那么则遍历每个联动项
                             if (field.valueLink && field.valueLink.length && field.valueLink.length > 0) {
                                 const {key} = field;

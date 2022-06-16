@@ -23,6 +23,7 @@ import VueMarkdownEditor from '@kangc/v-md-editor';
 import '@kangc/v-md-editor/lib/style/base-editor.css';
 import vuepressTheme from '@kangc/v-md-editor/lib/theme/vuepress.js';
 import '@kangc/v-md-editor/lib/theme/style/vuepress.css';
+import TestTools from '@/components/test_tools';
 
 
 const isProd = process.env.NODE_ENV !== 'development';
@@ -62,6 +63,7 @@ const CommonUtils = {
         };
         Vue.use(WtiForm, props);
         Vue.use(VueHighlightJS);
+        Vue.use(TestTools);
 
         if (!document.getElementById('app')) {
             const DOM = document.createElement('div');

@@ -37,6 +37,14 @@
 
 ![Github stars](https://img.shields.io/github/stars/qq20004604/wti-form.svg?label=Stars&color=success)
 
+> 1.1.12
+
+1. select选择框等添加属性透传
+
+> 1.1.11
+
+1. 修复问题：子表单里，当有联动必填/隐藏/禁用等功能时，通过赋值data不能触发该效果的问题；
+
 > 1.1.10
 
 1. wti-form文本模式增加高亮class类名

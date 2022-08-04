@@ -40,7 +40,7 @@
                 <template slot="title">
                     <b>点击查看代码</b>
                 </template>
-                <pre v-highlightjs><code class="javascript">{{ code1 }}</code></pre>
+                <pre v-highlightjs><code class="javascript">{{ code2 }}</code></pre>
             </el-collapse-item>
         </el-collapse>
 

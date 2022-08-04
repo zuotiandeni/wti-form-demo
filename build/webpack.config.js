@@ -59,7 +59,8 @@ const config = {
     },
     // 开发模式
     mode: 'development',
-    devtool: isProd ? undefined : 'inline-source-map', // 使用 sourcemap，编辑后会很慢
+    // devtool: 'cheap-module-source-map',
+    devtool: isProd ? undefined : 'cheap-module-source-map', // 使用 sourcemap，编辑后会很慢
     // devtool: 'eval', // 禁用 sourcemap，二次打包很快
     // webpack-dev-server
     devServer: {
@@ -75,11 +76,29 @@ const config = {
         historyApiFallback: true,
         progress: false,
         proxy: {
+            '/bpi/': {
+                target: 'http://127.0.0.1:7001',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/bpi': '',
+                },
+            },
+            '/api/wkbbackend': {
+                target: 'https://cf-pc-dev.wti-xa.com:8888',
+                changeOrigin: true,
+            },
             '/api': {
                 target: 'http://lovelovewall.com/wtiformdemo',
                 changeOrigin: true,
                 pathRewrite: {
                     '^/api': '',
+                },
+            },
+            '/wtiformdemo/api': {
+                target: 'http://lovelovewall.com/wtiformdemo',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/wtiformdemo/api': '',
                 },
             },
         },
@@ -205,7 +224,7 @@ const config = {
             'plugin': resolve('src/plugin'),
             // 'vue': 'vue/dist/vue.js',
             'img': resolve('src/img'),
-            vue: 'vue/dist/vue.esm.js',
+            vue: isProd ? 'vue/dist/vue.common.dev.js' : 'vue/dist/vue.js',
         },
     },
     plugins: [
@@ -232,7 +251,6 @@ const config = {
 
 if (isProd) {
     console.log('isProd', isProd);
-    config.mode = 'production';
     config.plugins = [
         ...config.plugins,
         new MiniCssExtractPlugin({ // 分离css
@@ -305,16 +323,18 @@ if (isProd) {
         'echarts': 'echarts',
     };
 } else {
+    config.mode = 'development';
     config.plugins = [
         new webpack.HotModuleReplacementPlugin(),
         ...config.plugins,
         new webpack.DefinePlugin({
             'process.env': {
-                'NODE_ENV': '"development"',
+                'NODE_ENV': JSON.stringify('development'),
                 'date': `"${new Date().toLocaleString()}"`,
             },
         }),
     ];
+
     config.optimization = { // 抽离第三方插件
         // https://webpack.docschina.org/configuration/optimization/#root
         minimize: false,

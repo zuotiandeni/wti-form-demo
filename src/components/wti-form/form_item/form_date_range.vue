@@ -13,7 +13,12 @@
                         :clearable="true"
                         v-bind="bindOptions"
                         v-if="!getTextModel"/>
-        <div v-else :class="exposeSpecificClass(parentKey,childFormIndex,item.key)" :style="item.textStyle||{}" class="form-input-text">{{ textModelValue || '-' }}</div>
+        <div v-else
+             :class="exposeSpecificClass(parentKey,childFormIndex,item.key)"
+             :style="item.textStyle||{}"
+             class="form-input-text">
+            {{ textModelValue || '-' }}
+        </div>
     </div>
 </template>
 
@@ -52,7 +57,8 @@
                 }
             },
             textModelValue () {
-                return this.val && this.val.join('至');
+                const linkSymbol = this.item.linkSymbol || '至';
+                return this.val && this.val.join(linkSymbol);
             }
         }
     };

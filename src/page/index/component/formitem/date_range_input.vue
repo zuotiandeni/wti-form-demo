@@ -24,8 +24,30 @@
 
         <el-divider/>
 
+        <h3>文本模式自定义回显连接线</h3>
+        <p>正常回显是： 2021-09-01至2021-10-13 ，中间的连接字符是 "至"</p>
+        <p>如果你需要自定义连接字符，可以自定义属性 linkSymbol</p>
+        <wti-form ref="form1"
+                  :data="data2"
+                  :text-model="true"
+                  :fields="fields2"/>
+        <div class="submit-line">
+            <el-button type="primary" @click="submit('form1')">提交按钮</el-button>
+            <span class="tips">请查看控制台看提交结果</span>
+        </div>
+        <el-collapse class="collapse">
+            <el-collapse-item>
+                <template slot="title">
+                    <b>点击查看代码</b>
+                </template>
+                <pre v-highlightjs><code class="javascript">{{ code1 }}</code></pre>
+            </el-collapse-item>
+        </el-collapse>
+
+        <el-divider/>
+
         <h3>其他</h3>
-        <p>理论上可以支持更多功能（比如限制开始时间、结束时间等），但是我懒得添加了。有需要的话可以自己改，或者找我催更</p>
+        <p>Element里 datetime-picker 支持的功能，这里都可以正常支持。如果需要其他功能，请催更。</p>
     </div>
 </template>
 
@@ -63,6 +85,41 @@ fields1: [
     }
 ]
 `,
+
+                fields2: [
+                    {
+                        children: [
+                            {
+                                key: 'key1',
+                                label: '一个日期输入框',
+                                placeholder: '请输入',
+                                type: 'date-range-input',
+                                linkSymbol: ' ~ '
+                            }
+                        ]
+                    }
+                ],
+
+                code2: `<wti-form ref="form1"
+            :fields="fields1"/>
+---
+fields1: [
+    {
+        children: [
+            {
+                key: 'key1',
+                label: '一个日期输入框',
+                placeholder: '请输入',
+                type: 'date-range-input',
+                linkSymbol: ' ~ '
+            }
+        ]
+    }
+]
+`,
+                data2: {
+                    key1: '["2021-09-01", "2021-10-13"]'
+                },
             };
         },
         methods: {
@@ -80,33 +137,33 @@ fields1: [
 </script>
 
 <style scoped lang="less">
-@import '~common/less/config.less';
+    @import '~common/less/config.less';
 
-.formitem-box {
-    position: relative;
-    width: 100%;
-
-    .submit-line {
-        margin: 10px 0;
-
-        .tips {
-            margin-left: 24px;
-            font-size: 10px;
-        }
-    }
-
-
-    .collapse {
+    .formitem-box {
         position: relative;
-        width: 600px;
+        width: 100%;
 
-        .code {
-            white-space: pre;
-            background: #fafafa;
-            border: 1px solid #ddd;
-            padding: 10px;
-            border-radius: 10px;
+        .submit-line {
+            margin: 10px 0;
+
+            .tips {
+                margin-left: 24px;
+                font-size: 10px;
+            }
+        }
+
+
+        .collapse {
+            position: relative;
+            width: 600px;
+
+            .code {
+                white-space: pre;
+                background: #fafafa;
+                border: 1px solid #ddd;
+                padding: 10px;
+                border-radius: 10px;
+            }
         }
     }
-}
 </style>

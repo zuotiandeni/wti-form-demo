@@ -51,6 +51,8 @@ import CodeMaker from './component/others/code_maker';
 import ElementStart from './component/others/element_start';
 import ChangeLog from './component/others/changelog';
 
+// import Test from './component/others/test';
+
 import Empty from './component/others/empty';
 
 Vue.use(Router);
@@ -105,6 +107,8 @@ const routes = [
     {path: '/others/connection', component: Connection,},
     {path: '/others/changelog', component: ChangeLog,},
 
+    // {path: '/others/test', component: Test,},
+
 
     {
         path: '/',
@@ -118,7 +122,8 @@ const routes = [
 
 const router = new Router({
     routes,
-    mode: 'history',
+    // base: '/wti_form_demo',
+    // mode: 'history',
 });
 
 export default router;

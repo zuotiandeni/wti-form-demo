@@ -6,7 +6,7 @@
                  class="el-menu-vertical-demo"
                  @select="selectMenu">
             <el-menu-item-group>
-                <template slot="title">开发指南 v1.1.7</template>
+                <template slot="title">开发指南 v1.1.12.1</template>
                 <el-menu-item index="/Install">安装</el-menu-item>
             </el-menu-item-group>
 
@@ -55,6 +55,7 @@
                 <template slot="title">高阶用法</template>
                 <el-menu-item index="/advance/Slot">插槽 Slot</el-menu-item>
             </el-menu-item-group>
+
             <el-menu-item-group>
                 <template slot="title">其他</template>
                 <el-menu-item index="/others/Github">Github</el-menu-item>

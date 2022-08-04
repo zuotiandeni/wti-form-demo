@@ -234,7 +234,7 @@ const config = {
         }),
         new VueLoaderPlugin(), // vue加载器
         new HtmlWebpackPlugin({
-            filename: resolve('dist/home.html'),
+            filename: resolve('dist/index.html'),
             template: resolve(
                 `index_${isProd ? 'prd' : 'dev'}.html`),
             title: '西部信托',

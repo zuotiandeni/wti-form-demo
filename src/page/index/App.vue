@@ -46,14 +46,15 @@
                 <el-menu-item index="/formItem/MulLinkage">多级联动下拉框 MulLinkage</el-menu-item>
                 <el-menu-item index="/formItem/TextArea">文本域输入框 TextArea</el-menu-item>
                 <el-menu-item index="/formItem/MulSelectNormal">普通多选下拉框 MulSelectNormal</el-menu-item>
-                <el-menu-item index="/formItem/ChildForm">子表单 ChildForm</el-menu-item>
                 <el-menu-item index="/formItem/DynamicCheckbox">字典多选框 DynamicCheckbox</el-menu-item>
                 <el-menu-item index="/formItem/Checkbox">多选框 CheckBox</el-menu-item>
+                <el-menu-item index="/formItem/FromIDCardDate">身份证日期输入框 IDCardDate</el-menu-item>
             </el-menu-item-group>
 
             <el-menu-item-group>
                 <template slot="title">高阶用法</template>
                 <el-menu-item index="/advance/Slot">插槽 Slot</el-menu-item>
+                <el-menu-item index="/advance/ChildForm">子表单 ChildForm</el-menu-item>
             </el-menu-item-group>
 
             <el-menu-item-group>

@@ -37,6 +37,14 @@
 
 ![Github stars](https://img.shields.io/github/stars/qq20004604/wti-form.svg?label=Stars&color=success)
 
+> 1.2.0
+
+1. 新增表单元素：身份证有效期
+
+> 1.1.13
+
+1. 时间范围输入框反显时，允许自定义连接符
+
 > 1.1.12
 
 1. select选择框等添加属性透传

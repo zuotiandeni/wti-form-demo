@@ -1,10 +1,10 @@
 <template>
     <div class="formitem-box">
-        <h2>文本输入框 Input</h2>
-        <p>最基本的文本输入框啦</p>
+        <h2>身份证日期输入框 IDCardDate</h2>
+        <p>这里是指身份证的有效日期输入框</p>
 
         <h3>基本用法</h3>
-        <p>这是最基本的用法，一个输入框 + 一个 label + 一个提交按钮。提交结果请查看控制台。为了区分代码，加了 border</p>
+        <p>有效期的值，默认最早只能选今天，而长期的值，默认取 9999-12-31</p>
         <wti-form ref="form1"
                   :fields="fields1"/>
         <div class="submit-line">
@@ -42,10 +42,14 @@
 
         <el-divider/>
 
-        <h3>最大最小长度限制</h3>
-        <p>可以为空，但不是空的话就必须符合长度要求</p>
+        <h3>有初始值</h3>
+        <p>
+            初始值分别为长期，和2022-02-22
+            <el-button type="primary" size="mini" @click="setValue3">手动赋值</el-button>
+        </p>
         <wti-form ref="form3"
                   :fields="fields3"
+                  :data="data3"
                   :border-form="false"/>
         <div class="submit-line">
             <el-button type="primary" @click="submit('form3')">提交按钮</el-button>
@@ -62,11 +66,17 @@
 
         <el-divider/>
 
-        <h3>输入框前后添加文字</h3>
-        <p>其实跟 elementui 的玩法是差不多的</p>
+        <h3>文本模式</h3>
+        <p>
+            这里的按钮，可以查看在不同值下的文本模式值
+            <el-button type="primary" size="mini" @click="setValue4('')">空值</el-button>
+            <el-button type="primary" size="mini" @click="setValue4('9999-12-31')">长期</el-button>
+            <el-button type="primary" size="mini" @click="setValue4('2022-12-22')">2022-12-22</el-button>
+        </p>
         <wti-form ref="form4"
+                  :data="data4"
                   :fields="fields4"
-                  :border-form="false"/>
+                  :text-model="true"/>
         <div class="submit-line">
             <el-button type="primary" @click="submit('form4')">提交按钮</el-button>
             <span class="tips">请查看控制台看提交结果</span>
@@ -82,11 +92,15 @@
 
         <el-divider/>
 
-        <h3>默认值</h3>
-        <p>在初始化的时候，如果没有给值，那么则会使用默认值。如果给值的则使用给的值。其他例子同这种写法，所以其他表单组件里就不写了。</p>
+        <h3>自定义当身份证为长期时，其返回给服务器的值</h3>
+        <p>
+            这2个按钮，设置不同的自定义值
+            <el-button type="primary" size="mini" @click="setValue5('0000-00-00')">0000-00-00</el-button>
+            <el-button type="primary" size="mini" @click="setValue5('long')">long</el-button>
+        </p>
         <wti-form ref="form5"
                   :fields="fields5"
-                  :border-form="false"/>
+                  :data="data5"/>
         <div class="submit-line">
             <el-button type="primary" @click="submit('form5')">提交按钮</el-button>
             <span class="tips">请查看控制台看提交结果</span>
@@ -99,12 +113,14 @@
                 <pre v-highlightjs><code class="javascript">{{ code5 }}</code></pre>
             </el-collapse-item>
         </el-collapse>
+
+        <el-divider/>
     </div>
 </template>
 
 <script>
     export default {
-        name: 'Input',
+        name: 'IDCardDate',
         data () {
             return {
                 fields1: [
@@ -112,8 +128,8 @@
                         children: [
                             {
                                 key: 'key1',
-                                type: 'input',
-                                label: '我是输入框的 label'
+                                type: 'id-card-date',
+                                label: '我是 label'
                             }
                         ]
                     }
@@ -128,8 +144,8 @@ fields1: [
         children: [
             {
                 key: 'key1',
-                type: 'input',
-                label: '我是输入框的 label'
+                type: 'id-card-date',
+                label: '我是 label'
             }
         ]
     }
@@ -140,7 +156,7 @@ fields1: [
                         children: [
                             {
                                 key: 'key2',
-                                type: 'input',
+                                type: 'id-card-date',
                                 label: '必填输入框的label',
                                 rules: [
                                     {
@@ -167,7 +183,7 @@ fields2: [
         children: [
             {
                 key: 'key2',
-                type: 'input',
+                type: 'id-card-date',
                 label: '必填输入框的label',
                 rules: [
                     {
@@ -190,20 +206,14 @@ fields2: [
                         children: [
                             {
                                 key: 'key3',
-                                type: 'input',
-                                label: '最少3个字，最多6个字',
-                                rules: [
-                                    {
-                                        trigger: [
-                                            'blur',
-                                            'change'
-                                        ],
-                                        max: 6,
-                                        message: '长度应当处于3到6之间',
-                                        min: 3
-                                    }
-                                ],
-                            }
+                                type: 'id-card-date',
+                                label: '默认值为长期'
+                            },
+                            {
+                                key: 'key4',
+                                type: 'id-card-date',
+                                label: '默认值为2022-02-22'
+                            },
                         ]
                     }
                 ],
@@ -218,69 +228,62 @@ fields3: [
         children: [
             {
                 key: 'key3',
-                type: 'input',
-                label: '最少3个字，最多6个字',
-                rules: [
-                    {
-                        trigger: [
-                            'blur',
-                            'change'
-                        ],
-                        max: 6,
-                        message: '长度应当处于3到6之间',
-                        min: 3
-                    }
-                ],
-            }
+                type: 'id-card-date',
+                label: '默认值为长期'
+            },
+            {
+                key: 'key4',
+                type: 'id-card-date',
+                label: '默认值为2022-02-22'
+            },
         ]
     }
 ]`,
-
+                data3: {
+                    key3: '9999-12-31',
+                    key4: '2022-02-22'
+                },
 
                 fields4: [
                     {
                         children: [
                             {
-                                key: 'key4',
-                                type: 'input',
-                                label: '比如第 x 月这样就可以这么用',
-                                prepend: '第',
-                                append: '月',
-                                placeholder: '请输入月份'
-                            }
+                                key: 'key5',
+                                type: 'id-card-date',
+                                label: '只读模式'
+                            },
                         ]
                     }
                 ],
 
-                code4: `<wti-form
-            ref="form4"
-            :fields="fields4"
-            :border-form="false"/>
+                code4: `<wti-form ref="form4"
+  :data="data4"
+  :fields="fields4"
+  :text-model="true"/>
 ---
 fields4: [
     {
         children: [
             {
-                key: 'key4',
-                type: 'input',
-                label: '比如第 x 月这样就可以这么用',
-                prepend: '第',
-                append: '月',
-                placeholder: '请输入月份'
-            }
+                key: 'key5',
+                type: 'id-card-date',
+                label: '只读模式'
+            },
         ]
     }
 ]`,
-
+                data4: {
+                    key5: '2022-01-01'
+                },
 
                 fields5: [
                     {
                         children: [
                             {
-                                key: 'key5',
-                                type: 'input',
-                                label: '给个默认值吧',
-                                defaultValue: '1234'
+                                key: 'key6',
+                                type: 'id-card-date',
+                                label: '只读模式',
+                                longTypeValue: '',
                             }
                         ]
                     }
@@ -295,14 +298,17 @@ fields5: [
     {
         children: [
             {
-                key: 'key5',
-                type: 'input',
-                label: '给个默认值吧',
-                defaultValue: '1234'
+                key: 'key6',
+                type: 'id-card-date',
+                label: '只读模式',
+                longTypeValue: '',
             }
         ]
     }
 ]`,
+                data5: {
+                    key6: '9999-12-31'
+                }
             };
         },
         methods: {
@@ -314,6 +320,23 @@ fields5: [
                         this.$message.error('校验失败！');
                     }
                 });
+            },
+            setValue3 () {
+                this.data3 = {
+                    key3: '9999-12-31',
+                    key4: '2022-02-22'
+                };
+            },
+            setValue4 (v) {
+                this.data4 = {
+                    key5: v
+                };
+            },
+            setValue5 (v) {
+                this.fields5[0].children[0].longTypeValue = v;
+                this.data5 = {
+                    key6: v
+                };
             }
         }
     };

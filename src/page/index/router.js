@@ -39,10 +39,10 @@ import DynamicCheckbox from './component/formitem/dynamic_checkbox';
 import DynamicSelectNormal from './component/formitem/dynamic_select_normal';
 import NormalNumber from './component/formitem/normal_number';
 import MulSelectNormal from './component/formitem/mul_select_normal';
-import ChildForm from './component/formitem/child_form';
-
+import IDCardDate from './component/formitem/id_card_date';
 
 import Slot from './component/advance/slot';
+import ChildForm from './component/advance/child_form';
 
 import Github from './component/others/github';
 import Connection from './component/others/connection';
@@ -94,10 +94,11 @@ const routes = [
     {path: '/formItem/DynamicSelectNormal', component: DynamicSelectNormal,},
     {path: '/formItem/NormalNumber', component: NormalNumber,},
     {path: '/formItem/MulSelectNormal', component: MulSelectNormal,},
-    {path: '/formItem/ChildForm', component: ChildForm,},
+    {path: '/formItem/FromIDCardDate', component: IDCardDate,},
 
 
     {path: '/advance/Slot', component: Slot,},
+    {path: '/advance/ChildForm', component: ChildForm,},
 
 
     {path: '/others/Github', component: Github,},

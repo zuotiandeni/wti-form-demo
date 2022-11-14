@@ -5,6 +5,7 @@
 
         <h3>基本用法</h3>
         <p>有效期的值，默认最早只能选今天，而长期的值，默认取 9999-12-31</p>
+        <p>PS：本表单项暂时不支持子表单</p>
         <wti-form ref="form1"
                   :fields="fields1"/>
         <div class="submit-line">
@@ -115,6 +116,25 @@
         </el-collapse>
 
         <el-divider/>
+
+        <h3>有效期的时间选择，不做限制或做特殊限制</h3>
+        <p>默认情况下，有效期最早只能选今天。如果不想限制，那么配置属性时，notLimitBegin 为true即可。如果想进行特殊限制，那么设置 PickerOptions.disabledDate 这个函数</p>
+        <wti-form ref="form6"
+                  :fields="fields6"/>
+        <div class="submit-line">
+            <el-button type="primary" @click="submit('form6')">提交按钮</el-button>
+            <span class="tips">请查看控制台看提交结果</span>
+        </div>
+        <el-collapse class="collapse">
+            <el-collapse-item>
+                <template slot="title">
+                    <b>点击查看代码</b>
+                </template>
+                <pre v-highlightjs><code class="javascript">{{ code6 }}</code></pre>
+            </el-collapse-item>
+        </el-collapse>
+
+        <el-divider/>
     </div>
 </template>
 
@@ -129,7 +149,8 @@
                             {
                                 key: 'key1',
                                 type: 'id-card-date',
-                                label: '我是 label'
+                                label: '我是 label',
+                                // notLimitBegin: true,
                             }
                         ]
                     }
@@ -308,7 +329,37 @@ fields5: [
 ]`,
                 data5: {
                     key6: '9999-12-31'
-                }
+                },
+
+                fields6: [
+                    {
+                        children: [
+                            {
+                                key: 'key7',
+                                type: 'id-card-date',
+                                label: '没有时间限制',
+                                notLimitBegin: true
+                            }
+                        ]
+                    }
+                ],
+
+                code6: `<wti-form
+            ref="form6"
+            :fields="fields6"/>
+---
+fields6: [
+    {
+        children: [
+            {
+                key: 'key7',
+                type: 'id-card-date',
+                label: '没有时间限制',
+                notLimitBegin: true
+            }
+        ]
+    }
+]`,
             };
         },
         methods: {

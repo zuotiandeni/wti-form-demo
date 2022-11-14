@@ -54,9 +54,13 @@
                 dateValue: '',
 
                 PickerOptions: {
-                    disabledDate (time) {
-                        // 默认情况只能选今天之前（不包括今天）
-                        return time.getTime() < Date.now() - 1000 * 3600 * 24;
+                    disabledDate: (time) => {
+                        // 默认情况只能选今天之前（不包括今天），除非设置 notLimitBegin 为 true
+                        if (this.item.notLimitBegin) {
+                            return false;
+                        } else {
+                            return time.getTime() < Date.now() - 1000 * 3600 * 24;
+                        }
                     },
                 }
             };

@@ -85,7 +85,7 @@
         },
         methods: {
             selectMenu (i) {
-                console.log(i);
+                // console.log(i);
                 this.$router.push(i);
             }
         }

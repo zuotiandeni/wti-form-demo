@@ -37,6 +37,10 @@
 
 ![Github stars](https://img.shields.io/github/stars/qq20004604/wti-form.svg?label=Stars&color=success)
 
+> 1.2.1
+
+1. 修复表单元素【身份证有效期】文本模式下字体位置问题
+
 > 1.2.0
 
 1. 新增表单元素：身份证有效期

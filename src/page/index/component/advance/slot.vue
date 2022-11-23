@@ -186,7 +186,7 @@ value1: '1',`,
                         label: '用户基本信息',
                         children: [
                             {
-                                key: 'name',
+                                key: 'name1',
                                 type: 'input',
                                 label: '工具人输入框一号'
                             },
@@ -195,7 +195,7 @@ value1: '1',`,
                                 name: 'mytable',
                             },
                             {
-                                key: 'name',
+                                key: 'name2',
                                 type: 'input',
                                 label: '工具人输入框二号'
                             },

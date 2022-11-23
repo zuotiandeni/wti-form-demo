@@ -51,7 +51,6 @@ import CodeMaker from './component/others/code_maker';
 import ElementStart from './component/others/element_start';
 import ChangeLog from './component/others/changelog';
 
-// import Test from './component/others/test';
 
 import Empty from './component/others/empty';
 
@@ -107,8 +106,6 @@ const routes = [
     {path: '/others/ElementStart', component: ElementStart,},
     {path: '/others/connection', component: Connection,},
     {path: '/others/changelog', component: ChangeLog,},
-
-    // {path: '/others/test', component: Test,},
 
 
     {

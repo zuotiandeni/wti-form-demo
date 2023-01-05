@@ -36,6 +36,7 @@
                                 key: 'key1',
                                 type: 'mul-select-normal',
                                 label: '我是输入框的 label',
+                                showTags: false, // 可选项，默认为true，控制多选的展示是否以tags的方式展示
                                 options: [
                                     {
                                         value: 'value_a',
@@ -69,6 +70,7 @@ fields1: [
                 key: 'key1',
                 type: 'mul-select-normal',
                 label: '我是输入框的 label',
+                showTags: false, // 可选项，默认为true，控制多选的展示是否以tags的方式展示
                 options: [
                     {
                         value: 'value_a',

@@ -61,6 +61,7 @@
                                         ]
                                     }
                                 ],
+                                showTags: false, // 可选项，默认为true，控制多选的展示是否以tags的方式展示
                                 valueLink: [
                                     {
                                         value: '10341001',
@@ -141,6 +142,7 @@ dictionariesFields: [
                                         ]
                                     }
                                 ],
+                                showTags: false, // 可选项，默认为true，控制多选的展示是否以tags的方式展示
                                 valueLink: [
                                     {
                                         value: '10341001',

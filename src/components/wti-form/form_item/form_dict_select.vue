@@ -6,6 +6,7 @@
         <el-select style="width:100%"
                    v-model="val"
                    :disabled="getDisabled"
+                   :clearable="true"
                    v-bind="bindOptions"
                    :placeholder="getPlaceholder(item)"
                    v-if="!getTextModel">
@@ -47,7 +48,9 @@
                         });
                     } else {
                         // 如果是子表单的话，执行内置的变更
-                        this.childChangeData.valueUpdateEvent();
+                        this.childChangeData.valueUpdateEvent({
+                            [this.item.key]: v,
+                        }, this.childFormIndex);
                     }
                 }
             },

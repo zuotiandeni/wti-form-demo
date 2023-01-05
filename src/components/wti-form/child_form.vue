@@ -284,10 +284,13 @@
         },
         methods: {
             // 监听值更新
-            valueUpdateEvent () {
+            valueUpdateEvent (data, childFormIndex) {
                 // const data = this.getData();
                 // console.log('data', data);
                 // this.$emit('input', data);
+                this.$emit('updateValue', {
+                    [this.item.key]: this.val
+                }, data, childFormIndex);
             },
 
             // todo 这里的数据字典请求接口，应该最后合并到一起，由一个专门的数据字典请求管理器去请求，减低接口重复请求的情况
@@ -434,6 +437,8 @@
                 if (!notAddValue) {
                     this.val.push(obj);
                 }
+                
+                this.valueUpdateEvent();
 
                 const formKey = this.item.key;
 

@@ -37,6 +37,12 @@
 
 ![Github stars](https://img.shields.io/github/stars/qq20004604/wti-form.svg?label=Stars&color=success)
 
+> 1.2.3
+
+1、增加【子表单数据变化】对外的update响应
+2、增加【多选下拉框】控制多选结果展示是否以tags的方式展示
+
+1. 修复【特殊插槽 slot-single】存在时，会导致提交时多了一个key的问题。
 
 > 1.2.2
 

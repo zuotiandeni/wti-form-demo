@@ -4,9 +4,18 @@
         <p>在某些情况下，我们需要在表单内嵌套一个子表单，那么使用他就 ok 了</p>
         <p>子表单元素的使用方法，和普通表单基本毫无区别。这是相对来说，增加了【新增】【删除】【独立于子表单的收起/展开】，并且提交的时候，该属性以数组的形式提交。</p>
 
+        <br/>
+        <p>通过【@updateValue】方法不仅可以获取到主表单内容的变化，还可以获取到子表单数据的相关变化（可打开控制台查看输出）</p>
+        <p>在修改表单内容时，组件会反馈三个值给于用户：</p>
+        <p>1、formData：主表单对应变化的key:value</p>
+        <p>2、childItemData：子表单具体发生变化的项对应的key:value</p>
+        <p>3、childFormIndex：子表单的下标，标识是第几个子表单</p>
+        <p>注：如果是主表单元素内容改变，childItemData及childFormIndex值为undefined</p>
+
         <h3>一个标准的子表单组件</h3>
         <wti-form :fields="fields1"
                   ref="form1"
+                  @updateValue="updateValue"
                   :dynamic-select-option="dynamicSelectOption"/>
 
         <div class="submit-line">
@@ -512,7 +521,10 @@
                         this.$message.error('校验失败！');
                     }
                 });
-            }
+            },
+            updateValue (formData, childItemData, childFormIndex) {
+                console.log(formData, childItemData, childFormIndex);
+            },
         }
     };
 </script>

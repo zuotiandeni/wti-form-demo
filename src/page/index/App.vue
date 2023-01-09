@@ -6,7 +6,7 @@
                  class="el-menu-vertical-demo"
                  @select="selectMenu">
             <el-menu-item-group>
-                <template slot="title">开发指南 v1.2.2.1</template>
+                <template slot="title">开发指南 v1.2.3</template>
                 <el-menu-item index="/Install">安装</el-menu-item>
             </el-menu-item-group>
 

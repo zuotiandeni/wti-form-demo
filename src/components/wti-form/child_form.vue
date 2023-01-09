@@ -136,6 +136,10 @@
                                                           v-bind="getProps(rowItem,index)"
                                                           :random-id="childField.randomId"
                                                           v-model.trim="val[index][rowItem.key]"/>
+                                            <FormIDCardDate v-if="rowItem.type==='id-card-date'"
+                                                            v-bind="getProps(rowItem,index)"
+                                                            :random-id="childField.randomId"
+                                                            v-model.trim="val[index][rowItem.key]"/>
                                         </el-form-item>
                                     </el-col>
                                 </div>
@@ -174,6 +178,7 @@
     import FormCheckbox from './form_item/form_checkbox';
     import FormDictCheckbox from './form_item/form_dict_checkbox';
     import FormDynamicSelectMultiple from './form_item/form_dict_select_multiple';
+    import FormIDCardDate from './form_item/form_idcard_date';
 
     export default {
         name: 'ChildForm',
@@ -437,7 +442,7 @@
                 if (!notAddValue) {
                     this.val.push(obj);
                 }
-                
+
                 this.valueUpdateEvent();
 
                 const formKey = this.item.key;
@@ -941,6 +946,7 @@
             FormCheckbox,
             FormDictCheckbox,
             FormDynamicSelectMultiple,
+            FormIDCardDate,
         },
     };
 </script>

@@ -680,6 +680,11 @@ fields2: [
                                         firstParentKey: '100'
                                     },
                                     {
+                                        key: 'idCard',
+                                        type: 'id-card-date',
+                                        label: '我是 label',
+                                    },
+                                    {
                                         key: 'address',
                                         type: 'textarea',
                                         label: '详细地址',
@@ -868,6 +873,11 @@ fields3: [
                         label: '三级联动下拉框',
                         linkLevel: 3,
                         firstParentKey: '100'
+                    },
+                    {
+                        key: 'idCard',
+                        type: 'id-card-date',
+                        label: '身份证有效期输入框',
                     },
                     {
                         key: 'address',

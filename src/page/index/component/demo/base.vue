@@ -13,7 +13,8 @@
         <p>提交代码的逻辑也看这里</p>
 
         <wti-form :fields="fields1"
-                  ref="form1"/>
+                  ref="form1"
+                  @updateValue="updateEvent"/>
 
         <div class="submit-line">
             <el-button type="primary" @click="submit('form1')">提交按钮</el-button>
@@ -208,6 +209,11 @@
                                 span: 24
                             },
                             {
+                                key: 'IDCard',
+                                type: 'id-card-date',
+                                label: '我是 label',
+                            },
+                            {
                                 // key
                                 key: 'testInput',
                                 // 小型表单
@@ -352,6 +358,11 @@ fields1: [
                 type: 'textarea',
                 label: '详细地址',
                 span: 24
+            },
+            {
+                key: 'IDCard',
+                type: 'id-card-date',
+                label: '我是 label',
             },
             {
                 // key
@@ -635,6 +646,10 @@ fields3: [
             };
         },
         methods: {
+            updateEvent (data) {
+                const key = Object.keys(data)[0];
+                this.$message.info(`key:【${key}】, 更新了，值为：【${data[key]}】`);
+            },
             submit (formName) {
                 this.$refs[formName].validate((isPass, data) => {
                     if (isPass) {

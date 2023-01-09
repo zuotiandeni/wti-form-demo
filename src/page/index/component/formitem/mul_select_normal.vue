@@ -4,7 +4,7 @@
         <p>一个普通的多选下拉框，下拉框选项来源于 options</p>
 
         <h3>基本用法</h3>
-        <p>候选项会被收起来</p>
+        <p>默认情况下，只会显示第一个候选项，其他候选项会被收起来并被计数</p>
         <wti-form ref="form1"
                   :fields="fields1"/>
         <div class="submit-line">
@@ -21,7 +21,25 @@
         </el-collapse>
 
         <el-divider/>
-    </div>
+
+        <h3>展现所有候选项</h3>
+        <p>在自定义showTags属性为false时，会将候选项都展现出来，而不是收起来。</p>
+        <p>但是若是选项过多，可能会导致内容溢出，请务必注意。</p>
+        <wti-form ref="form2"
+                  :fields="fields2"/>
+        <div class="submit-line">
+            <el-button type="primary" @click="submit('form2')">提交按钮</el-button>
+            <span class="tips">请查看控制台看提交结果</span>
+        </div>
+        <el-collapse class="collapse">
+            <el-collapse-item>
+                <template slot="title">
+                    <b>点击查看代码</b>
+                </template>
+                <pre v-highlightjs><code class="javascript">{{ code2 }}</code></pre>
+            </el-collapse-item>
+        </el-collapse>
+</div>
 </template>
 
 <script>
@@ -35,8 +53,7 @@
                             {
                                 key: 'key1',
                                 type: 'mul-select-normal',
-                                label: '我是输入框的 label',
-                                showTags: false, // 可选项，默认为true，控制多选的展示是否以tags的方式展示
+                                label: '普通多选下拉框',
                                 options: [
                                     {
                                         value: 'value_a',
@@ -70,7 +87,6 @@ fields1: [
                 key: 'key1',
                 type: 'mul-select-normal',
                 label: '我是输入框的 label',
-                showTags: false, // 可选项，默认为true，控制多选的展示是否以tags的方式展示
                 options: [
                     {
                         value: 'value_a',
@@ -87,6 +103,104 @@ fields1: [
                     {
                         value: 'value_d',
                         label: 'label D'
+                    }
+                ],
+            }
+        ]
+    }
+]`,
+                fields2: [
+                    {
+                        children: [
+                            {
+                                key: 'key2',
+                                type: 'mul-select-normal',
+                                label: '我是输入框的 label',
+                                showTags: false, // 可选项，默认为true，控制多选的展示是否以tags的方式展示
+                                span: 6,
+                                options: [
+                                    {
+                                        value: 'value_a',
+                                        label: 'label A'
+                                    },
+                                    {
+                                        value: 'value_b',
+                                        label: 'label B'
+                                    },
+                                    {
+                                        value: 'value_c',
+                                        label: 'label C'
+                                    },
+                                    {
+                                        value: 'value_d',
+                                        label: 'label D'
+                                    },
+                                    {
+                                        value: 'value_e',
+                                        label: 'label E'
+                                    },
+                                    {
+                                        value: 'value_f',
+                                        label: 'label F'
+                                    },
+                                    {
+                                        value: 'value_g',
+                                        label: 'label G'
+                                    },
+                                    {
+                                        value: 'value_h',
+                                        label: 'label H'
+                                    }
+                                ],
+                            }
+                        ]
+                    }
+                ],
+
+                code2: `<wti-form ref="form2"
+                :fields="fields2"/>
+---
+fields2: [
+    {
+        children: [
+            {
+                key: 'key2',
+                type: 'mul-select-normal',
+                label: '我是输入框的 label',
+                showTags: false, // 可选项，默认为true，控制多选的展示是否以tags的方式展示
+                span: 6,
+                options: [
+                    {
+                        value: 'value_a',
+                        label: 'label A'
+                    },
+                    {
+                        value: 'value_b',
+                        label: 'label B'
+                    },
+                    {
+                        value: 'value_c',
+                        label: 'label C'
+                    },
+                    {
+                        value: 'value_d',
+                        label: 'label D'
+                    },
+                    {
+                        value: 'value_e',
+                        label: 'label E'
+                    },
+                    {
+                        value: 'value_f',
+                        label: 'label F'
+                    },
+                    {
+                        value: 'value_g',
+                        label: 'label G'
+                    },
+                    {
+                        value: 'value_h',
+                        label: 'label H'
                     }
                 ],
             }

@@ -101,6 +101,14 @@ const config = {
                     '^/wtiformdemo/api': '',
                 },
             },
+            '/bpi': {
+                target: 'http://lovelovewall.com/',
+                // target: 'http://127.0.0.1:7001/',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/bpi': '',
+                },
+            },
         },
     },
     module: {
@@ -159,9 +167,7 @@ const config = {
                                 return '[name].[ext]';
                             },
                             // name: '[name].[contenthash:10].[ext]',   // 文件名
-                            publicPath: Tag
-                                ? `/${Tag}/static/`
-                                : '/static/',
+                            publicPath: 'https://test.lovelovewall.com/CDN/fonts/',
                             // publicPath: `../static/`,
 
                             // 输出目录，表现效果相当于 outputPath + name 这样，可以直接写在name里如

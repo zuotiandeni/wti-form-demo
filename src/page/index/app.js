@@ -10,7 +10,7 @@ import Vue from 'vue';
 import App from './App.vue';
 import CommonUtils from '@/common/js/pre_setting.js';
 import router from './router';
-import 'wti-form-themes-red';
+// import 'wti-form-themes-red';
 
 // 浏览器的title（就是显示在tag标签的本页面名字）
 const TITLE = 'WtiForm说明文档';

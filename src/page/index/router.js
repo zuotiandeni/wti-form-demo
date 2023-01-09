@@ -36,7 +36,7 @@ import MulLinkage from './component/formitem/mul_linkage';
 import Textarea from './component/formitem/text_area';
 import Checkbox from './component/formitem/checkbox';
 import DynamicCheckbox from './component/formitem/dynamic_checkbox';
-import DynamicSelectNormal from './component/formitem/dynamic_select_normal';
+import DynamicSelectNormal from './component/formitem/dynamic_select_multiple';
 import NormalNumber from './component/formitem/normal_number';
 import MulSelectNormal from './component/formitem/mul_select_normal';
 import IDCardDate from './component/formitem/id_card_date';
@@ -90,7 +90,7 @@ const routes = [
     {path: '/formItem/Textarea', component: Textarea,},
     {path: '/formItem/Checkbox', component: Checkbox,},
     {path: '/formItem/DynamicCheckbox', component: DynamicCheckbox,},
-    {path: '/formItem/DynamicSelectNormal', component: DynamicSelectNormal,},
+    {path: '/formItem/DynamicSelectMultiple', component: DynamicSelectNormal,},
     {path: '/formItem/NormalNumber', component: NormalNumber,},
     {path: '/formItem/MulSelectNormal', component: MulSelectNormal,},
     {path: '/formItem/FromIDCardDate', component: IDCardDate,},

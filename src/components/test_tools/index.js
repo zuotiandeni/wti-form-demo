@@ -14,7 +14,8 @@ const WhiteList = [
     'cf-pc-dev',
     'cf-pc-qa',
     'localhost',
-    '127.0.0.1'
+    '127.0.0.1',
+    'lovelovewall.com'
 ];
 
 const fn = () => {

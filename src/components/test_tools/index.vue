@@ -4,7 +4,7 @@
             <i class="el-icon-close" @click="show=false"></i>
             <div class="title">
                 <span>测试数据管理工具</span>
-                <span class="close-text" @click="removeTools">永久关闭工具</span>
+                <span class="close-text" @click="removeTools">永久关闭按钮</span>
                 <div class="op-btn">
                     <el-switch
                         v-model="shrink"
@@ -310,6 +310,8 @@
                 if (list.length === 0) {
                     this.show = false;
                     console.error('未找到 WtiForm 表单组件');
+                } else {
+                    console.log('TestTool已启用');
                 }
                 return list;
             },

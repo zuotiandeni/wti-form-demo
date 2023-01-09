@@ -3,11 +3,13 @@
         <h2>自动化测试</h2>
         <p>基于 js 生成的表单页面，因此我们可以通过表单的 type 和其他配置项，推断出表单内容的合法值和非法值。然后提交数据给后端，进行后端接口测试。</p>
         <p>通过这种方法，我们可以快速验证后端接口是否正常，是否和前端接口匹配。</p>
-        <p>功能和文档待补充，也欢迎感兴趣的同学一起参与进来贡献开源代码</p>
+        <!--        <p>功能和文档待补充，也欢迎感兴趣的同学一起参与进来贡献开源代码</p>-->
+        <p>目前代码闭源开发ing，感兴趣的可以考虑联系参与</p>
 
         <p>
-            <el-button type="primary" @click="makeTestTools">手动生成标准测试数据</el-button>
+            <el-button type="primary" @click="makeTestTools">开启浮窗</el-button>
         </p>
+
         <TestTools ref="testTool"
                    ref-form-name="form"
                    :data-status="dataStatus"
@@ -16,19 +18,19 @@
         <wti-form :fields="fields1"
                   ref="form"/>
 
-        <p>
-            数据生成逻辑，参考源代码→
-            <el-link
-                type="primary"
-                href="https://github.com/qq20004604/wti-form-demo/blob/main/src/components/test_tools/TestValueCreator.js">
-                点击访问Github
-            </el-link>
-        </p>
+        <!--        <p>-->
+        <!--            数据生成逻辑，参考源代码→-->
+        <!--            <el-link-->
+        <!--                type="primary"-->
+        <!--                href="https://github.com/qq20004604/wti-form-demo/blob/main/src/components/test_tools/TestValueCreator.js">-->
+        <!--                点击访问Github-->
+        <!--            </el-link>-->
+        <!--        </p>-->
     </div>
 </template>
 
 <script>
-    import TestTools from '@/components/test_tools';
+    // import TestTools from '@/components/test_tools';
 
     export default {
         name: 'AutoTest',
@@ -83,11 +85,12 @@
         },
         methods: {
             makeTestTools () {
-                this.$refs.testTool.makeTestData();
+                sessionStorage.setItem('debug', 'true');
+                window.location.reload();
             }
         },
         components: {
-            TestTools
+            // TestTools
         }
     };
 </script>

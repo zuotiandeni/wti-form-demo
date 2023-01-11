@@ -37,6 +37,11 @@
 
 ![Github stars](https://img.shields.io/github/stars/qq20004604/wti-form.svg?label=Stars&color=success)
 
+> 1.2.4
+
+1. 新增【globalConfig.clearable】全局配置属性，控制全局表单项是否可清空；
+2. 新增【clearable】表单项配置属性，控制某个表单项是否可清空；
+
 > 1.2.3
 
 1. 修复【身份证有效期】类型在更新值的时候，未触发 updateValue 事件的问题；

@@ -86,6 +86,7 @@
                                         <ChildForm v-if="rowItem.type === 'child-form'"
                                                    :text-model="textModel"
                                                    :ref="rowItem.key"
+                                                   :global-config="globalConfig"
                                                    :all-disabled="allDisabled"
                                                    :item="rowItem"
                                                    v-on="$listeners"
@@ -286,6 +287,11 @@
                 default: () => {
                 },
             },
+            // 全局的表单项配置
+            globalConfig: {
+                type: Object,
+                default: () => ({}),
+            }
         },
         data () {
             return {
@@ -1085,6 +1091,7 @@
                     ref: rowItem.key,
                     item: rowItem,
                     allDisabled: this.allDisabled,
+                    globalConfig: this.globalConfig
                 };
             },
         },

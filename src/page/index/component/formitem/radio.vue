@@ -1,10 +1,10 @@
 <template>
     <div class="formitem-box">
-        <h2>普通下拉框 NormalSelect</h2>
-        <p>一个普通的下拉框。一般情况下，候选项是初始固定的。用于处理需要下拉选择的情况，暂时只支持单选。推荐 3 个元素以上的情况下，使用</p>
+        <h2>普通单选按钮 radio</h2>
+        <p>一个普通的单选按钮。一般情况下，候选项是初始固定的。</p>
 
         <h3>基本用法</h3>
-        <p>单纯的下拉框</p>
+        <p>单纯的单选按钮</p>
         <wti-form ref="form1"
                   :fields="fields1"/>
         <div class="submit-line">
@@ -63,7 +63,7 @@
                                     },
                                 ],
                                 key: 'key1',
-                                label: '一个单选框',
+                                label: '一个单选按钮',
                                 type: 'radio'
                             }
                         ]
@@ -106,7 +106,7 @@ fields1: [
                                     },
                                 ],
                                 key: 'key2',
-                                label: '动态增删的单选框',
+                                label: '动态增删的单选按钮',
                                 type: 'radio'
                             }
                         ]

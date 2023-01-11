@@ -40,6 +40,21 @@
                 <pre v-highlightjs><code class="javascript">{{ code2 }}</code></pre>
             </el-collapse-item>
         </el-collapse>
+    
+        <h3>可清空单选(表单配置项属性clearable控制)</h3>
+        <p>表单配置项属性clearable的优先级 大于 全局props配置globalConfig.clearable的优先级 大于默认值的优先级</p>
+        <p>globalConfig.clearable详细配置方式请查看：<router-link style="color: #409EFF;" to="/common/GlobalConfig">全局通用配置</router-link></p>
+        <p>你可以选中后鼠标悬浮input框，点击末尾❎试试</p>
+        <wti-form ref="form3"
+                  :fields="fields3"/>
+        <el-collapse class="collapse">
+            <el-collapse-item>
+                <template slot="title">
+                    <b>点击查看代码</b>
+                </template>
+                <pre v-highlightjs><code class="javascript">{{ code3 }}</code></pre>
+            </el-collapse-item>
+        </el-collapse>
     </div>
 </template>
 
@@ -172,6 +187,48 @@ delOption () {
     options.splice(i - 1, 1);
     this.$message.success('删除成功');
 }
+`,
+                fields3: [
+                    {
+                        children: [
+                            {
+                                options: [
+                                    {
+                                        value: 'value_a',
+                                        label: 'label A'
+                                    },
+                                ],
+                                key: 'key1',
+                                label: '一个下拉框',
+                                clearable: true,
+                                placeholder: '请选择',
+                                type: 'normal-select'
+                            }
+                        ]
+                    }
+                ],
+                code3: `<wti-form ref="form3"
+                  :fields="fields3"/>
+---
+fields3: [
+    {
+        children: [
+            {
+                options: [
+                    {
+                        value: 'value_a',
+                        label: 'label A'
+                    },
+                ],
+                key: 'key1',
+                label: '一个下拉框',
+                clearable: true,
+                placeholder: '请选择',
+                type: 'normal-select'
+            }
+        ]
+    }
+],
 `,
             };
         },

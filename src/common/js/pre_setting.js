@@ -45,6 +45,15 @@ const CommonUtils = {
                 type: String,
                 default: baseURL,
             },
+            // 全局属性配置
+            globalConfig: {
+                type: Object,
+                default: () => {
+                    return {
+                        clearable: true
+                    };
+                }
+            },
             dynamicSelectOption: {
                 type: Object,
                 default: () => ({

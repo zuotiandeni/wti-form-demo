@@ -26,6 +26,7 @@
                 <el-menu-item index="/common/Layout">布局配置 Layout</el-menu-item>
                 <el-menu-item index="/common/ValueLink">数值联动 ValueLink</el-menu-item>
                 <el-menu-item index="/common/Axios">Axios 配置</el-menu-item>
+                <el-menu-item index="/common/GlobalConfig">全局通用配置</el-menu-item>
             </el-menu-item-group>
 
             <el-menu-item-group>

@@ -20,6 +20,22 @@
                 <pre v-highlightjs><code class="javascript">{{ code1 }}</code></pre>
             </el-collapse-item>
         </el-collapse>
+    
+        <h3>可清空单选(表单配置项属性clearable控制)</h3>
+        <p>表单配置项属性clearable的优先级 大于 全局props配置globalConfig.clearable的优先级 大于默认值的优先级</p>
+        <p>globalConfig.clearable详细配置方式请查看：<router-link style="color: #409EFF;" to="/common/GlobalConfig">全局通用配置</router-link></p>
+        <p>你可以选中后鼠标悬浮input框，点击末尾❎试试</p>
+        <wti-form ref="form2"
+                  :fields="fields2"
+                  :dynamic-select-option="dynamicSelectOption"/>
+        <el-collapse class="collapse">
+            <el-collapse-item>
+                <template slot="title">
+                    <b>点击查看代码</b>
+                </template>
+                <pre v-highlightjs><code class="javascript">{{ code2 }}</code></pre>
+            </el-collapse-item>
+        </el-collapse>
 
         <el-divider/>
 
@@ -150,6 +166,49 @@ fields1: [
                 type: 'dynamic-select',
                 label: '我是动态下拉框，parentKey是 103',
                 parentKey: '103'
+            },
+        ]
+    }
+]`,
+                fields2: [
+                    {
+                        children: [
+                            {
+                                key: 'key1',
+                                type: 'dynamic-select',
+                                clearable: true,
+                                label: '我是动态下拉框，parentKey是 100',
+                                parentKey: '100'
+                            },
+                        ]
+                    }
+                ],
+    
+                code2: `<wti-form ref="form2"
+              :fields="fields2"
+              :dynamic-select-option="dynamicSelectOption"/>
+---
+dynamicSelectOption: {
+    // 这是字典接口的 url
+    dictUrl: '/dict',
+    // 异步请求时，请求内容是一个对象或一个数组。
+    // 如果是对象，那么包含一个 key 和一个数组。
+    // 如果是数组，那么只有这个数组。
+    // 数组是所有字典 FormItem 的 parentKey 的集合
+    queryKey: 'search', // 这是请求时那个 key。如果为空，则请求时是一个数组，而不是一个对象
+    parentKey: 'parentKey', // 这是返回结果的 parentKey。意思是，同一个 parentKey 归属于同一个下拉框选项
+    value: 'code', // 这是下拉框选项的值
+    label: 'label' // 这是下拉框选项的 label
+},
+fields2: [
+    {
+        children: [
+            {
+                key: 'key1',
+                type: 'dynamic-select',
+                clearable: true,
+                label: '我是动态下拉框，parentKey是 100',
+                parentKey: '100'
             },
         ]
     }

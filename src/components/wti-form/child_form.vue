@@ -192,6 +192,11 @@
                 type: Array,
                 default: () => ([]),
             },
+            // 全局的表单项配置
+            globalConfig: {
+                type: Object,
+                default: () => ({}),
+            }
         },
         computed: {
             val: {
@@ -919,6 +924,7 @@
                     parentKey: this.item.key,
                     item: rowItem,
                     allDisabled: this.allDisabled,
+                    globalConfig: this.globalConfig
                 };
             },
 

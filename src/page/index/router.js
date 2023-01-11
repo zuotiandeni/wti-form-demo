@@ -20,6 +20,7 @@ import FormitemCommon from './component/common/formitem_common';
 import Layout from './component/common/layout';
 import ValueLink from './component/common/value_link';
 import AxiosPage from './component/common/axios_page';
+import GlobalConfig from './component/common/global_config';
 
 import Input from './component/formitem/input';
 import NormalSelect from './component/formitem/normal_select';
@@ -73,6 +74,7 @@ const routes = [
     {path: '/common/Layout', component: Layout,},
     {path: '/common/ValueLink', component: ValueLink,},
     {path: '/common/Axios', component: AxiosPage,},
+    {path: '/common/GlobalConfig', component: GlobalConfig,},
 
 
     {path: '/formItem/Input', component: Input,},

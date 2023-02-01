@@ -37,6 +37,10 @@
 
 ![Github stars](https://img.shields.io/github/stars/qq20004604/wti-form.svg?label=Stars&color=success)
 
+> 1.2.5
+
+1. 修复普通多选下拉框【MulSelectNormal】在文本模式下的值无法回显问题；
+
 > 1.2.4
 
 1. 新增【globalConfig.clearable】全局配置属性，控制全局表单项是否可清空；

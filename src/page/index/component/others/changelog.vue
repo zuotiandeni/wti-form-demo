@@ -40,7 +40,7 @@
 > 1.2.5
 
 1. 修复普通多选下拉框【MulSelectNormal】在文本模式下的值无法回显问题；
-2. 新增【特殊lable定义】用一段HTML片段作为lable，以应对特殊的label需求；
+2. 新增【特殊label定义】用一段HTML片段作为lable，以应对特殊的label需求；
 
 > 1.2.4
 

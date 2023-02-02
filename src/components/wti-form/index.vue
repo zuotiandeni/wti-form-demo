@@ -52,7 +52,7 @@
             <!-- 区块级，每个 filed 是一个区块 -->
             <div v-for="field in currentFileds"
                  :key="field.label">
-                <div v-if="scanType === 'normal' || (scanType === 'single' && singleScanBlock === field.label)"
+                <div v-show="scanType === 'normal' || (scanType === 'single' && singleScanBlock === field.label)"
                      :class="getBlockClass(field)"
                      :style="field.style">
                     <!-- 区块名 -->

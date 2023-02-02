@@ -39,7 +39,40 @@
                 <pre v-highlightjs><code class="javascript">{{ code2 }}</code></pre>
             </el-collapse-item>
         </el-collapse>
-</div>
+
+
+        <h3>自定义文本模式下，多个选项之间的连接符 linkSymbol</h3>
+        <p>默认情况下，是顿号【、】，如果有需要，也可以自定义内容。</p>
+        <p>
+            尝试更换一下连接符吧！
+            <el-radio-group v-model="linkSymbol" size="mini">
+                <el-radio-button label="、"/>
+                <el-radio-button label="，"/>
+                <el-radio-button label="； "/>
+            </el-radio-group>
+        </p>
+        <wti-form ref="form3"
+                  :data="data3"
+                  :text-model="true"
+                  :fields="fields3"/>
+        <div class="submit-line">
+            <el-button type="primary" @click="submit('form2')">提交按钮</el-button>
+            <span class="tips">请查看控制台看提交结果</span>
+        </div>
+        <el-collapse class="collapse">
+            <el-collapse-item>
+                <template slot="title">
+                    <b>点击查看代码</b>
+                </template>
+
+                <el-link
+                    type="primary"
+                    href="https://github.com/qq20004604/wti-form-demo/blob/main/src/page/index/component/formitem/mul_select_normal.vue">
+                    Github代码地址
+                </el-link>
+            </el-collapse-item>
+        </el-collapse>
+    </div>
 </template>
 
 <script>
@@ -207,7 +240,68 @@ fields2: [
         ]
     }
 ]`,
+                linkSymbol: '、',
+
+                code3: `<wti-form ref="form3"
+                :data="data3"
+                :text-model="true"
+                :fields="fields3"/>
+---
+`,
+                data3: {
+                    key3: [ 'value_a', 'value_b', 'value_c', 'value_d' ]
+                },
             };
+        },
+        computed: {
+            fields3 () {
+                return [
+                    {
+                        children: [
+                            {
+                                key: 'key3',
+                                type: 'mul-select-normal',
+                                label: '我是输入框的 label',
+                                linkSymbol: this.linkSymbol,
+                                options: [
+                                    {
+                                        value: 'value_a',
+                                        label: 'label A'
+                                    },
+                                    {
+                                        value: 'value_b',
+                                        label: 'label B'
+                                    },
+                                    {
+                                        value: 'value_c',
+                                        label: 'label C'
+                                    },
+                                    {
+                                        value: 'value_d',
+                                        label: 'label D'
+                                    },
+                                    {
+                                        value: 'value_e',
+                                        label: 'label E'
+                                    },
+                                    {
+                                        value: 'value_f',
+                                        label: 'label F'
+                                    },
+                                    {
+                                        value: 'value_g',
+                                        label: 'label G'
+                                    },
+                                    {
+                                        value: 'value_h',
+                                        label: 'label H'
+                                    }
+                                ],
+                            }
+                        ]
+                    }
+                ];
+            }
         },
         methods: {
             submit (formName) {

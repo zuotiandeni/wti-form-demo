@@ -1,10 +1,24 @@
 <template>
     <div>
         <h2>全局通用配置</h2>
-        
-        <h3>全局通用配置——globalConfig.clearable</h3>
-        <p>表单配置项属性clearable的优先级 大于 全局props配置globalConfig.clearable的优先级 大于默认值的优先级</p>
-        <p>你可以选中后鼠标悬浮input框，点击末尾❎试试</p>
+        <p>全局性配置，特指一些会影响大量表单组件的配置。通常都在 globalConfig 这个对象里通过 key-value 进行配置</p>
+        <p>而全局性配置，通常还可以在配置表单项时，也可以进行个性化配置。并且表单组件本身会默认有一个配置</p>
+        <p>假设三个都存在并且可能不同时，那么某一个表单组件其具体使用哪个配置的优先逻辑是：【表单项个性化配置】>【全局性配置】>【表单组件默认配置】</p>
+
+
+        <h3>配置方法</h3>
+        <p>通常可以有两种方法来配置。</p>
+        <p>第一种是在引入 WtiForm 组件的时候，通过 Vue.use(WtiForm, props) 中的 props 属性来配置，props属性是一个对象。参考代码如下：</p>
+        <pre v-highlightjs><code class="javascript">{{ demoCode1 }}</code></pre>
+        <p>第二种是在使用 WtiForm 组件的时候，在 Vue 的 template 里使用。示例代码如下</p>
+        <pre v-highlightjs><code class="javascript">{{ demoCode2 }}</code></pre>
+        <p>更详细的示例可以参考下面第一个例子</p>
+
+        <h3>输入框可清除 clearable</h3>
+        <p>
+            当全局配置了 globalConfig.clearable 属性为 true 时，默认输入框、下拉框等表单组件，在有值的情况下，末尾会出现一个 <i class="el-icon-circle-close"></i>
+            符号，点击后可以清除内容
+        </p>
         <wti-form :fields="fields1"
                   ref="form1"/>
         <el-collapse class="collapse">
@@ -23,6 +37,21 @@
         name: 'GlobalConfig',
         data () {
             return {
+                demoCode1: `const props = {
+// 全局属性配置
+globalConfig: {
+    type: Object,
+    default: () => {
+        return {
+            clearable: false
+        };
+    }
+},
+Vue.use(WtiForm, props)`,
+                demoCode2: `<wti-form :fields="fields1"
+                  :global-config="props"
+                  ref="form1"/>`,
+
                 fields1: [
                     {
                         label: '用户信息登记',
@@ -30,22 +59,7 @@
                             {
                                 key: 'name',
                                 type: 'input',
-                                label: '用户名称'
-                            },
-                            {
-                                options: [
-                                    {
-                                        value: 'male',
-                                        label: '男'
-                                    },
-                                    {
-                                        value: 'female',
-                                        label: '女'
-                                    },
-                                ],
-                                key: 'gender',
-                                label: '性别',
-                                type: 'radio'
+                                label: '普通输入框'
                             },
                             {
                                 options: [
@@ -67,16 +81,15 @@
                                     },
                                 ],
                                 key: 'job',
-                                label: '职业',
+                                label: '普通下拉框',
                                 placeholder: '请选择',
-                                type: 'normal-select'
+                                type: 'normal-select',
                             },
                             {
                                 key: 'money',
                                 type: 'money-input',
-                                label: '定金(通过表单配置属性控制不可清空)',
+                                label: '金钱输入框',
                                 append: '元',
-                                clearable: false,
                             },
                             {
                                 autoCompleteKeys: [],
@@ -84,38 +97,49 @@
                                 searchKey: 'search',
                                 mainShowKey: 'search',
                                 key: 'code',
-                                label: '输入搜索',
+                                label: '输入搜索下拉框',
                                 placeholder: '请输入',
                                 type: 'auto-complete-input',
                             },
                             {
                                 key: 'reg_date',
-                                label: '注册时间',
+                                label: '日期输入框',
                                 placeholder: '请输入',
                                 type: 'date-input'
                             },
                             {
                                 key: 'timearea',
-                                label: '有效范围',
+                                label: '日期范围输入框',
                                 placeholder: '请输入',
                                 type: 'date-range-input'
                             },
                             {
                                 key: 'notice_time',
-                                label: '每日短信通知时刻',
+                                label: '时分输入框',
                                 type: 'hour-minute-input',
+                            },
+                            {
+                                key: 'normal_number',
+                                type: 'normal-number',
+                                label: '普通数字输入框',
                             },
                             {
                                 key: 'number_limit',
                                 type: 'number-input',
-                                label: '数量限制',
-                                append: '个'
+                                label: '千分位数字输入框',
+                                append: '元'
                             },
                             {
                                 key: 'dict_code',
                                 type: 'dynamic-select',
-                                label: '这是一个字典下拉框（想不出来用处了）',
-                                parentKey: '101'
+                                label: '字典下拉框',
+                                parentKey: '101',
+                            },
+                            {
+                                key: 'dict_code',
+                                type: 'dynamic-select-multiple',
+                                label: '字典多选下拉框',
+                                parentKey: '100'
                             },
                             {
                                 key: 'rate',
@@ -164,8 +188,9 @@
                         ]
                     }
                 ],
+
                 code1: `<wti-form :fields="fields1"
-              ref="form1"/>
+                  ref="form1"/>
 ---
 fields1: [
     {
@@ -308,7 +333,7 @@ fields1: [
         ]
     }
 ],
----
+——————————
 // 引入 Vue
 import Vue from 'vue';
 
@@ -353,8 +378,7 @@ const props = {
         })
     }
 };
-Vue.use(WtiForm, props);
-`,
+Vue.use(WtiForm, props);`,
             };
         },
     };

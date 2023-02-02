@@ -434,9 +434,19 @@ fields3: [
                             {
                                 key: 'name',
                                 type: 'input',
-                                label: '姓名'
+                                label: '姓名',
+                                rules: [
+                                    {
+                                        required: true,
+                                        message: '请选择',
+                                        trigger: [
+                                            'blur',
+                                            'change'
+                                        ]
+                                    }
+                                ],
                             },
-                        ]
+                        ],
                     },
                     {
                         label: '资产信息',
@@ -445,7 +455,17 @@ fields3: [
                                 key: 'money',
                                 type: 'money-input',
                                 label: '定金',
-                                append: '元'
+                                append: '元',
+                                rules: [
+                                    {
+                                        required: true,
+                                        message: '请选择',
+                                        trigger: [
+                                            'blur',
+                                            'change'
+                                        ]
+                                    }
+                                ],
                             },
                         ]
                     },
@@ -455,7 +475,17 @@ fields3: [
                             {
                                 key: 'phone',
                                 type: 'normal-number',
-                                label: '电话'
+                                label: '电话',
+                                rules: [
+                                    {
+                                        required: true,
+                                        message: '请选择',
+                                        trigger: [
+                                            'blur',
+                                            'change'
+                                        ]
+                                    }
+                                ],
                             },
                         ]
                     },
@@ -473,9 +503,19 @@ fields4: [
             {
                 key: 'name',
                 type: 'input',
-                label: '姓名'
+                label: '姓名',
+                rules: [
+                    {
+                        required: true,
+                        message: '请选择',
+                        trigger: [
+                            'blur',
+                            'change'
+                        ]
+                    }
+                ],
             },
-        ]
+        ],
     },
     {
         label: '资产信息',
@@ -484,7 +524,17 @@ fields4: [
                 key: 'money',
                 type: 'money-input',
                 label: '定金',
-                append: '元'
+                append: '元',
+                rules: [
+                    {
+                        required: true,
+                        message: '请选择',
+                        trigger: [
+                            'blur',
+                            'change'
+                        ]
+                    }
+                ],
             },
         ]
     },
@@ -494,7 +544,17 @@ fields4: [
             {
                 key: 'phone',
                 type: 'normal-number',
-                label: '电话'
+                label: '电话',
+                rules: [
+                    {
+                        required: true,
+                        message: '请选择',
+                        trigger: [
+                            'blur',
+                            'change'
+                        ]
+                    }
+                ],
             },
         ]
     },
@@ -504,11 +564,12 @@ fields4: [
         },
         methods: {
             submit (formName) {
-                this.$refs[formName].validate((isPass, data) => {
+                this.$refs[formName].validate((isPass, data, xx) => {
                     if (isPass) {
                         console.log('这是你刚提交的数据', data);
                     } else {
-                        this.$message.error('校验失败！');
+                        console.log(isPass, data, xx);
+                        // this.$message.error(`有 ${xx.length}个字段 校验失败！`);
                     }
                 });
             }

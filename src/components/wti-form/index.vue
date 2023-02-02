@@ -122,7 +122,9 @@
                                                       :prop="rowItem.key">
                                             <template slot="label">
                                                 <div v-if="getFormItemLabel(rowItem)" class="wti-form-label">
-                                                    <span>{{ getFormItemLabel(rowItem) }}</span>
+                                                    <!-- eslint-disable-next-line -->
+                                                    <span v-if="rowItem.htmlLabel" slot="label" v-html="rowItem.htmlLabel"></span>
+                                                    <span v-else>{{ getFormItemLabel(rowItem) }}</span>
                                                     <span class="wti-form-label-Colon"
                                                           v-if="getFormItemLabelColon(rowItem)">:</span>
                                                 </div>

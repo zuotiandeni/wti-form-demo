@@ -43,6 +43,7 @@ import MulSelectNormal from './component/formitem/mul_select_normal';
 import IDCardDate from './component/formitem/id_card_date';
 
 import Slot from './component/advance/slot';
+import SpecialLabel from './component/advance/special_label';
 import ChildForm from './component/advance/child_form';
 
 import Github from './component/others/github';
@@ -99,6 +100,7 @@ const routes = [
 
 
     {path: '/advance/Slot', component: Slot,},
+    {path: '/advance/SpecialLabel', component: SpecialLabel,},
     {path: '/advance/ChildForm', component: ChildForm,},
 
 

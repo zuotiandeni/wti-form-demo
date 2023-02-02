@@ -55,6 +55,7 @@
             <el-menu-item-group>
                 <template slot="title">高阶用法</template>
                 <el-menu-item index="/advance/Slot">插槽 Slot</el-menu-item>
+                <el-menu-item index="/advance/SpecialLabel">特殊 Label</el-menu-item>
                 <el-menu-item index="/advance/ChildForm">子表单 ChildForm</el-menu-item>
             </el-menu-item-group>
 

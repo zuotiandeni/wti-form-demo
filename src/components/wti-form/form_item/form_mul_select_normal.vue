@@ -28,17 +28,15 @@
         mixins: [ FormMixin ],
         computed: {
             textModelValue () {
+                const content = [];
                 if (this.item.options) {
-                    let val = '';
-                    this.item.options.forEach(item => {
-                        if (item.value === this.value) {
-                            val = item.label;
+                    this.item.options.forEach((item) => {
+                        if (this.val.indexOf(item.value) >= 0) {
+                            content.push(item.label);
                         }
                     });
-                    return val;
-                } else {
-                    return '';
                 }
+                return content.join('、') || '-';
             },
             val: {
                 get () {

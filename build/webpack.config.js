@@ -6,14 +6,10 @@ const {VueLoaderPlugin} = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
-const gitManager = require('./git_manage.js').gitManager;
-// const fs = require('fs');
-const isProd = process.env.npm_lifecycle_event.indexOf('build') > -1;
-const Tag = isProd ? gitManager.getCurrentCommitTagSync() : '';
 
-function resolve (dir) {
-    return path.join(__dirname, '..', dir);
-}
+const isProd = process.env.npm_lifecycle_event.indexOf('build') > -1;
+const Tag = isProd ? require('./git_manage.js').gitManager.getCurrentCommitTagSync() : '';
+const resolve = (dir) => path.join(__dirname, '..', dir);
 
 
 const cssLoaderConfig = {

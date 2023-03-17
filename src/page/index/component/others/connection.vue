@@ -1,6 +1,6 @@
 <template>
     <div class="formitem-box">
-<h2>联系方式</h2>
+        <h2>联系方式</h2>
 
         <h3>想吹牛逼</h3>
         <p>QQ 群：387017550</p>
@@ -28,15 +28,15 @@
 </script>
 
 <style scoped lang="less">
-@import '~common/less/config.less';
+    @import '~common/less/config.less';
 
-.formitem-box {
-    position: relative;
-    width: 100%;
+    .formitem-box {
+        position: relative;
+        width: 100%;
 
-    .img {
-        width: 300px;
+        .img {
+            width: 300px;
+        }
     }
-}
 
 </style>

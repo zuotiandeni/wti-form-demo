@@ -64,7 +64,7 @@ const config = {
         compress: false, // 开启Gzip压缩
         contentBase: resolve('public'), // 将 public 目录下的文件，作为可访问文件。
         hot: true,
-        port: '8080',
+        port: 0,
         open: true, // 自动打开浏览器
         // overlay: { // 当出现编译器错误或警告时，就在网页上显示一层黑色的背景层和错误信息
         //     errors: true

@@ -306,8 +306,8 @@ fields5: [
             {
                 key: 'key5',
                 type: 'number-input',
-                label: '最多 2 位小数',
-                decimalLimit: 2
+                label: '自动补完 2 位小数',
+                zeroPadding: 2
             }
         ]
     }

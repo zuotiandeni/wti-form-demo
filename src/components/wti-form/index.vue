@@ -161,6 +161,9 @@
                                             <FormAutoComplete v-if="rowItem.type === 'auto-complete-input'"
                                                               v-bind="getProps(rowItem)"
                                                               v-model.trim="formData[rowItem.key]"/>
+                                            <FormRemoteSelect v-if="rowItem.type === 'remote-select'"
+                                                              v-bind="getProps(rowItem)"
+                                                              v-model.trim="formData[rowItem.key]"/>
                                             <FormRadio v-if="rowItem.type === 'radio'"
                                                        v-bind="getProps(rowItem)"
                                                        v-model.trim="formData[rowItem.key]"/>
@@ -216,6 +219,7 @@
     import FormHourMinute from './form_item/form_hour_minute';
     import FormDateRange from './form_item/form_date_range';
     import FormAutoComplete from './form_item/form_auto_complete';
+    import FormRemoteSelect from './form_item/form_remote_select';
     import FormNumberInput from './form_item/form_number_input';
     import FormRadio from './form_item/form_radio';
     import FormMoneyInput from './form_item/form_money_input';
@@ -239,6 +243,11 @@
         name: 'WtiForm',
         mixins: [ FormMixin ],
         props: {
+            // 是否在直接修改的formData数据的时候通知更新
+            updateFormDataEmit: {
+                type: Boolean,
+                default: false,
+            },
             fields: {
                 type: Array,
                 default: () => {
@@ -1043,6 +1052,12 @@
                     if (key in this.formData) {
                         // 则回填这个值
                         this.$set(this.formData, key, data[key]);
+                        // 如果需要在直接修改formData时通知更新（updateFormData）
+                        if (this.updateFormDataEmit) {
+                            this.$emit('updateValue', {
+                                [key]: data[key]
+                            });
+                        }
                     }
                 });
             },
@@ -1105,6 +1120,7 @@
             FormDateRange,
             FormNumberInput,
             FormAutoComplete,
+            FormRemoteSelect,
             FormRadio,
             FormTextarea,
             FormNormalSelect,

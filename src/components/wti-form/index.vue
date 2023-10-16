@@ -89,6 +89,7 @@
                                                    :global-config="globalConfig"
                                                    :all-disabled="allDisabled"
                                                    :item="rowItem"
+                                                   :update-form-data-emit="updateFormDataEmit"
                                                    v-on="$listeners"
                                                    :base-u-r-l="baseURL"
                                                    :label-position="labelPosition ? labelPosition : 'top'"

@@ -106,6 +106,10 @@
                                                               v-bind="getProps(rowItem,index)"
                                                               :random-id="childField.randomId"
                                                               v-model.trim="val[index][rowItem.key]"/>
+                                            <FormRemoteSelect v-if="rowItem.type === 'remote-select'"
+                                                              v-bind="getProps(rowItem,index)"
+                                                              :random-id="childField.randomId"
+                                                              v-model.trim="val[index][rowItem.key]"/>
                                             <FormRadio v-if="rowItem.type === 'radio'"
                                                        v-bind="getProps(rowItem,index)"
                                                        :random-id="childField.randomId"
@@ -181,11 +185,17 @@
     import FormDictCheckbox from './form_item/form_dict_checkbox';
     import FormDynamicSelectMultiple from './form_item/form_dict_select_multiple';
     import FormIDCardDate from './form_item/form_idcard_date';
+    import FormRemoteSelect from './form_item/form_remote_select.vue';
 
     export default {
         name: 'ChildForm',
         mixins: [ FormMixin ],
         props: {
+            // 是否在直接修改的formData数据的时候通知更新
+            updateFormDataEmit: {
+                type: Boolean,
+                default: false,
+            },
             item: {
                 type: Object,
                 default: () => ({}),
@@ -585,6 +595,14 @@
                     if (key in this.value[index]) {
                         // 则回填这个值
                         this.$set(this.value[index], key, data[key]);
+                        // 如果需要在直接修改formData时通知更新（updateFormData）
+                        if (this.updateFormDataEmit) {
+                            this.$emit('updateValue', {
+                                [this.item.key]: this.val
+                            }, {
+                                [key]: data[key]
+                            }, index);
+                        }
                     }
                 });
             },
@@ -936,6 +954,7 @@
             }
         },
         components: {
+            FormRemoteSelect,
             FormInput,
             FormDictSelect,
             FormDate,
